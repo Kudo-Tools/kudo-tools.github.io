@@ -6,12 +6,17 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 public class Box extends JPanel implements MouseListener{
-    boolean computer;
+    String occuptation;
     Board board;
     boolean selected = false;
     Color selected_color;
     int x, y;
     
+    public Box(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public Box(Board board, int x, int y) {
         this.board = board;
         this.x = x;
@@ -44,20 +49,42 @@ public class Box extends JPanel implements MouseListener{
         return selected;
     }
 
-    public boolean getComputer() {
-        return computer;
+    public String getOccupation() {
+        return occuptation;
+    }
+
+    public String getPlayer() {
+        return occuptation;
+    }
+
+    public void setBackendSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public void setComputer() {
+        this.occuptation = "Computer";
+    }
+
+    public void setHuman() {
+        this.occuptation = "Human";
+    }
+
+    public void setComputerSelected() {
+        this.occuptation = "Computer";
+        selected_color = new Color(142,62,240);
+        selected = true;
+        this.board.setTurn(false);
+        repaint();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        // System.out.println(selected);
         if(!selected && !board.getGameOver()) {
-            this.computer = board.getTurn();
-            if(computer) {
-                selected_color = new Color(142,62,240);
-            } else {
-                selected_color = new Color(98,213,157);
-            }
-            this.board.setTurn(!computer);
+            selected_color = new Color(98,213,157);
+            this.occuptation = "Human";
+            
+            this.board.setTurn(true);
             selected = true;
             repaint();
             this.board.makeMove();
