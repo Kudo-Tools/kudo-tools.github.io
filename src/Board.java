@@ -14,6 +14,7 @@ public class Board {
     JFrame frame;
     JPanel body;
     JPanel gameBody;
+    Controls logs;
     public Board() {
         this.frame = new JFrame("Tic Tac Toe");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,10 +28,10 @@ public class Board {
         grid.setHgap(5);
         grid.setVgap(5);
         gameBody.setLayout(grid);
-        gameBody.setBackground(new Color(255,255,255));
-        
+        gameBody.setBackground(new Color(0,0,0));
+        logs = new Controls(this);
         body.add(gameBody, BorderLayout.CENTER);
-
+        body.add(logs, BorderLayout.EAST);
         for(int x = 0; x < 3; x++) {
             for(int y = 0; y < 3; y++) {
                 boxes[x][y] = new Box(this, x, y);
@@ -59,26 +60,29 @@ public class Board {
     public void makeMove() {
         String winner = new CheckWin().getWinner(boxes);
         if(winner != null) {
-            System.out.println("Winner: " + winner);
+            logs.addLog("GAME OVER, " + winner + " Wins!");
+            game_over = true;
         }
-        if(computer_Turn) {
-            System.out.println("-----------------------");
-            
+        if(!game_over && computer_Turn) {
+            logs.addLog("Computer's Turn...");
             Minimax result = new Minimax();
             int[] best = result.bestChoice(this);
             boxes[best[0]][best[1]].setComputerSelected();
-            System.out.println("-------Done with Computer------");
-            
+            logs.addLog("Player's Turn...");
         }
     }
 
-    
-
-    // private String switchToString(boolean computer) {
-    //     if(computer)
-    //         return "Computer";
-    //     return "Human";
-    // }
+    public void reset() {
+        logs.addLog("Resetting game.");
+        gameBody.removeAll();
+        for(int x = 0; x < 3; x++) {
+            for(int y = 0; y < 3; y++) {
+                boxes[x][y] = new Box(this, x, y);
+                gameBody.add(boxes[x][y]);
+            }
+        }
+        gameBody.repaint();
+    }
 
     public void setTurn(boolean turn) {
         this.computer_Turn = turn;
