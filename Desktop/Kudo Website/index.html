@@ -7,16 +7,21 @@
         <link href="src/styles/mainImage.css" rel="stylesheet" type="text/css">
         <link href="src/styles/mainInfo.css" rel="stylesheet" type="text/css">
         <link href="src/styles/features.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/customization.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/FAQ.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/footer.css" rel="stylesheet" type="text/css">
         <script src="src/js/features.js"></script>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
     </head>
     <body>
         <header>
-            <img class="logo" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
             <nav>
                 <ul class="navigation">
-                    <li><a href="#">features</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">social media</a></li>
+                    <li><a href="#features">features</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#social">social media</a></li>
                     <li><a href="#">download</a></li>
                 </ul>
             </nav>
@@ -37,12 +42,12 @@
                     </div>
                     <div class="button_container">
                         <button id="purchase">purchase</button>
-                        <button id="learn_more">learn more
+                        <button onclick="location.href='#information';" class="learn_more">learn more
                             <i class="arrow right"></i>
                         </button>
                     </div>
-                    <div class="main_section">
-                        <div class="information_container">
+                    <div  class="main_section">
+                        <div id="information" class="information_container">
                             <div class="information" style="width: 400px;">
                                 <h1>Grouping</h1>
                                 <p>Easily categorize all your tasks 
@@ -51,7 +56,7 @@
                             <div class="information" style="width: 500px;">
                                 <h1>Quick and Simple</h1>
                                 <p>With a easy-to-use user interface, reselling
-                                    has never been manageable</p>
+                                    is easier to manage then ever</p>
                             </div>
                             <div class="information" style="width: 400px;">
                                 <h1>Unlimited</h1>
@@ -65,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="features_container">
+                    <div id="features" class="features_container">
                         <div class="selection_container">
                             <div class="selectors" onclick=showSlide(0)>
                                 <img class="icon" src="images/ReCaptcha.png" alt="logo">
@@ -172,6 +177,143 @@
                             </div>
                         </div>
                     </div>
+                    <div id="customization" class="customization custom_container">
+                        <div class="image_container">
+                            <img class="image image_1" src="images/TitleImage.png">
+                            <img class="image image_2" src="images/whiteImage.png">
+                            <img class="image image_3" src="images/Blue.png">
+                        </div>
+                        <div class="text_container">
+                            <a class="custom_title">Control Your Look</a>
+                            <p>Various user interface color options available.<br>
+                            Easily switch between color layouts to <br> 
+                            choose the right color for you</p>
+                        </div>
+                    </div>
+                    <div id="faq" class="FAQ_section">
+                        <div style="margin-top: 100px;"></div>
+                        <div class="row_parent">
+                            <div class="FAQ_item first_item">
+                                <!-- <img class="feature_icon" src="images/RedInventory.png"> -->
+                                <div class="feature_title">Where can I download Kudo?</div>
+                                <div class="feature_description">
+                                    You can download Kudo for free at
+                                    <br>
+                                    <a style="background: transparent; color: #60a2ff; text-decoration: underline;"href="https://www.kudotools.com/download">https://www.kudotools.com/download</a>
+                                    <br>
+                                    <br>
+                                    Download the zip file, then unzip it, and run the Kudo.exe to launch the application
+                                </div>
+                            </div>
+                            <div class="FAQ_item second_item">
+                                <!-- <img class="feature_icon" src="images/RedCard.png"> -->
+                                <div class="feature_title">How much is Kudo?</div>
+                                <div class="feature_description">
+                                    For the time being, Kudo is free to all users
+                                    <br>
+                                    However this is subject to change in the future
+                                    <br>
+                                    All members will be alerted if any changes are to occur
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row_parent">
+                            <div class="FAQ_item third_item">
+                                <!-- <img class="feature_icon" src="images/RedCaptcha.png"> -->
+                                <div class="feature_title">What is the future of Kudo?</div>
+                                <div class="feature_description">
+                                    <!-- <br> -->
+                                    Kudo started as a high school student's project but has grown to be much more   
+                                    <br>
+                                    The developer team will continue to grow Kudo with new features and pefections
+                                    <br>
+                                    With an endless list of helpful features, Kudo is planned to constantly be receiving new additions
+                                    <br>
+                                    <br>
+                                    <strong style="background: transparent; color: white; margin-right: 10px;">Have a suggestion?</strong>
+                                    <!-- <br> -->
+                                    Feel free to share it in suggestions channel of the Kudo discord 
+                                </div>
+                            </div>
+                            <div class="FAQ_item fourth_item">
+                                <!-- <img class="feature_icon" src="images/RedArrow.png"> -->
+                                <div class="feature_title">Is there a dashboard?</div>
+                                <div class="feature_description">
+                                    There is a dashboard for each individuals key
+                                    <br>
+                                    You can access yours at
+                                    <br>
+                                    <a style="background: transparent; color: #60a2ff; text-decoration: underline;"href="https://www.kudotools.com/dashboard">https://www.kudotools.com/dashboard</a>
+                                    <br>
+                                    Through the dashboard, you can connect your discord account to Kudo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row_parent">
+                            <div class="FAQ_item fith_item">
+                                <!-- <img class="feature_icon" src="images/RedVan.png"> -->
+                                <div class="feature_title">Where should I go for support?</div>
+                                <div class="feature_description">
+                                    For any help/support, you can create a ask in the corresponding 
+                                    <br>
+                                    chat in the Kudo 
+                                    <a style="background: transparent; color: #60a2ff; text-decoration: underline;"href="https://discord.gg/9RVJ4MR3Ws">discord server</a>
+                                    <br>
+                                    <br>
+                                    <strong style="background: transparent; color: white; margin-right: 10px;">Need 1 on 1 support?</strong>
+                                    <!-- <br> -->
+                                    <br>
+                                    Create a ticket in the discord and wait for 
+                                   staff to assist you
+                                </div>
+                            </div>
+                            <div class="FAQ_item sixth_item">
+                                <!-- <img class="feature_icon" src="images/RedKey.png"> -->
+                                <div class="feature_title">What operating systems work with Kudo?</div>
+                                <div class="feature_description">
+                                    Currently, only Windows 10 operating systems have been tested and are supported. 
+                                    <br> 
+                                    An expansion of more operating systems is planned for the future
+                                </div>
+                            </div>
+                        </div> 
+                        <div id="social" class="footer-basic">
+                            <footer style="background: transparent;">
+                                <div class="social_title">
+                                    <h1>Social Media</h1>
+                                </div>
+                                <br>
+                                <div class="wrapper">
+                                    <div onclick="location.href='https://twitter.com/KudoTools';" class="icon twitter">
+                                        <div class="tooltip">Twitter</div>
+                                        <span style="background: transparent;"><i class="fab fa-twitter"></i>
+                                            <img class="social_media_icon" src="images/Twitter.png">
+                                        </span>
+                                    </div>
+                                    <!-- <div class="icon instagram">
+                                      <div class="tooltip">Instagram</div>
+                                        <span style="background: transparent;"><i class="fab fa-instagram"></i>
+                                            <img class="social_media_icon" src="images/Instagram.png">
+                                        </span>
+                                    </div> -->
+                                    
+                                    <div onclick="location.href='https://github.com/TeedsK/Kudo-Download/releases';" class="icon github">
+                                      <div class="tooltip">Github</div>
+                                        <span style="background: transparent;"><i class="fab fa-github"></i>
+                                            <img class="social_media_icon" src="images/Github.png">
+                                        </span>
+                                    </div>
+                                    <!-- <div class="icon youtube">
+                                      <div class="tooltip">Youtube</div>
+                                        <span style="background: transparent;"><i class="fab fa-youtube"></i>
+                                            <img class="social_media_icon" src="images/Youtube.png">
+                                        </span>
+                                    </div> -->
+                                  </div>
+                            </footer>
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>
