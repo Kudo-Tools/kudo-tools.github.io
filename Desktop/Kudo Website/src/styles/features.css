@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+.selection_container {
+    /* background-color: pink; */
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.features_container {
+    position: relative;
+    margin-top: 450px;
+}
+.selectors {
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out 0s;  
+    width: 400px;
+    height: 220px;
+    margin: 10px 20px;
+    float: left;    
+    /* box-shadow: 0px 0px 0px 2px #fff inset; */
+    /* box-shadow: 0px 0px 0px 2.5px rgb(27,30,39, 0.7) inset; */
+    
+}
+
+.selectors:hover {
+    border-radius: 3px;
+}
+
+.selector_titles {
+    user-select: none;
+    margin-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    /* margin-left: 20px; */
+    background: transparent;
+    display:block;
+    transition: all 0.3s ease-in-out 0s;  
+    /* top:50px; */
+
+}
+.selectors p {
+    user-select: none;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 5px;
+    background: transparent;
+    text-align: center;
+    transition: all 0.3s ease-in-out 0s;  
+}
+
+
+.selectors .icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: default;
+    margin-top:20px;
+    padding: 10px;
+    max-width: 65px;
+    height: auto;
+    border-radius: 6px;
+    background: transparent;
+    /* box-shadow: 0px 0px 0px 2.5px rgb(27,30,39, 0.7) inset; */
+    transition: all 0.3s ease-in-out 0s;  
+    
+    
+}
+
+.slides_container {
+    width: 100%;
+    height: 450px;
+}
+
+.slide {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left_information {
+    float: left;
+    width: 790px;
+    margin-top: 25px;
+}
+
+.left_information strong {
+    color: rgb(31,32,48);
+    font-size: 30px;
+    margin-right: 34px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+}
+.left_information p {
+    color: rgb(31,32,48);
+    font-size: 20px;
+    margin-right: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+}
+
+.slide_image {
+    float: right;
+    border-radius: 8px;
+    max-width: 750px;
+    height: auto;
+    box-shadow: 0px 0px 15px 5px rgb(9, 9, 14, 0.3);
+    margin: 20px;
+}

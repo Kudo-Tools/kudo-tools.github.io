@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <link href="src/styles/main.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/header.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/body.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/BigTitle.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/mainImage.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/mainInfo.css" rel="stylesheet" type="text/css">
+        <link href="src/styles/features.css" rel="stylesheet" type="text/css">
+        <script src="src/js/features.js"></script>
+    </head>
+    <body>
+        <header>
+            <img class="logo" src="images/LoginKudo.png" alt="logo">
+            <nav>
+                <ul class="navigation">
+                    <li><a href="#">features</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">social media</a></li>
+                    <li><a href="#">download</a></li>
+                </ul>
+            </nav>
+            <div class="right_header">
+                <div class="login_button">
+                    <a onclick="loadDashboard()" href="#"><button>login</button></a>
+                </div>
+                <a class="sign_up">sign up</a>
+               
+            </div>
+        </header>
+        <body>
+            <div class="container">
+                <div class="content">
+                    <div class="big_title">
+                        <h1>Reselling Managed</h1>
+                        <p>Use an automated toolbox to make your reselling career simple</p>
+                    </div>
+                    <div class="button_container">
+                        <button id="purchase">purchase</button>
+                        <button id="learn_more">learn more
+                            <i class="arrow right"></i>
+                        </button>
+                    </div>
+                    <div class="main_section">
+                        <div class="information_container">
+                            <div class="information" style="width: 400px;">
+                                <h1>Grouping</h1>
+                                <p>Easily categorize all your tasks 
+                                    with built in task grouping</p>
+                            </div>
+                            <div class="information" style="width: 500px;">
+                                <h1>Quick and Simple</h1>
+                                <p>With a easy-to-use user interface, reselling
+                                    has never been manageable</p>
+                            </div>
+                            <div class="information" style="width: 400px;">
+                                <h1>Unlimited</h1>
+                                <p>Run as many tasks as your computer can handle</p>
+                            </div>
+                        </div>
+
+                        <div class="image_container">
+                            <div class="image_outline">
+                                <img class="main_ui" src="images/whiteImage.png" alt="logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="features_container">
+                        <div class="selection_container">
+                            <div class="selectors" onclick=showSlide(0)>
+                                <img class="icon" src="images/ReCaptcha.png" alt="logo">
+    
+                                <a class="selector_titles">Email Harvesters</a>
+                                <p class="selector_description">farm infinite email 
+                                    accounts to achieve 
+                                    one clicks <br> view test results with an in built ReCaptcha tester</p>
+                            </div>
+                            <div class="selectors" onclick=showSlide(1)>
+                                <img class="icon" src="images/Profiles.png" alt="logo">
+    
+                                <a class="selector_titles">Profile Converter</a>
+                                <p class="selector_description">easily manage your profiles with various tools <br>
+                                import and export with 1 click</p>
+                            </div>
+                            <div class="selectors" onclick=showSlide(2)>
+                                <img class="icon" src="images/Inventory.png" alt="logo">
+    
+                                <a class="selector_titles">Inventory Manager</a>
+                                <p class="selector_description">quickly add products and view profit margins <br>see realtime asks and bids</p>
+                            </div>
+                        </div> 
+                        <div class="slides_container">
+                            <div class="slide">
+                                <div class="left_information">
+                                    <br>
+                                    <br>
+                                    <strong>Activity Generator</strong>
+                                    <p>Generate human parallel activity on all your gmails automatically. 
+                                        <br> With built in sleep, break, and wakeup times, you can leave 
+                                        <br> accounts running for hours on end</p>
+                                    <br>
+                                    <br>
+                                    <div style="float:left; margin-right: 30px;">
+                                        <strong>Password Changer</strong>
+                                        <p>Change your gmail passwords <br> in 
+                                             masses</p>
+                                    </div>
+                                    <!-- <br>
+                                    <br> -->
+                                    <div style="float:left">
+                                        <strong>ReCAPTCHA Tester</strong>
+                                        <p>Easily test your gmail ReCAPTCHA v2
+                                            <br>  and ReCAPTCHA v3 scores</p>
+                                    </div>
+                                    
+                                </div>
+                                <img class="slide_image" src="images/Harvesters.png">
+                                <!-- <div class="right_information"></div> -->
+                            </div>
+                            <div class="slide">
+                                <div class="left_information">
+                                    <br>
+                                    <br>
+                                    <strong>Direct Convert</strong>
+                                    <p>With a single click of a button, directly export profiles to <br> your favorite bots save files</p>
+                                    <br>
+                                    <br>
+                                    <div style="float:left; margin-right: 30px;">
+                                        <strong>Import Detection</strong>
+                                        <p>Drag and drop your profiles and Kudo 
+                                            <br>will automatically identify the imports</p>
+                                    </div>
+                                    <!-- <br>
+                                    <br> -->
+                                    <div style="float:left; margin-top: 30px;">
+                                        <strong>Random Profile Creation</strong>
+                                        <p>Create profiles with jigged addresses<br> and/or random phone numbers <br> as well as randomized catchalls</p>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <strong>Multi-Bot Export</strong>
+                                    <p>Select multiple bots to export your profiles to</p>
+                                    <br>
+                                    <br>
+                                </div>
+                                <img class="slide_image" src="images/ProfilesPage.png">
+                                <!-- <div class="right_information"></div> -->
+                            </div>
+                            <div class="slide">
+                                <div class="left_information">
+                                    <br>
+                                    <br>
+                                    <strong>Item Tracker</strong>
+                                    <p>Quickly add new products with a couple clicks using <br> the built in product searcher</p>
+                                    <br>
+                                    <br>
+                                    <div style="float:left; margin-right: 30px;">
+                                        <strong>Live Prices</strong>
+                                        <p>Get a products live bids / asks <br> automatically or with a click of a button</p>
+                                    </div>
+                                    <!-- <br>
+                                    <br> -->
+                                    <!-- <div style="float:left">
+                                        <strong>ReCAPTCHA Tester</strong>
+                                        <p>Easily test your gmail ReCAPTCHA v2
+                                            <br>  and ReCAPTCHA v3 scores</p>
+                                    </div> -->
+                                    
+                                </div>
+                                <img class="slide_image" src="images/InventoryPage.png">
+                                <!-- <div class="right_information"></div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </body>
+    </body>
+</html>
