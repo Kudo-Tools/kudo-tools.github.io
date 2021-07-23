@@ -44,8 +44,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <header>
             <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
-                <a class="sign_up">sign up</a>
-               
             </div>
         </header>
         <div class="box loginBox">

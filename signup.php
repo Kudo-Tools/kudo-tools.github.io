@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 require("functions/connection.php");
@@ -34,9 +34,10 @@ try {
     <?php
 }
  
-$con = establish_connection();
+
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+    $con = establish_connection();
     if (isset($_POST['create'])) {
         if($con != null) {
             $user_id = mysqli_real_escape_string($con, random_number(25));
@@ -59,16 +60,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     </style>
                 <?php
                 header("Location: welcome?key=".$key);
+                $con->close();
                 die;
             } else {
                 header("Location: signup?error=invalid");
+                $con->close();
                 die;
                 
             }
         } else {
             echo "Couldn't connect to database";
+            $con->close();
             die;
         }
+        
     }
     elseif (isset($_POST['login'])) {
         echo "Login button detected";
@@ -82,6 +87,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     if($license == $user_data['license_key']) {
                         $_SESSION['user_id'] = $user_data['user_id'];
                         header("Location: dashboard");
+                        $con->close();
                         die;
                     } else {
                         ?>
@@ -105,8 +111,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
         echo "No button detected";
+        $con->close();
         die;
     }
+    $con->close();
 }
 ?>
 <html>
@@ -121,7 +129,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <header>
             <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
-                <a class="sign_up">sign up</a>
+                <a class="sign_up">login</a>
                
             </div>
         </header>
