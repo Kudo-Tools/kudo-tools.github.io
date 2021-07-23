@@ -40,7 +40,9 @@ try {
         mysqli_query($con, $query);
         $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
         mysqli_query($con, $query);
-        header("Location: dashboard");
+        // header("Location: dashboard");
+        echo "DISCORD IS SUPPOSE TO BE ADDED";
+        die;
     }
 } catch (exception $e) {}
 
