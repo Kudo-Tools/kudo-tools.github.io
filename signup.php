@@ -6,6 +6,7 @@ include("functions/methods.php");
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['create'])) {
+        echo "Create button detected";
         $user_id = random_number(25);
         $license = create_license();
         $items_base = "[]";
@@ -32,9 +33,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     }
                 </style>
             <?php
+            echo "Could Not Query";
+            die;
         }
     }
     elseif (isset($_POST['login'])) {
+        echo "Login button detected";
         $license = $key;
         if(!empty($license)) {
             $query = "select * from accounts where license_key = '$license' limit 1";
@@ -66,6 +70,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
             }
         }
+    } else {
+        echo "No button detected";
+        die;
     }
 }
 ?>
