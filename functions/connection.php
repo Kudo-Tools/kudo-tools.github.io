@@ -4,8 +4,9 @@ $dbhost = "us-cdbr-east-03.cleardb.com";
 $dbuser = "b2335803e8210c";
 $dbpassword = "2670080a";
 $dbname = "heroku_7cc8cb2939f8da4";
-
-if(!$con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname)) {
+$con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
+if(!$con) {
+    echo "Failure to connect to database";
     die("failure to connect");
 }
 
