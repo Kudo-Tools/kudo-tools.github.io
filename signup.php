@@ -39,10 +39,10 @@ $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['create'])) {
         if($con != null) {
-            $user_id = mysql_real_escape_string(random_number(25));
-            $license = mysql_real_escape_string(create_license());
-            $items_base = mysql_real_escape_string("[]");
-            $acc = mysql_real_escape_string("trial");
+            $user_id = mysqli_real_escape_string($con, random_number(25));
+            $license = mysqli_real_escape_string($con, create_license());
+            $items_base = mysqli_real_escape_string($con, "[]");
+            $acc = mysqli_real_escape_string($con, "trial");
             $query = "insert into accounts (user_id, license_key, items, account_type) values ('$user_id', '$license', '$items_base', '$acc')";
             
             $success = mysqli_query($con, $query);
