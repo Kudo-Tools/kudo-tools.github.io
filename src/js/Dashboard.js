@@ -18,23 +18,44 @@ function resetDiscordLogin() {
 function setUnsavedChanges() {
     document.getElementById("changes").style.color = "#EA4444";
     document.getElementById("changes").innerHTML = "changes unsaved";
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', "dashboard.php?save=saveDiscord");
-    xhr.onload = function () {
-        console.log(this.response);
-    };
-    xhr.send(data);
+    let user = "no name";
+    let id = "no id";
+    let avatar = "";
+    saveDiscordInformation(user, id, avatar)
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', "dashboard.php?save=saveDiscord");
+    // xhr.onload = function () {
+    //     console.log(this.response);
+    // };
+    // xhr.send(data);
+}
+
+function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
+    $.ajax({
+        url:"functions/saveDiscord.php",    //the page containing php script
+        type: "post",    //request type,
+        dataType: 'json',
+        data: {
+            registration: "success", 
+            user: disc_user, 
+            id: disc_id,
+            avatar: disc_avatar
+        },
+        success:function(result){
+            console.log(result.abc);
+        }
+    });
 }
 
 function saveUnsavedChanges() {
     document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";
     document.getElementById("changes").innerHTML = "changes saved";
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', "dashboard.php?save=saveDiscord");
-    xhr.onload = function () {
-        console.log(this.response);
-    };
-    xhr.send(data);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', "dashboard.php?save=saveDiscord");
+    // xhr.onload = function () {
+    //     console.log(this.response);
+    // };
+    // xhr.send(data);
 }
 
 
@@ -105,6 +126,7 @@ async function getInformation() {
             if(response.avatar != null || response.username != null || response.id != null) {
                 setUnsavedChanges();
             }
+            saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
         } else {
             window.location = window.location.href.split("?")[0];
         }

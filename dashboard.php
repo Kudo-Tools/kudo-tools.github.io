@@ -95,6 +95,8 @@ function getDiscordImage() {
 ?>
 <html>
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
         <link href="src/styles/main.css" rel="stylesheet" type="text/css">
         <link href="src/styles/header.css" rel="stylesheet" type="text/css">
         <link href="src/styles/BigTitle.css" rel="stylesheet" type="text/css">
