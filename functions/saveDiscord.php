@@ -10,9 +10,11 @@ require("functions/methods.php");
 $registration = $_POST['registration'];
 
 echo '<script>console.log("outside function");</script>';
+echo "CALLED THE HIDDEN FUNCTION!";
 
 if ($registration == "success"){
 
+    echo "CALLED THE HIDDEN FUNCTION INSIDE!";
     echo '<script>console.log("Inside function");</script>';
     
     $username= $_POST['user'];

@@ -45,10 +45,10 @@ function updateDiscordInformation() {
     mysqli_query($con, $query);
 }
 
-if($_POST['save'] === "saveDiscord") {
-    echo "SAVING DISCORD DATA";
-    die;
-}
+// if($_POST['save'] === "saveDiscord") {
+//     echo "SAVING DISCORD DATA";
+//     die;
+// }
 
 
 if(empty($fullDiscordName)) {
