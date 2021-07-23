@@ -4,8 +4,8 @@ ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 
-include("functions/connection.php");
-include("functions/methods.php");
+require("functions/connection.php");
+require("functions/methods.php");
 
 
 //if logged in this contains user info
