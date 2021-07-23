@@ -27,6 +27,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                     </style>
                 <?php
+                header("Location: welcome?key=".$key);
+                die;
             } else {
                 ?>
                     <style type="text/css">
@@ -97,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
         </header>
         <div class="box loginBox">
-            <a class="title">Kudo Account Creation</a>
+            <a class="title">Kudo Account Creation (1/2)</a>
             <a class="subtitle">Sign-up for a free trial version of Kudo</a>
             <a class="error" id="license_not_found">error generating key</a>
             <div id="create_key" class="elements">

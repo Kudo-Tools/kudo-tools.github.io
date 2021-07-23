@@ -12,13 +12,16 @@
     border-top-right-radius: 10px;
 }
 #login_element {
-    display: none;
+    display: block;
 }
 #create_key {
     display: block;
 }
 #license_not_found {
     display:none;
+}
+#license_invalid {
+    display: none;
 }
 .button {
     cursor: pointer;
