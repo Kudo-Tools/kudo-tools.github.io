@@ -12,7 +12,7 @@ function check_login($con) {
         $query->execute();
         $user_data = $query->fetch();
         if(!empty($user_data)) {
-            header("Location: dashboard.php");
+            // header("Location: dashboard.php");
             return $user_data;
         }
         // $query = "select * from accounts where user_id = '$id' limit 1";
