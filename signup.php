@@ -128,7 +128,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="box loginBox">
             <a class="title">Kudo Account Creation (1/2)</a>
             <a class="subtitle">Sign-up for a free trial version of Kudo</a>
-            <a class="error" id="license_not_found">error generating key</a>
+            <a class="error" id="license_not_found">error generating key, try again in a minute</a>
             <div id="create_key" class="elements">
                 <form style="background: transparent;" method="post">
                     <button name="create" style="margin-top: 20px;" id="beta_button">create free beta key</button>
