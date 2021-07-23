@@ -16,8 +16,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-        $query = $con->prepare("select * from accounts where license_key = ? limit 1");
-        $query->bind_param("s", $key);
+        $query = $con->prepare("select * from accounts where license_key = :key limit 1");
+        $query->bind_param(":key", $key);
         $query->execute();
         $result = $query->get_result();
         // $query = "select * from accounts where license_key = '$key' limit 1";
