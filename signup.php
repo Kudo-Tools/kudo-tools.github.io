@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     } else {
                         ?>
                         <style type="text/css">
-                            #license_invalid {
+                            #license_not_found {
                                 display: block;
                             }
                         </style>
@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 } else {
                     ?>
                     <style type="text/css">
-                        #license_invalid {
+                        #license_not_found {
                             display: block;
                         }
                     </style>
@@ -110,7 +110,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </form>
             </div>
 
-            <div id="login_element" class="elements">
+            <!-- <div id="login_element" class="elements">
                 <form style="background: transparent;" method="post">
                 <a style="display:none;" class="error" id="license_invalid">invalid license key</a>
                     <input id="license" type="license" name="license" value=<?php echo $key;?>>
@@ -118,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                         <i class="arrow right"></i>
                     </button>
                 </form>
-            </div>
+            </div> -->
 
         </div>
     </body>
