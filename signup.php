@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $license = create_license();
             $items_base = "[]";
             $acc = "trial";
-            $query = "insert into accounts (user_id, license_key, items, account_type) values ($user_id, $license, $items_base, $acc)";
+            $query = "insert into accounts (user_id, license_key, items, account_type) values ('$user_id', '$license', '$items_base', '$acc')";
             
             $success = mysqli_query($con, $query);
             if($success) {
@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "Login button detected";
         $license = $key;
         if(!empty($license)) {
-            $query = "select * from accounts where license_key = $license limit 1";
+            $query = "select * from accounts where license_key = '$license' limit 1";
             $result = mysqli_query($con, $query);
             if($result) {
                 if($result && mysqli_num_rows($result) > 0) {
