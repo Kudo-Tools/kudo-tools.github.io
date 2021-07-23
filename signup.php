@@ -35,8 +35,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                         }
                     </style>
                 <?php
-                echo "Could Not Query";
-                die;
             }
         } else {
             echo "Couldn't connect to database";
@@ -101,8 +99,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="box loginBox">
             <a class="title">Kudo Account Creation</a>
             <a class="subtitle">Sign-up for a free trial version of Kudo</a>
-            <a style="display:none;" class="error" id="license_not_found">error generating key</a>
-            <div style="display:block;" id="create_key" class="elements">
+            <a class="error" id="license_not_found">error generating key</a>
+            <div id="create_key" class="elements">
                 <form style="background: transparent;" method="post">
                     <button name="create" style="margin-top: 20px;" id="beta_button">create free beta key</button>
                     <a class="question">already have an account?</a>
@@ -110,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </form>
             </div>
 
-            <div style="display:none;" id="login_element" class="elements">
+            <div id="login_element" class="elements">
                 <form style="background: transparent;" method="post">
                 <a style="display:none;" class="error" id="license_invalid">invalid license key</a>
                     <input id="license" type="license" name="license" value=<?php echo $key;?>>
