@@ -53,13 +53,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
-    $query->bindParam(
+    // $query->bindParam(
+        
+    // );
+    $result = $query->execute(
         array(
-        ":username" => $username,
-        "userId"=> $user_id
+            ":username" => $discord_user,
+            ":userId"=> $user_id
         )
     );
-    $result = $query->execute();
     echo "COMPLETETLY GOOD";
     die;
 }
