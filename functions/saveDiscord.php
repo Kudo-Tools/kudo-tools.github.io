@@ -25,10 +25,12 @@ if ($registration == "success"){
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
     // $query->bindParam(":username", $username);
-    $query->bindParam([
-        ':username' => $username,
-        ':userId'=>$user_id
-    ]);
+    $query->bindParam(
+        array(
+        ":username" => $username,
+        ":userId"=>$user_id
+        )
+    );
     $result = $query->execute();
 
     echo json_encode(array(
