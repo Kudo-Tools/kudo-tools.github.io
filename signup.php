@@ -1,8 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 $_SESSION;
-include("functions/connection.php");
-include("functions/methods.php");
+require("functions/connection.php");
+require("functions/methods.php");
 $error = htmlspecialchars($_GET["error"]);
 if(!empty($error)) {
     ?>
@@ -26,10 +28,10 @@ $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['create'])) {
         if($con != null) {
-            $user_id = random_number(25);
-            $license = create_license();
-            $items_base = "[]";
-            $acc = "trial";
+            $user_id = mysql_real_escape_string(random_number(25));
+            $license = mysql_real_escape_string(create_license());
+            $items_base = mysql_real_escape_string("[]");
+            $acc = mysql_real_escape_string("trial");
             $query = "insert into accounts (user_id, license_key, items, account_type) values ('$user_id', '$license', '$items_base', '$acc')";
             
             $success = mysqli_query($con, $query);

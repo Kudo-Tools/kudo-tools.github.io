@@ -1,8 +1,10 @@
 <?php
 session_start();
 $_SESSION;
-include("functions/connection.php");
-include("functions/methods.php");
+
+require("functions/connection.php");
+require("functions/methods.php");
+
 $con = establish_connection();
 $key = htmlspecialchars($_GET["key"]);
 if(empty($key) || $key == null || trim($key, "") == "") {
