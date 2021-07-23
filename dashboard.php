@@ -9,6 +9,7 @@ include("functions/methods.php");
 
 
 //if logged in this contains user info
+$con = establish_connection();
 $user_data = check_login($con);
 
 
