@@ -12,25 +12,38 @@ function resetDiscordLogin() {
     document.getElementById("signout_discord").style.display = "none";
     document.getElementById("login_discord").style.display = "inline";
     setUnsavedChanges();
+    
 }
 
 function setUnsavedChanges() {
     document.getElementById("changes").style.color = "#EA4444";
     document.getElementById("changes").innerHTML = "changes unsaved";
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "dashboard.php?save=saveDiscord");
+    xhr.onload = function () {
+        console.log(this.response);
+    };
+    xhr.send(data);
 }
 
 function saveUnsavedChanges() {
     document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";
     document.getElementById("changes").innerHTML = "changes saved";
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "dashboard.php?save=saveDiscord");
+    xhr.onload = function () {
+        console.log(this.response);
+    };
+    xhr.send(data);
 }
 
 
-// window.onload = () => {
-//     let url = document.location.href;
-//     let code = url.split("code=")[1];
-//     CODE = code;
-//     getInformation();
-// }
+window.onload = () => {
+    let url = document.location.href;
+    let code = url.split("code=")[1];
+    CODE = code;
+    getInformation();
+}
 
 const CLIENT_ID = '799727631289155585';
 const CLIENT_SECRET = 'JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo';
@@ -60,7 +73,7 @@ async function getTheToken() {
     return response;
 }
 
-async function getInformation(CODE) {
+async function getInformation() {
     if(CODE != null) {
         let tokenInfo = await getTheToken();
         if(tokenInfo != null) {

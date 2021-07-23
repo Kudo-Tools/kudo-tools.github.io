@@ -21,31 +21,34 @@ $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
 
-try {
-    $discordToAdd = htmlspecialchars($_GET["code"]);
-    if(!empty($discordToAdd)) {
-        ?>
-            <script type="text/javascript">
-                getInformation(discordToAdd);
-            </script>
-        <?php
-        $discord_avatar = $_POST['avatar'];
-        $discord_user = $_POST['discord_user'];
-        $discord_id = $_POST['discord_id'];
-        $license_key = $_POST['license_key'];
-        $user_id = $user_data['user_id'];
-        $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
-        mysqli_query($con, $query);
-        $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
-        mysqli_query($con, $query);
-        $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
-        mysqli_query($con, $query);
-        // header("Location: dashboard");
-        echo "DISCORD IS SUPPOSE TO BE ADDED";
-        die;
-    }
-} catch (exception $e) {}
+// try {
+    // $discordToAdd = htmlspecialchars($_GET["code"]);
+    // if(!empty($discordToAdd)) {
+    //     // updateDiscordInformation();
+    //     // header("Location: dashboard");
+    //     echo "DISCORD IS SUPPOSE TO BE ADDED";
+    //     die;
+    // }
+// } catch (exception $e) {}
 
+function updateDiscordInformation() {
+    $discord_avatar = $_POST['avatar'];
+    $discord_user = $_POST['discord_user'];
+    $discord_id = $_POST['discord_id'];
+    $license_key = $_POST['license_key'];
+    $user_id = $user_data['user_id'];
+    $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
+    mysqli_query($con, $query);
+    $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
+    mysqli_query($con, $query);
+    $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
+    mysqli_query($con, $query);
+}
+
+if($_POST['save'] === "saveDiscord") {
+    echo "SAVING DISCORD DATA";
+    die;
+}
 
 
 if(empty($fullDiscordName)) {
@@ -73,21 +76,21 @@ function getDiscordImage() {
 }
 
 
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $discord_avatar = $_POST['avatar'];
-    $discord_user = $_POST['discord_user'];
-    $discord_id = $_POST['discord_id'];
-    $license_key = $_POST['license_key'];
-    $user_id = $user_data['user_id'];
+// if($_SERVER['REQUEST_METHOD'] == "POST") {
+//     $discord_avatar = $_POST['avatar'];
+//     $discord_user = $_POST['discord_user'];
+//     $discord_id = $_POST['discord_id'];
+//     $license_key = $_POST['license_key'];
+//     $user_id = $user_data['user_id'];
     
-    $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
-    $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
-    $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
-    header("Refresh:0");
-}
+//     $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+//     $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+//     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+//     header("Refresh:0");
+// }
 
 ?>
 <html>
@@ -98,7 +101,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <script src="src/js/features.js"></script>
         <script src="src/js/Dashboard.js"></script>
         <link href="src/styles/dashboard.css" rel="stylesheet" type="text/css">
-    
+        <script type="text/javascript">
+            getInformation(discordToAdd);
+        </script>
     </head>
     <body>
         <header>
