@@ -1,7 +1,8 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+
 session_start();
 $_SESSION;
 
@@ -18,14 +19,11 @@ if ($registration == "success"){
     $id= $_POST['id'];
     $avatar= $_POST['avatar'];
     $user_id = $user_data['user_id'];
-    
+    //discord_id = '$id',
+    // discord_avatar = '$avatar'
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $query = $con->prepare("update accounts set 
-        discord_username = '$username',
-        discord_id = '$id',
-        discord_avatar = '$avatar'
-    where user_id = '$user_id' limit 1");
+    $query = $con->prepare("update accounts set discord_username = '$username' where user_id = '$user_id' limit 1");
     $query->bindParam(":key", $key);
     $result = $query->execute();
 
