@@ -33,18 +33,28 @@ function setUnsavedChanges() {
 function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
     console.log("--------------------------");
     console.log("SAVING DISCORD INFORMATION");
-    $.ajax({
-        url:"functions/saveDiscord.php",    //the page containing php script
-        type: "post",    //request type,
-        dataType: 'json',
-        data: {
-            registration: "success"
-        },
-        success:function(result){
-            console.log(result.abc);
-        }
-    });
-
+    // $.ajax({
+    //     url:"functions/saveDiscord.php",    //the page containing php script
+    //     type: "post",    //request type,
+    //     dataType: 'json',
+    //     data: {
+    //         registration: "success"
+    //     },
+    //     success:function(result){
+    //         console.log(result.abc);
+    //     }
+    // });
+    // function create () {
+        $.ajax({
+            url:"functions/saveDiscord.php",    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
+            success:function(result){
+                console.log(result.abc + ", " + result.em + ", " + result.nam);
+            }
+        });
+    // }
     console.log("DONE SAVING");
 }
 
