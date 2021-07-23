@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             if($key == $user_data['license_key']) {
                 $_SESSION['user_id'] = $user_data['user_id'];
                 header("Location: dashboard");
-                $con->close();
+                $con = null;
                 die;
             } else {
                 ?>
@@ -78,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             <?php
         // }
     }
-    $con->close();
+    $con = null;
 }
 ?>
 <html>

@@ -40,37 +40,33 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
     if (isset($_POST['create'])) {
         if($con != null) {
-            $user_id = mysqli_real_escape_string($con, random_number(25));
-            $license = mysqli_real_escape_string($con, create_license());
-            $items_base = mysqli_real_escape_string($con, "[]");
-            $acc = mysqli_real_escape_string($con, "trial");
-            $query = "insert into accounts (user_id, license_key, items, account_type) values ('$user_id', '$license', '$items_base', '$acc')";
+            $user_id = random_number(25);
+            $license = create_license();
+            $items_base = "[]";
+            $acc = "trial";
             
-            $success = mysqli_query($con, $query);
-            if($success) {
+            try {
+                $data = array($user_id, $license, $items_base, $acc);
+                $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $query = $con->prepare("insert into accounts (user_id, license_key, items, account_type) values (?, ?, ?, ?)");
+                $query->execute($data);
                 $key = $license;
-                ?>
-                    <style type="text/css">
-                        #login_element {
-                            display: block;
-                        }
-                        #create_key {
-                            display: none;
-                        }
-                    </style>
-                <?php
                 header("Location: welcome?key=".$key);
-                $con->close();
+                $con = null;
                 die;
-            } else {
+            } catch(exception $e) {
                 header("Location: signup?error=invalid");
-                $con->close();
+                $con = null;
                 die;
-                
             }
+            // $query = $con->prepare("select * from accounts where license_key = :key limit 1");
+            // $query->bindParam(":key", $key);
+            // $query->execute();
+
+            // $success = mysqli_query($con, $query);
         } else {
             echo "Couldn't connect to database";
-            $con->close();
+            $con = null;
             die;
         }
         
@@ -87,7 +83,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     if($license == $user_data['license_key']) {
                         $_SESSION['user_id'] = $user_data['user_id'];
                         header("Location: dashboard");
-                        $con->close();
+                        $con = null;
                         die;
                     } else {
                         ?>
@@ -111,10 +107,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
         echo "No button detected";
-        $con->close();
+        $con = null;
         die;
     }
-    $con->close();
+    $con = null;
 }
 ?>
 <html>

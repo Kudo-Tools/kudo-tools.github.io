@@ -5,7 +5,7 @@ $_SESSION;
 require("functions/connection.php");
 require("functions/methods.php");
 
-$con = establish_connection();
+
 $key = htmlspecialchars($_GET["key"]);
 if(empty($key) || $key == null || trim($key, "") == "") {
     header("Location: signup");
@@ -14,22 +14,24 @@ if(empty($key) || $key == null || trim($key, "") == "") {
 
 //checks if something was sent to the database
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $query = "select * from accounts where license_key = '$key' limit 1";
+    $con = establish_connection();
+
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+    $query = $con->prepare("select * from accounts where license_key = :key limit 1");
+    $query->bindParam(":key", $key);
+    $query->execute();
     
-    //gets the users data
-    $result = mysqli_query($con, $query);
-    
-    if($result) {
-        if($result && mysqli_num_rows($result) > 0) {
-            $user_data = mysqli_fetch_assoc($result);
-            if($key == $user_data['license_key']) {
-                $_SESSION['user_id'] = $user_data['user_id'];
-                header("Location: dashboard");
-                die;
-            }
-        } 
+    $user_data = $query->fetch();
+    if(!empty($user_data)) {
+        if($key == $user_data['license_key']) {
+            $_SESSION['user_id'] = $user_data['user_id'];
+            header("Location: dashboard");
+            $con = null;
+            die;
+        }
     }
-    
+    $con = null;
 }
 ?>
 <html>
