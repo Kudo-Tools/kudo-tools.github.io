@@ -31,24 +31,38 @@ $discordNameNumbers = '';
     // }
 // } catch (exception $e) {}
 
-function updateDiscordInformation() {
+// function updateDiscordInformation() {
+//     $discord_avatar = $_POST['avatar'];
+//     $discord_user = $_POST['discord_user'];
+//     $discord_id = $_POST['discord_id'];
+//     $license_key = $_POST['license_key'];
+//     $user_id = $user_data['user_id'];
+//     $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+//     $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+//     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
+//     mysqli_query($con, $query);
+// }
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
     $discord_avatar = $_POST['avatar'];
     $discord_user = $_POST['discord_user'];
     $discord_id = $_POST['discord_id'];
-    $license_key = $_POST['license_key'];
     $user_id = $user_data['user_id'];
-    $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
-    $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
-    $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
-    mysqli_query($con, $query);
+    $con = establish_connection();
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
+    $query->bindParam(
+        array(
+        ":username" => $username,
+        "userId"=> $user_id
+        )
+    );
+    $result = $query->execute();
+    echo "COMPLETETLY GOOD";
+    die;
 }
-
-// if($_POST['save'] === "saveDiscord") {
-//     echo "SAVING DISCORD DATA";
-//     die;
-// }
 
 
 if(empty($fullDiscordName)) {

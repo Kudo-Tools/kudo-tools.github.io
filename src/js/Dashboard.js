@@ -21,7 +21,7 @@ function setUnsavedChanges() {
     let user = "no name";
     let id = "no id";
     let avatar = "";
-    saveDiscordInformation(user, id, avatar)
+    // saveDiscordInformation(user, id, avatar)
     // var xhr = new XMLHttpRequest();
     // xhr.open('POST', "dashboard.php?save=saveDiscord");
     // xhr.onload = function () {
@@ -30,42 +30,42 @@ function setUnsavedChanges() {
     // xhr.send(data);
 }
 
-function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
-    console.log("--------------------------");
-    console.log("SAVING DISCORD INFORMATION");
-    console.log("sending: ");
-    console.log(disc_user);
-    console.log(disc_id);
-    console.log(disc_avatar);
-    // $.ajax({
-    //     url:"functions/saveDiscord.php",    //the page containing php script
-    //     type: "post",    //request type,
-    //     dataType: 'json',
-    //     data: {
-    //         registration: "success"
-    //     },
-    //     success:function(result){
-    //         console.log(result.abc);
-    //     }
-    // });
-    // function create () {
-        $.ajax({
-            url:"functions/saveDiscord.php",    //the page containing php script
-            type: "post",    //request type,
-            dataType: 'json',
-            data: {
-                registration: "success", 
-                user: disc_user, 
-                id: disc_id,
-                avatar: disc_avatar
-            },
-            success:function(result){
-                console.log(result.result + ", " + result.user + ", " + result.avatar + ", " + result.id);
-            }
-        });
-    // }
-    console.log("DONE SAVING");
-}
+// function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
+//     console.log("--------------------------");
+//     console.log("SAVING DISCORD INFORMATION");
+//     console.log("sending: ");
+//     console.log(disc_user);
+//     console.log(disc_id);
+//     console.log(disc_avatar);
+//     // $.ajax({
+//     //     url:"functions/saveDiscord.php",    //the page containing php script
+//     //     type: "post",    //request type,
+//     //     dataType: 'json',
+//     //     data: {
+//     //         registration: "success"
+//     //     },
+//     //     success:function(result){
+//     //         console.log(result.abc);
+//     //     }
+//     // });
+//     // function create () {
+//         $.ajax({
+//             url:"functions/saveDiscord.php",    //the page containing php script
+//             type: "post",    //request type,
+//             dataType: 'json',
+//             data: {
+//                 registration: "success", 
+//                 user: disc_user, 
+//                 id: disc_id,
+//                 avatar: disc_avatar
+//             },
+//             success:function(result){
+//                 console.log(result.result + ", " + result.user + ", " + result.avatar + ", " + result.id);
+//             }
+//         });
+//     // }
+//     console.log("DONE SAVING");
+// }
 
 function saveUnsavedChanges() {
     document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";
@@ -146,7 +146,7 @@ async function getInformation() {
             if(response.avatar != null || response.username != null || response.id != null) {
                 setUnsavedChanges();
             }
-            saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
+            // saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
         } else {
             window.location = window.location.href.split("?")[0];
         }
