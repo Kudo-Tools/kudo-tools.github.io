@@ -37,22 +37,21 @@ try {
 
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $con = establish_connection();
     if (isset($_POST['create'])) {
-        if($con != null) {
             $user_id = random_number(25);
             $license = create_license();
             $items_base = "[]";
             $acc = "trial";
             
             try {
-                $data = array($user_id, $license, $items_base, $acc);
-                $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $query = $con->prepare("insert into accounts (user_id, license_key, items, account_type) values (?, ?, ?, ?)");
                 $result = false;
                 while(!$result) {
+                    $con = establish_connection();
+                    $data = array($user_id, $license, $items_base, $acc);
+                    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    $query = $con->prepare("insert into accounts (user_id, license_key, items, account_type) values (?, ?, ?, ?)");
                     $result = $query->execute($data);
-                    sleep(1);
+                    sleep(0.5);
                 }
                 if($result) {
                     $key = $license;
@@ -69,16 +68,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $con = null;
                 die;
             }
-            // $query = $con->prepare("select * from accounts where license_key = :key limit 1");
-            // $query->bindParam(":key", $key);
-            // $query->execute();
-
-            // $success = mysqli_query($con, $query);
-        } else {
-            echo "Couldn't connect to database";
-            $con = null;
-            die;
-        }
         
     }
     elseif (isset($_POST['login'])) {
