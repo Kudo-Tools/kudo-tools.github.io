@@ -1,12 +1,11 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 
-require("functions/connection.php");
-require("functions/methods.php");
+include("functions/connection.php");
 
 
 $registration = $_POST['registration'];
