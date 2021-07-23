@@ -11,10 +11,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $items_base = "[]";
         $acc = "trial";
         $query = "insert into accounts (user_id, license_key, items, account_type) values ($user_id, $license, $items_base, $acc)";
-        if($con == Null || $con == null || $con == NULL) {
-            echo "CONNECTION NOT MADE!";
-            die;
-        }
+        echo $con;
+        die;
+        
         $success = mysqli_query($con, $query);
         if($success) {
             $key = $license;
