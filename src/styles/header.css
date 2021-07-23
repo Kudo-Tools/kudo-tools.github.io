@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+li, a, button {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+    font-size:14px;
+    color: rgb(0,0,0,1);
+    text-decoration: none;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px, 10%;
+}
+
+.right_header {
+    position: relative;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    cursor: pointer;
+    margin: 10px;
+    max-width: 35px;
+    height: auto;
+}
+
+.navigation {
+    margin-left: 100px;
+    list-style: none;
+}
+.navigation li {
+    display: inline-block;
+    padding: 0px 30px;
+}
+.navigation li a {
+    transition: all 0.2s ease-in-out 0s;   
+}
+.navigation li a:hover{
+    color:rgb(0,0,0,0.8);
+}
+
+
+.sign_up {
+    background: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;   
+}
+
+.sign_up:hover {
+    color:rgb(0,0,0,0.8);
+}
+
+.login_button {
+    padding: 7px 35px;
+    /* background-color: rgba(255,255,255,1); */
+    border:none;
+    border-radius: 3px;
+    float: left;
+    /* margin-right: 20px; */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out 0s;   
+    border-radius: 3.5px;
+    background-color: white;
+    transition: .3s linear;
+}
+
+.login_button:hover {
+    box-shadow: 0px 0px 0px 1px rgb(26,26,46, 0.2) inset;
+}
+
+.login_button a, button {
+    background: transparent;
+    border:none;
+    text-decoration: none;
+    cursor: pointer;
+}

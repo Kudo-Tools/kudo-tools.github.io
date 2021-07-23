@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+.box {
+    margin-top: 150px;
+    width: 430px;
+    /* height: 50px; */
+    padding-top: 0.3px;
+    padding-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.button {
+    cursor: pointer;
+    margin-top: 20px;
+    /* background-color: rgba(209,60,82,0.9); */
+    box-shadow: none;
+    height: 30px;
+    transition: all 0.2s ease-out 0s; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(238, 238, 238);
+}
+#beta_button {
+    width: 220px;
+    height: 30px;
+    color: rgb(11,11,18);;
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px 1.7px rgb(26,26,46, 0.5) inset;
+    /* background-color: rgb(26,26,46,0.5); */
+    background-size: 200%;
+    transition: .3s ease;
+    margin-right: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#beta_button:hover {
+    box-shadow: 0px 0px 0px 5.7px rgb(52, 188, 114, 0.1) inset;
+    color: white;
+    background-color: rgb(52, 188, 114, 1);
+}
+#login_button {
+    width: 100px;
+}
+
+#login_button:hover {
+    box-shadow: 0px 0px 1px 0.7px rgb(26,26,46) inset;
+    color: black;
+    background-position: left;
+}
+#login_button:hover .arrow {
+    margin-left: 15px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3.5px;
+    background: rgb(57, 225, 133, 0);
+}
+.arrow {
+    margin-left: 5px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3.5px;
+    transition: .3s ease-out;
+    transition-delay: 0.15s;
+    background: black;
+}
+
+/* .loginBox {
+    margin-top: 100px;
+    width: 430px;
+    height: 320px;
+    border-radius: 6px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 0px 2px rgb(60,62,90, 0.4) inset;
+} */
+
+/* .signupBox {
+    margin-top: 100px;
+    width: 430px;
+    height: 280px;
+    border-radius: 6px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 0px 2px rgb(60,62,90, 0.4) inset;
+}
+
+.verifyBox {
+    margin-top: 100px;
+    width: 430px;
+    height: 260px;
+    border-radius: 6px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 0px 2px rgb(60,62,90, 0.4) inset;
+} */
+
+.box a {
+    background: transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    
+}
+
+.box .title {
+    margin-top: 45px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.box .subtitle {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.elements {
+    background: transparent;
+}
+.elements input {
+    border-radius: 4px;
+    color: black;
+    border: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 40px;
+    box-shadow: 0px 0px 0px 1px rgba(45, 46, 61, 0.1) inset;
+    padding-left: 20px;
+    outline: none;
+    transition: all 0.2s ease-out 0s; 
+}
+
+.error {
+    background: transparent;
+    text-align: center;
+    margin-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    color: rgb(223, 75, 75);
+}
+
+
+#submit {
+    padding-left: 0px;
+}
+
+.elements input:focus {
+    background: rgb(60,62,90, 0.03);
+    box-shadow: 0px 0px 0px 2px rgb(209,60,82,0.9) inset;
+}
+
+#email {
+    margin-top: 20px;
+}
+#password {
+    margin-top: 10px;
+}
+#license {
+    margin-top: 20px;
+}
+#email_confirmation {
+    margin-top: 10px;
+}
+#submit {
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: rgba(209,60,82,0.9);
+    box-shadow: none;
+    height: 30px;
+    transition: all 0.2s ease-out 0s; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#submit:hover {
+    background-color: rgba(209,60,82,0.7);
+    box-shadow: 0px 0px 0px 1px rgb(209,60,82,1) inset;
+}
+
+.question {
+    text-align: center;
+    margin-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    color: black;
+}
+.signup {
+    cursor: pointer;
+    margin-top: 5px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: black;
+    transition: all 0.2s ease-out 0s; 
+    width: 100px;
+}
+.signup:hover {
+    color: rgb(0,0,0,0.6);
+   
+}

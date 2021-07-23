@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    /* height: 800px; */
+}
+.content {
+    width: 1600px;
+    /* height: 100%; */
+    overflow-y: hidden;
+    
+}
