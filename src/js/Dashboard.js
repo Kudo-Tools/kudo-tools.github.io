@@ -31,6 +31,8 @@ function setUnsavedChanges() {
 }
 
 function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
+    console.log("--------------------------");
+    console.log("SAVING DISCORD INFORMATION");
     $.ajax({
         url:"functions/saveDiscord.php",    //the page containing php script
         type: "post",    //request type,
@@ -45,6 +47,8 @@ function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
             console.log(result.abc);
         }
     });
+
+    console.log("DONE SAVING");
 }
 
 function saveUnsavedChanges() {

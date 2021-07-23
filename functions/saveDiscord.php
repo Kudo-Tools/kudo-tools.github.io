@@ -31,7 +31,7 @@ if ($registration == "success"){
     } else {
         echo json_encode(array("abc"=>'failed change'));
     }
-    
+    die;
     // $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
     // mysqli_query($con, $query);
     // $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
