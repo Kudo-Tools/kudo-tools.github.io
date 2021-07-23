@@ -1,13 +1,16 @@
 <?php
 
-$dbhost = "us-cdbr-east-03.cleardb.com";
-$dbuser = "b2335803e8210c";
-$dbpassword = "2670080a";
-$dbname = "heroku_7cc8cb2939f8da4";
-$con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
-if(!$con) {
-    echo "Failure to connect to database";
-    die("failure to connect");
+function establish_connection() {
+    $dbhost = "us-cdbr-east-03.cleardb.com";
+    $dbuser = "b2335803e8210c";
+    $dbpassword = "2670080a";
+    $dbname = "heroku_7cc8cb2939f8da4";
+    $con = mysqli_connect($dbhost, $dbuser, $dbpassword, $dbname);
+    if(!$con) {
+        echo "Failure to connect to database";
+        die("failure to connect");
+    }
+    return $con;
 }
 
 // $cleardb_url = parse_url(getenv("mysql://ba72f7c647a318:d4b5f181@us-cdbr-east-03.cleardb.com/heroku_4f443fd1ef6d8c0?reconnect=true"));

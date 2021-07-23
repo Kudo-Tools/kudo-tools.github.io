@@ -3,39 +3,43 @@ session_start();
 $_SESSION;
 include("functions/connection.php");
 include("functions/methods.php");
+$con = establish_connection();
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['create'])) {
-        $user_id = random_number(25);
-        $license = create_license();
-        $items_base = "[]";
-        $acc = "trial";
-        $query = "insert into accounts (user_id, license_key, items, account_type) values ($user_id, $license, $items_base, $acc)";
-        echo $con;
-        die;
-        
-        $success = mysqli_query($con, $query);
-        if($success) {
-            $key = $license;
-            ?>
-                <style type="text/css">
-                    #login_element {
-                        display: block;
-                    }
-                    #create_key {
-                        display: none;
-                    }
-                </style>
-            <?php
+        if($con != null) {
+            $user_id = random_number(25);
+            $license = create_license();
+            $items_base = "[]";
+            $acc = "trial";
+            $query = "insert into accounts (user_id, license_key, items, account_type) values ($user_id, $license, $items_base, $acc)";
+            
+            $success = mysqli_query($con, $query);
+            if($success) {
+                $key = $license;
+                ?>
+                    <style type="text/css">
+                        #login_element {
+                            display: block;
+                        }
+                        #create_key {
+                            display: none;
+                        }
+                    </style>
+                <?php
+            } else {
+                ?>
+                    <style type="text/css">
+                        #license_not_found {
+                            display: block;
+                        }
+                    </style>
+                <?php
+                echo "Could Not Query";
+                die;
+            }
         } else {
-            ?>
-                <style type="text/css">
-                    #license_not_found {
-                        display: block;
-                    }
-                </style>
-            <?php
-            echo "Could Not Query";
+            echo "Couldn't connect to database";
             die;
         }
     }
