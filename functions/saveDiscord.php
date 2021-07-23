@@ -23,7 +23,8 @@ if ($registration == "success"){
     // discord_avatar = '$avatar'
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $query = $con->prepare("update accounts set discord_username = testing where user_id = 16690 limit 1");
+
+    $query = $con->prepare("update accounts set discord_username = 'testing' where user_id = '16690' limit 1");
     // $query->bindParam(":username", $username);
     // $query->bindParam(
     //     array(
@@ -33,10 +34,7 @@ if ($registration == "success"){
     $result = $query->execute();
 
     echo json_encode(array(
-        "result"=>'successfuly registered',
-        "user"=>$username,
-        "avatar"=>$avatar,
-        "id"=>$id
+        "result"=>'successfuly registered'
     ));
 }   
 // error_reporting(E_ALL);
