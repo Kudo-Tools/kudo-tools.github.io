@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 require("functions/connection.php");
@@ -49,11 +49,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $data = array($user_id, $license, $items_base, $acc);
                 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $query = $con->prepare("insert into accounts (user_id, license_key, items, account_type) values (?, ?, ?, ?)");
-                $query->execute($data);
-                $key = $license;
-                header("Location: welcome?key=".$key);
-                $con = null;
-                die;
+                if($query->execute($data)) {
+                    $key = $license;
+                    header("Location: welcome?key=".$key);
+                    $con = null;
+                    die;
+                } else {
+                    header("Location: signup?error=invalid");
+                    $con = null;
+                    die;
+                }
             } catch(exception $e) {
                 header("Location: signup?error=invalid");
                 $con = null;
