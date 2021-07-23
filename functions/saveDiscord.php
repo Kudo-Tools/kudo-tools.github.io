@@ -6,10 +6,11 @@
 session_start();
 $_SESSION;
 
-include("functions/connection.php");
+require("functions/connection.php");
 
 
 $registration = $_POST['registration'];
+$con = establish_connection();
 // $name= $_POST['name'];
 // $email= $_POST['email'];
 
@@ -21,8 +22,8 @@ if ($registration == "success"){
     // $user_id = $user_data['user_id'];
     //discord_id = '$id',
     // discord_avatar = '$avatar'
-    $con = establish_connection();
-    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    
+    // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
     $query = $con->prepare("update accounts set discord_username = 'testing' where user_id = '16690' limit 1");
     // $query->bindParam(":username", $username);
