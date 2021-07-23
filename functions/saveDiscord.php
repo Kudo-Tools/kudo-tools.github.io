@@ -18,17 +18,16 @@ if ($registration == "success"){
     $username= $_POST['user'];
     $id= $_POST['id'];
     $avatar= $_POST['avatar'];
-    $user_id = $user_data['user_id'];
+    // $user_id = $user_data['user_id'];
     //discord_id = '$id',
     // discord_avatar = '$avatar'
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
+    $query = $con->prepare("update accounts set discord_username = :username where user_id = 16690 limit 1");
     // $query->bindParam(":username", $username);
     $query->bindParam(
         array(
-        ":username" => $username,
-        ":userId"=>$user_id
+        ":username" => $username
         )
     );
     $result = $query->execute();

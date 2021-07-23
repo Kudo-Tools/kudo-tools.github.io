@@ -33,6 +33,10 @@ function setUnsavedChanges() {
 function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
     console.log("--------------------------");
     console.log("SAVING DISCORD INFORMATION");
+    console.log("sending: ");
+    console.log(disc_user);
+    console.log(disc_id);
+    console.log(disc_avatar);
     // $.ajax({
     //     url:"functions/saveDiscord.php",    //the page containing php script
     //     type: "post",    //request type,
