@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 require("functions/connection.php");
@@ -130,9 +130,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     </head>
     <body>
         <header>
-            <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" href="https://www.kudotools.com" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
-                <a class="sign_up">login</a>
+                <a onclick="location.href='login'" class="sign_up">login</a>
                
             </div>
         </header>

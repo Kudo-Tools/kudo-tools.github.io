@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 
@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     </head>
     <body>
         <header>
-            <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" href="https://www.kudotools.com" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
             </div>
         </header>
@@ -106,7 +106,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                         <i class="arrow right"></i>
                     </button>
                     <a class="question">want a free trial?</a>
-                    <a onclick="location.href='login'" class="signup">Sign up here</a>
+                    <a onclick="location.href='signup'" class="signup">Sign up here</a>
                 </form>
             </div>
 

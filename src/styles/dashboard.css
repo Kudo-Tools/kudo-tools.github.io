@@ -1,0 +1,10 @@
+.box {
+    margin-top: 100px;
+    width: 430px;
+    height: 435px;
+    border-radius: 6px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 0px 2px rgb(32,34,51) inset;
+}
