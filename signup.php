@@ -5,16 +5,26 @@ session_start();
 $_SESSION;
 require("functions/connection.php");
 require("functions/methods.php");
-$error = htmlspecialchars($_GET["error"]);
-if(!empty($error)) {
-    ?>
-        <style type="text/css">
-            #license_not_found {
-                display: block;
-            }
-        </style>
-    <?php
-} else {
+try {
+    $error = htmlspecialchars($_GET["error"]);
+    if(!empty($error)) {
+        ?>
+            <style type="text/css">
+                #license_not_found {
+                    display: block;
+                }
+            </style>
+        <?php
+    } else {
+        ?>
+            <style type="text/css">
+                #license_not_found {
+                    display: none;
+                }
+            </style>
+        <?php
+    }
+} catch (exception $e) {
     ?>
         <style type="text/css">
             #license_not_found {
@@ -23,6 +33,7 @@ if(!empty($error)) {
         </style>
     <?php
 }
+ 
 $con = establish_connection();
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
