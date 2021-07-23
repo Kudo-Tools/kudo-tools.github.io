@@ -49,9 +49,14 @@ function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
             url:"functions/saveDiscord.php",    //the page containing php script
             type: "post",    //request type,
             dataType: 'json',
-            data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
+            data: {
+                registration: "success", 
+                user: disc_user, 
+                id: disc_id,
+                avatar: disc_avatar
+            },
             success:function(result){
-                console.log(result.abc + ", " + result.em + ", " + result.nam);
+                console.log(result.result + ", " + result.user + ", " + result.avatar + ", " + result.id);
             }
         });
     // }

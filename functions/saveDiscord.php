@@ -9,15 +9,31 @@ include("functions/connection.php");
 
 
 $registration = $_POST['registration'];
-$name= $_POST['name'];
-$email= $_POST['email'];
+// $name= $_POST['name'];
+// $email= $_POST['email'];
 
 if ($registration == "success"){
     // some action goes here under php
+    $username= $_POST['user'];
+    $id= $_POST['id'];
+    $avatar= $_POST['avatar'];
+    $user_id = $user_data['user_id'];
+    
+    $con = establish_connection();
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("update accounts set 
+        discord_username = '$username',
+        discord_id = '$id',
+        discord_avatar = '$avatar'
+    where user_id = '$user_id' limit 1");
+    $query->bindParam(":key", $key);
+    $result = $query->execute();
+
     echo json_encode(array(
-        "abc"=>'successfuly registered',
-        "em"=>$email,
-        "nam"=>$name
+        "result"=>'successfuly registered',
+        "user"=>$username,
+        "avatar"=>$avatar,
+        "id"=>$id
     ));
 }   
 // error_reporting(E_ALL);
