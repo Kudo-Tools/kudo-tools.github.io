@@ -17,9 +17,6 @@
 #create_key {
     display: block;
 }
-#license_not_found {
-    display:none;
-}
 #license_invalid {
     display: none;
 }
