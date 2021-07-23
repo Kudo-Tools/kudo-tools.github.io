@@ -38,10 +38,7 @@ function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
         type: "post",    //request type,
         dataType: 'json',
         data: {
-            registration: "success", 
-            user: disc_user, 
-            id: disc_id,
-            avatar: disc_avatar
+            registration: "success"
         },
         success:function(result){
             console.log(result.abc);
