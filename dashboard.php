@@ -95,7 +95,7 @@ function getDiscordImage() {
 ?>
 <html>
     <head>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
         <link href="src/styles/main.css" rel="stylesheet" type="text/css">
         <link href="src/styles/header.css" rel="stylesheet" type="text/css">
@@ -103,9 +103,6 @@ function getDiscordImage() {
         <script src="src/js/features.js"></script>
         <script src="src/js/Dashboard.js"></script>
         <link href="src/styles/dashboard.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript">
-            getInformation(discordToAdd);
-        </script>
     </head>
     <body>
         <header>
