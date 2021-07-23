@@ -3,6 +3,24 @@ session_start();
 $_SESSION;
 include("functions/connection.php");
 include("functions/methods.php");
+$error = htmlspecialchars($_GET["error"]);
+if(!empty($error)) {
+    ?>
+        <style type="text/css">
+            #license_not_found {
+                display: block;
+            }
+        </style>
+    <?php
+} else {
+    ?>
+        <style type="text/css">
+            #license_not_found {
+                display: none;
+            }
+        </style>
+    <?php
+}
 $con = establish_connection();
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -30,13 +48,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 header("Location: welcome?key=".$key);
                 die;
             } else {
-                ?>
-                    <style type="text/css">
-                        #license_not_found {
-                            display: block;
-                        }
-                    </style>
-                <?php
+                header("Location: signup?error=invalid");
+                die;
+                
             }
         } else {
             echo "Couldn't connect to database";
