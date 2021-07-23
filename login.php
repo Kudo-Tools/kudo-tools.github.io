@@ -17,17 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         $query = $con->prepare("select * from accounts where license_key = :key limit 1");
-        $query->bind_param(":key", $key);
+        $query->bindParam(":key", $key);
         $query->execute();
-        $result = $query->get_result();
-        // $query = "select * from accounts where license_key = '$key' limit 1";
-        
-        //gets the users data
-        // $result = mysqli_query($con, $query);
-        
-        if($result && mysqli_num_rows($result) > 0) {
-            // $user_data = mysqli_fetch_assoc($result);
-            $user_data = $result->fetch_assoc();
+        // $result = $query->get_result();
+        $user_data = $query->fetch();
+        if(!empty($user_data)) {
+            // $user_data = $result->fetch_assoc();
             if($key == $user_data['license_key']) {
                 $_SESSION['user_id'] = $user_data['user_id'];
                 header("Location: dashboard");
@@ -51,6 +46,37 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </style>
             <?php
         }
+        // $query = "select * from accounts where license_key = '$key' limit 1";
+        
+        //gets the users data
+        // $result = mysqli_query($con, $query);
+        
+        // if($result) {
+            // $user_data = mysqli_fetch_assoc($result);
+            // $user_data = $result->fetch_assoc();
+            // if($key == $user_data['license_key']) {
+            //     $_SESSION['user_id'] = $user_data['user_id'];
+            //     header("Location: dashboard");
+            //     $con->close();
+            //     die;
+            // } else {
+                ?>
+                    <!-- <style type="text/css">
+                        #license_invalid {
+                            display: block;
+                        }
+                    </style> -->
+                <?php
+            // }
+        // } else {
+            ?>
+                <!-- <style type="text/css">
+                    #license_invalid {
+                        display: block;
+                    }
+                </style> -->
+            <?php
+        // }
     }
     $con->close();
 }
