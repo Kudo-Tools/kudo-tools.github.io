@@ -6,6 +6,8 @@ function establish_connection() {
     $dbpassword = "2670080a";
     $dbname = "heroku_7cc8cb2939f8da4";
     $con = new PDO($dbhost, $dbuser, $dbpassword, $dbname);
+    $con = new PDO("mysql:host=".$dbhost.";dbname=".$dbname."", $dbuser, $dbpassword);
+    
     if(!$con) {
         echo "Failure to connect to database";
         die("failure to connect");
