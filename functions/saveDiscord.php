@@ -9,30 +9,18 @@ require("functions/methods.php");
 
 $registration = $_POST['registration'];
 
-?>
-        <script>
-            console.log("outside function");
-        </script>
-    <?php
+echo '<script>console.log("outside function");</script>';
 
 if ($registration == "success"){
 
-    ?>
-        <script>
-            console.log("inside function");
-        </script>
-    <?php
+    echo '<script>console.log("Inside function");</script>';
     
     $username= $_POST['user'];
     $id= $_POST['id'];
     $avatar= $_POST['avatar'];
     $user_id = $user_data['user_id'];
 
-    ?>
-        <script>
-            console.log("starting connection");
-        </script>
-    <?php
+    echo '<script>console.log("starting connection");</script>';
 
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -43,11 +31,7 @@ if ($registration == "success"){
     where user_id = '$user_id' limit 1");
     $query->bindParam(":key", $key);
 
-    ?>
-        <script>
-            console.log("sending connection");
-        </script>
-    <?php
+    echo '<script>console.log("sending connection");</script>';
 
     $result = $query->execute();
 
@@ -63,11 +47,7 @@ if ($registration == "success"){
         echo json_encode(array("abc"=>'failed change'));
     }
 
-    ?>
-        <script>
-            console.log("done function");
-        </script>
-    <?php
+    echo '<script>console.log("done sending");</script>';
 
     die;
     // $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
