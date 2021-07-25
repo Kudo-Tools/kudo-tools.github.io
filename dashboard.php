@@ -269,7 +269,7 @@ function getDiscordImage() {
                     <a onclick="getAnnouncementInformation()" class="info_title">Announcements</a>
                 </div>
             </div>
-            <div class="infobox">
+            <div id="release_notes" class="infobox">
                 <div style="background: transparent;">
                     <a class="info_title">Release Notes</a>
                 </div>

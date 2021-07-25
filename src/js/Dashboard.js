@@ -51,7 +51,25 @@ function getAnnouncementInformation() {
     }
 }
 function setReleaseNotes(notes) {
-    console.log(notes);
+    const json = JSON.parse(notes);
+    for(let i = 0; i < json.length; i++) {
+        let obj = json[i];
+        let date = obj.published_at;
+        let version = tag_name;
+        let notes = obj.body.split(" - ");
+        let htmlNotes = "";
+        for(let j = 0; j < notes.length; j++) {
+            htmlNotes += `<p>${notes[j]}</p>`
+        }
+        document.getElementById("release_notes").innerHTML += 
+        `
+            <div class="info_container">
+                 <a>${version}</a>
+                <a style="color: rgb(0,0,0,0.6); font-size: 12px;">${date}</a>
+                ${htmlNotes}
+            </div>
+        `;
+    }
 }
 function getReleaseNotes() {
     var xmlHttp = new XMLHttpRequest();
