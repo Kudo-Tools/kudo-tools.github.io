@@ -1,8 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+
+echo "starting | ";
 session_start();
 $_SESSION;
+echo "found session | ";
 
 require("functions/connection.php");
 require("functions/methods.php");
@@ -12,6 +15,8 @@ require("functions/methods.php");
 $con = establish_connection();
 $user_data = check_login($con);
 $con = null;
+
+echo "done first | ";
 
 $fullDiscordName = $user_data['discord_username'];
 $license = $user_data['license_key'];
@@ -91,7 +96,7 @@ $saved_times = "";
             $saved_times .= $row['timestamp'] . "{NEW TIME}";
         }
         $con = null;
-        echo "Got the information";
+        echo "Got the information  | ";
     // }
     // echo "failed info";
     // die;
@@ -119,7 +124,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     // echo "COMPLETETLY GOOD";
     // die;
 }
-echo "Got the information 2";
+echo "Got the information 2  | ";
 
 if(empty($fullDiscordName)) {
     $discordName = "Discord not Connected";
@@ -134,7 +139,7 @@ if(empty($user_data['discord_avatar'])) {
 } else {
     $discord_Avatar_Image = getDiscordImage();
 }
-echo "Got the information 3";
+echo "Got the information 3  | ";
 function getDiscordImage() {
     global $user_data;
     $url="https://cdn.discordapp.com/avatars/"; 
@@ -145,7 +150,7 @@ function getDiscordImage() {
     return $url;
 }
 
-echo "Got the information 4";
+echo "Got the information 4 | ";
 // if($_SERVER['REQUEST_METHOD'] == "POST") {
 //     $discord_avatar = $_POST['avatar'];
 //     $discord_user = $_POST['discord_user'];
