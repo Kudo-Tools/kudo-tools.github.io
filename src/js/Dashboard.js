@@ -55,7 +55,7 @@ function setReleaseNotes(notes) {
     for(let i = 0; i < json.length; i++) {
         let obj = json[i];
         let date = obj.published_at;
-        let version = tag_name;
+        let version = obj.tag_name;
         let notes = obj.body.split(" - ");
         let htmlNotes = "";
         for(let j = 0; j < notes.length; j++) {
