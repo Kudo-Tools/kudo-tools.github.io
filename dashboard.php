@@ -24,12 +24,25 @@ $discordNameNumbers = '';
 
 // $con = establish_connection();
 // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-$query = $con->prepare("select title from messages");
-$query->execute();
-// $items = $query->fetchAll();
+$conn = establish_mysqli_connection();
+$query = "select title from messages";
+$result = mysqli_query($conn, $query);
 $saved_messages = "";
 $saved_authors = "";
 $saved_times = "";
+if(mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $saved_messages .= $row['body'] . "{NEW MESSAGE}";
+        $saved_authors .= $row['title'] . "{NEW AUTHOR}";
+        $saved_times .= $row['timestamp'] . "{NEW TIME}";
+        // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+}
+mysqli_close($conn);
+// $query = $con->prepare();
+// $query->execute();
+// $items = $query->fetchAll();
+
 // foreach($items as $row) {
 //     $saved_messages .= $row['body'] . "{NEW MESSAGE}";
 //     $saved_authors .= $row['title'] . "{NEW AUTHOR}";
