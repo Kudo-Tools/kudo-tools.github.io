@@ -79,10 +79,10 @@ function saveUnsavedChanges() {
 
 
 window.onload = () => {
-    // let url = document.location.href;
-    // let code = url.split("code=")[1];
-    // CODE = code;
-    // getInformation();
+    let url = document.location.href;
+    let code = url.split("code=")[1];
+    CODE = code;
+    getInformation();
     // getAnnouncementInformation();
 }
 

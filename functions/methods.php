@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 function check_login($con) {
-    echo "checking login";
     //Checks if value is set
     if(isset($_SESSION["user_id"])) {
         //checks if value is legit
