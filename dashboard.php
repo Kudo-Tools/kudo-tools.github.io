@@ -30,11 +30,11 @@ $items = $query->fetchAll();
 $saved_messages = "";
 $saved_authors = "";
 $saved_times = "";
-foreach($items as $row) {
-    $saved_messages .= $row['body'] . "{NEW MESSAGE}";
-    $saved_authors .= $row['title'] . "{NEW AUTHOR}";
-    $saved_times .= $row['timestamp'] . "{NEW TIME}";
-}
+// foreach($items as $row) {
+//     $saved_messages .= $row['body'] . "{NEW MESSAGE}";
+//     $saved_authors .= $row['title'] . "{NEW AUTHOR}";
+//     $saved_times .= $row['timestamp'] . "{NEW TIME}";
+// }
 $con = null;
 
 // for($x = 0; $x < count($items); $x++) {
