@@ -92,14 +92,8 @@ foreach($items as $row) {
     $saved_authors  .= str_replace('"', "", $row['title']) . "{NEW AUTHOR}";
     $saved_times    .= str_replace('"', "", $row['timestamp']) . "{NEW TIME}";
 }
-echo "IN ITS ENTIRETY = ";
-echo $saved_announcements;
-echo "-----------------------------------------------------------------";
 $con = null;
-    // }
-    // echo "failed info";
-    // die;
-// }
+
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST["save"])) {
 

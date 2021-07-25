@@ -35,15 +35,9 @@ function setUnsavedChanges() {
 }
 
 function getAnnouncementInformation() {
-    console.log("getting announcement information");
-    console.log("VALUE OF MSG 2: ");
-    console.log(document.getElementById("announcement_news").value);
     let news = (document.getElementById("announcement_news").value).split("{NEW MESSAGE}");
-    console.log(news);
     let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
-    console.log(authors);
     let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
-    console.log(times);
     for(let x = 0; x < news.length - 1; x++) {
         document.getElementById("announcement").innerHTML += 
         `
@@ -55,7 +49,18 @@ function getAnnouncementInformation() {
             </div>
         `;
     }
-    console.log("finished getting information");
+}
+function setReleaseNotes(notes) {
+    console.log(notes);
+}
+function getReleaseNotes() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            setReleaseNotes(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "https://api.github.com/repos/TeedsK/Kudo-Download/releases", true); // true for asynchronous 
+    xmlHttp.send(null);
 }
 // function getAnnouncementInformation() {
 //     console.log("getting announcement information");
@@ -107,6 +112,7 @@ window.onload = () => {
     CODE = code;
     getInformation();
     getAnnouncementInformation();
+    getReleaseNotes();
 }
 
 const CLIENT_ID = '799727631289155585';
