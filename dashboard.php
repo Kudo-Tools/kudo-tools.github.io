@@ -26,7 +26,7 @@ $con = establish_connection();
 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $query = $con->prepare("SELECT * FROM messages ORDER BY idMessages LIMIT 1");
 $query->execute();
-$items = $query->fetchAll();
+// $items = $query->fetchAll();
 $saved_messages = "";
 $saved_authors = "";
 $saved_times = "";
