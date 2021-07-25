@@ -24,7 +24,7 @@ $discordNameNumbers = '';
 
 $con = establish_connection();
 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-$query = $con->prepare("SELECT * FROM messages");
+$query = $con->prepare("SELECT * FROM heroku_7cc8cb2939f8da4.messages");
 $query->execute();
 $items = $query->fetchAll();
 $saved_messages = "";
@@ -35,7 +35,7 @@ foreach($items as $row) {
     $saved_authors .= $row['title'] . "{NEW AUTHOR}";
     $saved_times .= $row['timestamp'] . "{NEW TIME}";
 }
-
+$con = null;
 
 // for($x = 0; $x < count($items); $x++) {
 //     $message = $messages[$x];
