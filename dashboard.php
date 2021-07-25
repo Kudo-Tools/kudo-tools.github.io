@@ -22,7 +22,7 @@ $discordName = '';
 $discordNameNumbers = '';
 
 
-$con = establish_connection();
+// $con = establish_connection();
 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $query = $con->prepare("SELECT * FROM messages ORDER BY idMessages LIMIT 1");
 $query->execute();
