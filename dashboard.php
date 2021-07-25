@@ -9,9 +9,9 @@ require("functions/methods.php");
 
 
 //if logged in this contains user info
-
+$con = establish_connection();
 $user_data = check_login($con);
-
+$con = null;
 
 $fullDiscordName = $user_data['discord_username'];
 $license = $user_data['license_key'];
