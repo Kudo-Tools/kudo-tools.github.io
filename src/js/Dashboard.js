@@ -34,22 +34,22 @@ function setUnsavedChanges() {
     // xhr.send(data);
 }
 
-function getAnnouncementInformation() {
-    console.log("getting announcement information");
-    let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
-    let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
-    let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
-    for(let x = 0; x < times.length; x) {
-        document.getElementById("announcement").innerHTML += 
-        `
-        <div class="info_container">
-                    <a>${authors[x]}</a>
-                    <a style="color: rgb(0,0,0,0.6);">${times[x]}</a>
-                    <p >${messages[x]}
-                    </p>
-                </div>`;
-    }
-    console.log('done');
+// function getAnnouncementInformation() {
+//     console.log("getting announcement information");
+//     let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
+//     let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
+//     let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
+//     for(let x = 0; x < times.length; x) {
+//         document.getElementById("announcement").innerHTML += 
+//         `
+//         <div class="info_container">
+//                     <a>${authors[x]}</a>
+//                     <a style="color: rgb(0,0,0,0.6);">${times[x]}</a>
+//                     <p >${messages[x]}
+//                     </p>
+//                 </div>`;
+//     }
+//     console.log('done');
     // console.log("--------------------------");
     // console.log("Getting Announcement Information");
     // $.ajax({
@@ -64,7 +64,7 @@ function getAnnouncementInformation() {
     //     }
     // });
     // console.log("DONE GETTING");
-}
+// }
 
 function saveUnsavedChanges() {
     document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";
@@ -79,11 +79,11 @@ function saveUnsavedChanges() {
 
 
 window.onload = () => {
-    let url = document.location.href;
-    let code = url.split("code=")[1];
-    CODE = code;
-    getInformation();
-    getAnnouncementInformation();
+    // let url = document.location.href;
+    // let code = url.split("code=")[1];
+    // CODE = code;
+    // getInformation();
+    // getAnnouncementInformation();
 }
 
 const CLIENT_ID = '799727631289155585';
