@@ -76,7 +76,7 @@ $discordNameNumbers = '';
 //     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
 //     mysqli_query($con, $query);
 // }
-$saved_messages = "";
+$messages_for_announcements = "";
 $saved_authors = "";
 $saved_times = "";
 
@@ -88,12 +88,12 @@ $query->execute();
 $items = $query->fetchAll();
 
 foreach($items as $row) {
-    $saved_messages .= $row['body'] . "{NEW MESSAGE}";
+    $messages_for_announcements .= $row['body'] . "{NEW MESSAGE}";
     $saved_authors  .= $row['title'] . "{NEW AUTHOR}";
     $saved_times    .= $row['timestamp'] . "{NEW TIME}";
 }
 echo "IN ITS ENTIRETY = ";
-echo $saved_messages;
+echo $messages_for_announcements;
 echo "-----------------------------------------------------------------";
 $con = null;
     // }
@@ -184,7 +184,7 @@ function getDiscordImage() {
             </nav>
             <a class="sign_out">sign out</a>
         </header>
-        <input type="hidden" id="announcement_messages" value="<?php echo $saved_messages;?>">
+        <input type="hidden" id="announcement_news" value="<?php echo $messages_for_announcements;?>">
         <input type="hidden" id="announcement_author" value="<?php echo $saved_authors;?>">
         <input type="hidden" id="announcement_time" value="<?php echo $saved_times;?>">
     
