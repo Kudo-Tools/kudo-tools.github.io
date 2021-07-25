@@ -88,9 +88,9 @@ $query->execute();
 $items = $query->fetchAll();
 
 foreach($items as $row) {
-    $saved_announcements .= addslashes($row['body']) . "{NEW MESSAGE}";
-    $saved_authors  .= addslashes($row['title']) . "{NEW AUTHOR}";
-    $saved_times    .= addslashes($row['timestamp']) . "{NEW TIME}";
+    $saved_announcements .= str_replace('"', "", $row['body']) . "{NEW MESSAGE}";
+    $saved_authors  .= str_replace('"', "", $row['title']) . "{NEW AUTHOR}";
+    $saved_times    .= str_replace('"', "", $row['timestamp']) . "{NEW TIME}";
 }
 echo "IN ITS ENTIRETY = ";
 echo $saved_announcements;
@@ -174,9 +174,6 @@ function getDiscordImage() {
         <script src="src/js/features.js"></script>
         <script src="src/js/Dashboard.js"></script>
         <link href="src/styles/dashboard.css" rel="stylesheet" type="text/css">
-        <script>
-            const MESSAGES = <?php echo $saved_messages?>
-        </script>
     </head>
     <body>
         <header>
