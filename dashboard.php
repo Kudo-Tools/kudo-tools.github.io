@@ -77,7 +77,7 @@ $discordNameNumbers = '';
 //     mysqli_query($con, $query);
 // }
 if($_SERVER['REQUEST_METHOD'] == "GET") {
-    if(isset($_GET["get"])) {
+    // if(isset($_GET["get"])) {
         $query = $con->prepare("SELECT title FROM messages LIMIT 1");
         $query->execute();
         $items = $query->fetchAll();
@@ -90,9 +90,9 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
         $con = null;
         echo "GOT INFORMATION SUCCESSFULLY";
         die;
-    }
-    echo "failed info";
-    die;
+    // }
+    // echo "failed info";
+    // die;
 }
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST["save"])) {
