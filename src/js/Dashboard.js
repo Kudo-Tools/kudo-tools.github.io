@@ -47,7 +47,7 @@ function getAnnouncementInformation() {
     `
     <div class="info_container">
                 <a>${authors[x]}</a>
-                <a style="color: rgb(0,0,0,0.6);">${times[x]}</a>
+                <a style="color: rgb(0,0,0,0.6); font-size: 12px;">${times[x]}</a>
                 <p >${messages[x]}
                 </p>
             </div>`;
