@@ -42,7 +42,7 @@ function getAnnouncementInformation() {
     console.log(authors);
     let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
     console.log(times);
-    for(let x = 0; x < times.length - 1; x) {
+    for(let x = 0; x < times.length - 1; x++) {
     document.getElementById("announcement").innerHTML += 
     `
     <div class="info_container">
