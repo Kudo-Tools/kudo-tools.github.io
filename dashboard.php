@@ -88,8 +88,6 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
             $saved_times .= $row['timestamp'] . "{NEW TIME}";
         }
         $con = null;
-        echo "GOT INFORMATION SUCCESSFULLY";
-        die;
     // }
     // echo "failed info";
     // die;
