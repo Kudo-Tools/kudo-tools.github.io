@@ -42,6 +42,16 @@ function getAnnouncementInformation() {
     console.log(authors);
     let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
     console.log(times);
+    for(let x = 0; x < times.length - 1; x) {
+    document.getElementById("announcement").innerHTML += 
+    `
+    <div class="info_container">
+                <a>${authors[x]}</a>
+                <a style="color: rgb(0,0,0,0.6);">${times[x]}</a>
+                <p >${messages[x]}
+                </p>
+            </div>`;
+    }
     console.log("finished getting information");
 }
 // function getAnnouncementInformation() {
