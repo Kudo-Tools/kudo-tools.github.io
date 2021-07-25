@@ -78,7 +78,7 @@ $saved_messages = "";
 $saved_authors = "";
 $saved_times = "";
 
-if($_SERVER['REQUEST_METHOD'] == "GET") {
+// if($_SERVER['REQUEST_METHOD'] == "GET") {
     // if(isset($_GET["get"])) {
         $con = establish_connection();
         $query = $con->prepare("SELECT * FROM messages");
@@ -95,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
     // }
     // echo "failed info";
     // die;
-}
+// }
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST["save"])) {
 
@@ -119,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     // echo "COMPLETETLY GOOD";
     // die;
 }
-
+echo "Got the information 2";
 
 if(empty($fullDiscordName)) {
     $discordName = "Discord not Connected";
@@ -134,7 +134,7 @@ if(empty($user_data['discord_avatar'])) {
 } else {
     $discord_Avatar_Image = getDiscordImage();
 }
-
+echo "Got the information 3";
 function getDiscordImage() {
     global $user_data;
     $url="https://cdn.discordapp.com/avatars/"; 
@@ -145,7 +145,7 @@ function getDiscordImage() {
     return $url;
 }
 
-
+echo "Got the information 4";
 // if($_SERVER['REQUEST_METHOD'] == "POST") {
 //     $discord_avatar = $_POST['avatar'];
 //     $discord_user = $_POST['discord_user'];
