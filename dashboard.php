@@ -1,22 +1,27 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-session_start();
-$_SESSION;
+
+
+// session_start();
+// $_SESSION;
 
 require("functions/connection.php");
 require("functions/methods.php");
+$con = establish_connection();
+$query = $con->prepare("SELECT title FROM messages LIMIT 1");
+$query->execute();
 
 
 //if logged in this contains user info
-$con = establish_connection();
-$user_data = check_login($con);
+
+// $user_data = check_login($con);
 
 
-$fullDiscordName = $user_data['discord_username'];
-$license = $user_data['license_key'];
-$discordId = $user_data['discord_id'];
-$discordAvatar = $user_data['discord_avatar'];
+// $fullDiscordName = $user_data['discord_username'];
+// $license = $user_data['license_key'];
+// $discordId = $user_data['discord_id'];
+// $discordAvatar = $user_data['discord_avatar'];
 $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
@@ -39,8 +44,7 @@ $discordNameNumbers = '';
     // }
 // }
 // mysqli_close($conn);
-$query = $con->prepare("SELECT title FROM messages LIMIT 1");
-$query->execute();
+
 // $items = $query->fetchAll();
 
 // foreach($items as $row) {
