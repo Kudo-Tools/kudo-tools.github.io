@@ -1,27 +1,22 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-
-
-// session_start();
-// $_SESSION;
+session_start();
+$_SESSION;
 
 require("functions/connection.php");
 require("functions/methods.php");
-$con = establish_connection();
-$query = $con->prepare("select * from accounts limit 1");
-$query->execute();
 
 
 //if logged in this contains user info
+$con = establish_connection();
+$user_data = check_login($con);
 
-// $user_data = check_login($con);
 
-
-// $fullDiscordName = $user_data['discord_username'];
-// $license = $user_data['license_key'];
-// $discordId = $user_data['discord_id'];
-// $discordAvatar = $user_data['discord_avatar'];
+$fullDiscordName = $user_data['discord_username'];
+$license = $user_data['license_key'];
+$discordId = $user_data['discord_id'];
+$discordAvatar = $user_data['discord_avatar'];
 $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
@@ -45,14 +40,6 @@ $discordNameNumbers = '';
 // }
 // mysqli_close($conn);
 
-// $items = $query->fetchAll();
-
-// foreach($items as $row) {
-//     $saved_messages .= $row['body'] . "{NEW MESSAGE}";
-//     $saved_authors .= $row['title'] . "{NEW AUTHOR}";
-//     $saved_times .= $row['timestamp'] . "{NEW TIME}";
-// }
-// $con = null;
 
 // for($x = 0; $x < count($items); $x++) {
 //     $message = $messages[$x];
@@ -89,8 +76,28 @@ $discordNameNumbers = '';
 //     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
 //     mysqli_query($con, $query);
 // }
-
+if($_SERVER['REQUEST_METHOD'] == "GET") {
+    if(isset($_GET["get"])) {
+        $query = $con->prepare("SELECT title FROM messages LIMIT 1");
+        $query->execute();
+        $items = $query->fetchAll();
+        
+        foreach($items as $row) {
+            $saved_messages .= $row['body'] . "{NEW MESSAGE}";
+            $saved_authors .= $row['title'] . "{NEW AUTHOR}";
+            $saved_times .= $row['timestamp'] . "{NEW TIME}";
+        }
+        $con = null;
+        echo "GOT INFORMATION SUCCESSFULLY";
+        die;
+    }
+    echo "failed info";
+    die;
+}
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if(isset($_POST["save"])) {
+
+    }
     $discord_avatar = $_POST['avatar'];
     $discord_user = $_POST['discord_user'];
     $discord_id = $_POST['discord_id'];
@@ -277,6 +284,13 @@ function getDiscordImage() {
             
                 </div>
             </div>
+            <form class="form" method="get">
+                <input type="submit" value="refresh" name="refresh">
+            </form>
+            <form class="form" method="post">
+
+                <input type="submit" value="save" name="save">
+            </form>
             <!-- <div class="download_wrapper"> -->
                 
             <!-- </div> -->
