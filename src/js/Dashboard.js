@@ -34,6 +34,16 @@ function setUnsavedChanges() {
     // xhr.send(data);
 }
 
+function getAnnouncementInformation() {
+    console.log("getting announcement information");
+    let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
+    console.log(messages);
+    let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
+    console.log(authors);
+    let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
+    console.log(times);
+    console.log("finished getting information");
+}
 // function getAnnouncementInformation() {
 //     console.log("getting announcement information");
 //     let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
