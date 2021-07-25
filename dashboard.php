@@ -9,7 +9,7 @@ require("functions/methods.php");
 
 
 //if logged in this contains user info
-$con = establish_connection();
+
 $user_data = check_login($con);
 
 
@@ -74,20 +74,24 @@ $discordNameNumbers = '';
 //     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
 //     mysqli_query($con, $query);
 // }
+$saved_messages = "";
+$saved_authors = "";
+$saved_times = "";
+
 if($_SERVER['REQUEST_METHOD'] == "GET") {
     // if(isset($_GET["get"])) {
+        $con = establish_connection();
         $query = $con->prepare("SELECT * FROM messages");
         $query->execute();
         $items = $query->fetchAll();
-        $saved_messages = "";
-        $saved_authors = "";
-        $saved_times = "";
+        
         foreach($items as $row) {
             $saved_messages .= $row['body'] . "{NEW MESSAGE}";
             $saved_authors .= $row['title'] . "{NEW AUTHOR}";
             $saved_times .= $row['timestamp'] . "{NEW TIME}";
         }
         $con = null;
+        echo "Got the information";
     // }
     // echo "failed info";
     // die;
@@ -112,8 +116,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             ":userId"=> $user_id
         )
     );
-    echo "COMPLETETLY GOOD";
-    die;
+    // echo "COMPLETETLY GOOD";
+    // die;
 }
 
 
