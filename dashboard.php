@@ -9,7 +9,7 @@ ini_set('display_errors', '1');
 require("functions/connection.php");
 require("functions/methods.php");
 $con = establish_connection();
-$query = $con->prepare("SELECT title FROM messages LIMIT 1");
+$query = $con->prepare("select * from accounts limit 1");
 $query->execute();
 
 
