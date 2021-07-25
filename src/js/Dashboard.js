@@ -93,7 +93,7 @@ window.onload = () => {
     let code = url.split("code=")[1];
     CODE = code;
     getInformation();
-    // getAnnouncementInformation();
+    getAnnouncementInformation();
 }
 
 const CLIENT_ID = '799727631289155585';
