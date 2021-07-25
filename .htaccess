@@ -1,5 +1,10 @@
 RewriteEngine On
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} =""
+RewriteCond %{HTTPS} !=on
+
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
-RewriteCond %{HTTP_HOST} ^kudotools.com [NC]
-RewriteRule ^(.*)$ http://www.kudotools.com/$1 [L,R=301]
