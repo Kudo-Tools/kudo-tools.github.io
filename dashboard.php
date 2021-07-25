@@ -27,20 +27,24 @@ $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $query = $con->prepare("SELECT * FROM messages");
 $query->execute();
 $items = $query->fetchAll();
-$messages = $items['body'];
-$authors = $items['title'];
-$times = $items['timestamp'];
 $saved_messages = "";
 $saved_authors = "";
 $saved_times = "";
-for($x = 0; $x < count($items); $x++) {
-    $message = $messages[$x];
-    $author = $auhtors[$x];
-    $time = $times[$x];
-    $saved_messages .= $message . "{NEW MESSAGE}";
-    $saved_authors .= $author . "{NEW AUTHOR}";
-    $saved_times .= $time . "{NEW TIME}";
+foreach($items as $row) {
+    $saved_messages .= $row['body'] . "{NEW MESSAGE}";
+    $saved_authors .= $row['title'] . "{NEW AUTHOR}";
+    $saved_times .= $row['timestamp'] . "{NEW TIME}";
 }
+
+
+// for($x = 0; $x < count($items); $x++) {
+//     $message = $messages[$x];
+//     $author = $auhtors[$x];
+//     $time = $times[$x];
+//     $saved_messages .= $message . "{NEW MESSAGE}";
+//     $saved_authors .= $author . "{NEW AUTHOR}";
+//     $saved_times .= $time . "{NEW TIME}";
+// }
 // echo json_encode(array(
 //     "messages"=>$messages
 // ));
