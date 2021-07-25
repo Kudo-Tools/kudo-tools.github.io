@@ -21,6 +21,30 @@ $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
 
+
+$con = establish_connection();
+$con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$query = $con->prepare("SELECT * FROM messages");
+$query->execute();
+$items = $query->fetchAll();
+$messages = $items['body'];
+$authors = $items['title'];
+$times = $items['timestamp'];
+$saved_messages = "";
+$saved_authors = "";
+$saved_times = "";
+for($x = 0; $x < count($items); $x++) {
+    $message = $messages[$x];
+    $author = $auhtors[$x];
+    $time = $times[$x];
+    $saved_messages .= $message . "{NEW MESSAGE}";
+    $saved_authors .= $author . "{NEW AUTHOR}";
+    $saved_times .= $time . "{NEW TIME}";
+}
+// echo json_encode(array(
+//     "messages"=>$messages
+// ));
+
 // try {
     // $discordToAdd = htmlspecialchars($_GET["code"]);
     // if(!empty($discordToAdd)) {
@@ -129,6 +153,10 @@ function getDiscordImage() {
             </nav>
             <a class="sign_out">sign out</a>
         </header>
+        <input type="hidden" id="announcement_messages" value="<?php echo $saved_messages;?>">
+        <input type="hidden" id="announcement_author" value="<?php echo $saved_authors;?>">
+        <input type="hidden" id="announcement_time" value="<?php echo $saved_times;?>">
+    
         <div class="wrapper">
             <div class="box">
                 <div class="left_side">

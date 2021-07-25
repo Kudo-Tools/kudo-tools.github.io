@@ -10,11 +10,12 @@ require("functions/connection.php");
 
 
 $registration = $_POST['registration'];
-$con = establish_connection();
+
 // $name= $_POST['name'];
 // $email= $_POST['email'];
 
-if ($registration == "success"){
+if ($registration == "success") {
+    $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $query = $con->prepare("SELECT * FROM messages");
     $query->execute();
@@ -38,18 +39,18 @@ if ($registration == "success"){
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 
-session_start();
-$_SESSION;
+// session_start();
+// $_SESSION;
 
-require("functions/connection.php");
+// require("functions/connection.php");
 
 
-$registration = $_POST['registration'];
-$con = establish_connection();
+// $registration = $_POST['registration'];
+// $con = establish_connection();
 // $name= $_POST['name'];
 // $email= $_POST['email'];
 
-if ($registration == "success"){
+// if ($registration == "success"){
     // some action goes here under php
     // $username= $_POST['user'];
     // $id= $_POST['id'];
@@ -60,19 +61,19 @@ if ($registration == "success"){
     
     // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-    $query = $con->prepare("update accounts set discord_username = 'testing' where user_id = '16690' limit 1");
+    // $query = $con->prepare("update accounts set discord_username = 'testing' where user_id = '16690' limit 1");
     // $query->bindParam(":username", $username);
     // $query->bindParam(
     //     array(
     //     ":username" => $username
     //     )
     // );
-    $result = $query->execute();
+    // $result = $query->execute();
 
-    echo json_encode(array(
-        "result"=>'successfuly registered'
-    ));
-}   
+    // echo json_encode(array(
+//         "result"=>'successfuly registered'
+//     ));
+// }   
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 
@@ -128,4 +129,4 @@ if ($registration == "success"){
     // $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
     // mysqli_query($con, $query);
 // }
-?>  
+?>

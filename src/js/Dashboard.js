@@ -3,16 +3,7 @@ function redirectToDiscordOAuth() {
 }
 
 function addAnnouncement() {
-    document.getElementById("announcement").innerHTML += 
-        `
-        <div class="info_container">
-                    <a>Teeds#6855</a>
-                    <a style="color: rgb(0,0,0,0.6);">03/23/2021</a>
-                    <p >-Test 1
-                        <br>
-                        -Test 2
-                    </p>
-                </div>`;
+    
 }
 
 function resetDiscordLogin() {
@@ -44,20 +35,35 @@ function setUnsavedChanges() {
 }
 
 function getAnnouncementInformation() {
-    console.log("--------------------------");
-    console.log("Getting Announcement Information");
-    $.ajax({
-        url:"functions/announcements.php",
-        type: "post",    
-        dataType: 'json',
-        data: {
-            registration: "success"
-        },
-        success:function(result){
-            console.log(result.messages);
-        }
-    });
-    console.log("DONE GETTING");
+    console.log("getting announcement information");
+    let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
+    let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
+    let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
+    for(let x = 0; x < times.length; x) {
+        document.getElementById("announcement").innerHTML += 
+        `
+        <div class="info_container">
+                    <a>${authors[x]}</a>
+                    <a style="color: rgb(0,0,0,0.6);">${times[x]}</a>
+                    <p >${messages[x]}
+                    </p>
+                </div>`;
+    }
+    console.log('done');
+    // console.log("--------------------------");
+    // console.log("Getting Announcement Information");
+    // $.ajax({
+    //     url:"functions/announcements.php",
+    //     type: "post",    
+    //     dataType: 'json',
+    //     data: {
+    //         registration: "success"
+    //     },
+    //     success:function(result){
+    //         console.log(result.messages);
+    //     }
+    // });
+    // console.log("DONE GETTING");
 }
 
 function saveUnsavedChanges() {
@@ -77,6 +83,7 @@ window.onload = () => {
     let code = url.split("code=")[1];
     CODE = code;
     getInformation();
+    getAnnouncementInformation();
 }
 
 const CLIENT_ID = '799727631289155585';
