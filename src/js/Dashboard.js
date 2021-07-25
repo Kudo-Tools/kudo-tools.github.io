@@ -56,10 +56,11 @@ function setReleaseNotes(notes) {
         let obj = json[i];
         let date = obj.published_at;
         let version = obj.tag_name;
-        let notes = obj.body.split(" - ");
+        let notes = obj.body.split("- ");
         let htmlNotes = "";
+        console.log(notes);
         for(let j = 0; j < notes.length; j++) {
-            htmlNotes += `<p>${notes[j]}</p><br>`
+            htmlNotes += `<p>- ${notes[j]}</p><br>`
         }
         document.getElementById("release_notes").innerHTML += 
         `
