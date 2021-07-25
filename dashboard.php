@@ -89,10 +89,12 @@ $items = $query->fetchAll();
 
 foreach($items as $row) {
     $saved_messages .= $row['body'] . "{NEW MESSAGE}";
-    echo $row['body'];
-    $saved_authors .= $row['title'] . "{NEW AUTHOR}";
-    $saved_times .= $row['timestamp'] . "{NEW TIME}";
+    $saved_authors  .= $row['title'] . "{NEW AUTHOR}";
+    $saved_times    .= $row['timestamp'] . "{NEW TIME}";
 }
+echo "IN ITS ENTIRETY = ";
+echo $saved_messages;
+echo "-----------------------------------------------------------------";
 $con = null;
     // }
     // echo "failed info";

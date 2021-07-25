@@ -36,21 +36,24 @@ function setUnsavedChanges() {
 
 function getAnnouncementInformation() {
     console.log("getting announcement information");
+    console.log("VALUE : ");
+    console.log(document.getElementById("announcement_messages").value);
     let messages = (document.getElementById("announcement_messages").value).split("{NEW MESSAGE}");
     console.log(messages);
     let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
     console.log(authors);
     let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
     console.log(times);
-    for(let x = 0; x < times.length - 1; x++) {
-    document.getElementById("announcement").innerHTML += 
-    `
-    <div class="info_container">
-                <a>${authors[x]}</a>
+    for(let x = 0; x < messages.length - 1; x++) {
+        document.getElementById("announcement").innerHTML += 
+        `
+            <div class="info_container">
+                 <a>${authors[x]}</a>
                 <a style="color: rgb(0,0,0,0.6); font-size: 12px;">${times[x]}</a>
                 <p >${messages[x]}
                 </p>
-            </div>`;
+            </div>
+        `;
     }
     console.log("finished getting information");
 }
