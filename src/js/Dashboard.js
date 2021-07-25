@@ -59,7 +59,7 @@ function setReleaseNotes(notes) {
         let notes = obj.body.split("- ");
         let htmlNotes = "";
         console.log(notes);
-        for(let j = 0; j < notes.length; j++) {
+        for(let j = 1; j < notes.length; j++) {
             htmlNotes += `<p>- ${notes[j]}</p>`
         }
         document.getElementById("release_notes").innerHTML += 
