@@ -88,11 +88,11 @@ $query->execute();
 $items = $query->fetchAll();
 
 foreach($items as $row) {
-    $saved_announcements .= $row['body'] . "{NEW MESSAGE}";
-    $saved_authors  .= $row['title'] . "{NEW AUTHOR}";
-    $saved_times    .= $row['timestamp'] . "{NEW TIME}";
+    $saved_announcements .= addslashes($row['body']) . "{NEW MESSAGE}";
+    $saved_authors  .= addslashes($row['title']) . "{NEW AUTHOR}";
+    $saved_times    .= addslashes($row['timestamp']) . "{NEW TIME}";
 }
-echo "IN ITS COMPLETENESS = ";
+echo "IN ITS ENTIRETY = ";
 echo $saved_announcements;
 echo "-----------------------------------------------------------------";
 $con = null;
@@ -175,9 +175,7 @@ function getDiscordImage() {
         <script src="src/js/Dashboard.js"></script>
         <link href="src/styles/dashboard.css" rel="stylesheet" type="text/css">
         <script>
-            const MESSAGES = <?php echo $saved_announcements?>
-            const AUTHORS = <?php echo $saved_authors?>
-            const TIMES = <?php echo $saved_times?>
+            const MESSAGES = <?php echo $saved_messages?>
         </script>
     </head>
     <body>
@@ -189,9 +187,9 @@ function getDiscordImage() {
             </nav>
             <a class="sign_out">sign out</a>
         </header>
-        <!-- <input type="hidden" id="announcement_news" value="<?php echo $messages_for_announcements;?>">
+        <input type="hidden" id="announcement_news" value="<?php echo $saved_announcements;?>">
         <input type="hidden" id="announcement_author" value="<?php echo $saved_authors;?>">
-        <input type="hidden" id="announcement_time" value="<?php echo $saved_times;?>"> -->
+        <input type="hidden" id="announcement_time" value="<?php echo $saved_times;?>">
     
         <div class="wrapper">
             <div class="box">

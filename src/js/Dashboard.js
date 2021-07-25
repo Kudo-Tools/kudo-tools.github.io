@@ -36,13 +36,13 @@ function setUnsavedChanges() {
 
 function getAnnouncementInformation() {
     console.log("getting announcement information");
-    console.log("VALUE OF MAIN MESSAGES : ");
-    console.log(MESSAGES);
-    let news = MESSAGES.split("{NEW MESSAGE}");
+    console.log("VALUE OF MSG 2: ");
+    console.log(document.getElementById("announcement_news").value);
+    let news = (document.getElementById("announcement_news").value).split("{NEW MESSAGE}");
     console.log(news);
-    let authors = AUTHORS.split("{NEW AUTHOR}");
+    let authors = (document.getElementById("announcement_author").value).split("{NEW AUTHOR}");
     console.log(authors);
-    let times = TIMES.split("{NEW TIME}");
+    let times = (document.getElementById("announcement_time").value).split("{NEW TIME}");
     console.log(times);
     for(let x = 0; x < news.length - 1; x++) {
         document.getElementById("announcement").innerHTML += 
