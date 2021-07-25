@@ -27,9 +27,7 @@ $discordNameNumbers = '';
 // $conn = establish_connection();
 // $query = "select title from messages";
 // $result = mysqli_query($conn, $query);
-// $saved_messages = "";
-// $saved_authors = "";
-// $saved_times = "";
+
 // if(mysqli_num_rows($result) > 0) {
     // while($row = mysqli_fetch_assoc($result)) {
         // $saved_messages .= $row['body'] . "{NEW MESSAGE}";
@@ -78,10 +76,12 @@ $discordNameNumbers = '';
 // }
 if($_SERVER['REQUEST_METHOD'] == "GET") {
     // if(isset($_GET["get"])) {
-        $query = $con->prepare("SELECT title FROM messages LIMIT 1");
+        $query = $con->prepare("SELECT * FROM messages");
         $query->execute();
         $items = $query->fetchAll();
-        
+        $saved_messages = "";
+        $saved_authors = "";
+        $saved_times = "";
         foreach($items as $row) {
             $saved_messages .= $row['body'] . "{NEW MESSAGE}";
             $saved_authors .= $row['title'] . "{NEW AUTHOR}";
