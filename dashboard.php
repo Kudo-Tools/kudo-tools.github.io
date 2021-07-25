@@ -107,8 +107,8 @@ function getDiscordImage() {
 //     mysqli_query($con, $query);
 //     header("Refresh:0");
 // }
-
 ?>
+
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -129,34 +129,109 @@ function getDiscordImage() {
             </nav>
             <a class="sign_out">sign out</a>
         </header>
-        <div class="box">
-          
-            <img id="discord_avatar" src=<?php echo $discord_Avatar_Image?> class="discord"></img>
-            <a id="discord_Title">Discord Account</a>
-            <a id="discord_username"><?php echo $discordName?>
-                <span id="discord_numbers"><?php echo $discordNameNumbers?></span>
-            </a>
-            <button onclick="resetDiscordLogin()" id="signout_discord">disconnect</button> 
-            <button onclick="redirectToDiscordOAuth()" id="login_discord">connect discord</button> 
-
-            <form class="form" method="post">
-                <input type="hidden" id="discord_user" name="discord_user" value="<?php echo $fullDiscordName;?>">
-                <input type="hidden" id="discord_id" name="discord_id" value="<?php echo $discordId;?>">
-                <input type="hidden" id="avatar" name="avatar" value="<?php echo $discordAvatar;?>">
-
-                <div class="seperator"></div>
-
-                <a class="license_key_title">License Key</a>
-                <input id="license_key" value="<?php echo $license; ?>" readonly></input>
-                <div class="seperator"></div>
-
-                <input onclick="saveUnsavedChanges()" type="submit" id="save_changes" value="save"></input>
-                <a id="changes">changes saved</a>
-            </form>
-
-            <form method="get" action="file.doc">
-                <button type="submit">Download!</button>
-            </form>
+        <div class="wrapper">
+            <div class="box">
+                <div class="left_side">
+                    <div class="section welcome">
+                        <a>Welcome back, User</a>
+                        <br>
+                        <br>
+                        <p>member since</p>
+                        <p>05/03/2020</p>
+                    </div>
+                    <div class="horizontal_seperator"></div>
+                    <div class="section discord">
+                        <a>Discord Account</a>
+                        <button id="discord_connect_button">connect</button>
+                        <button id="discord_disconnect_button">disconnect</button>
+                        <br>
+                        <div class="discord_container">
+                            <img id="discord_avatar" src="images/DiscordPoop.png"></img>
+                            <a id="discord_username">Teeds
+                                <!-- <span id="discord_numbers"><?php echo $discordNameNumbers?></span> -->
+                                <span id="discord_numbers">#6855</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="horizontal_seperator"></div>
+                    <div class="section license">
+                        <a>License Key</a>
+                        <div class="license_container">
+                            <a id="license_key" >Kudo-ABCD-EFGH-IJKLM</a>
+                            <!-- <div class="copy">copy</div> -->
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="vertical_seperator"></div>
+                <div class="right_side">
+                    <div class="section instances">
+                        <a>Instances</a>
+                        <p id="running_instances">0 / 2 Running</p>
+                    </div>
+                    <div class="horizontal_seperator"></div>
+                    <div class="section discord_server">
+                        <a>Discord Server</a>
+                        <p id="join_discord">join discord server</p>
+                    </div>
+                    <div class="horizontal_seperator"></div>
+                    <div class="section license_type">
+                        <a>License Type</a>
+                        <p id="account_type">trial</p>
+                    </div>
+                </div>
+                
+                <!-- <img id="discord_avatar" src=<?php echo $discord_Avatar_Image?> class="discord"></img> -->
+                
+                <!-- <a id="discord_Title">Discord Account</a> -->
+                <!-- <a id="discord_username"><?php echo $discordName?> -->
+                
+                <!-- <button onclick="resetDiscordLogin()" id="signout_discord">disconnect</button> 
+                <button onclick="redirectToDiscordOAuth()" id="login_discord">connect discord</button>  -->
+    
+                <form class="form" method="post">
+                    <!-- <input type="hidden" id="discord_user" name="discord_user" value="<?php echo $fullDiscordName;?>">
+                    <input type="hidden" id="discord_id" name="discord_id" value="<?php echo $discordId;?>">
+                    <input type="hidden" id="avatar" name="avatar" value="<?php echo $discordAvatar;?>"> -->
+    
+                    <!-- <div class="seperator"></div> -->
+    
+                    <!-- <a class="license_key_title">License Key</a> -->
+                    <!-- <input id="license_key" value="<?php echo $license; ?>" readonly></input> -->
+                    <!-- <input id="license_key" value="Kudo-ABCD-EFGH-IJKLM" readonly></input> -->
+                    <!-- <div class="seperator"></div> -->
+    
+                    <!-- <input onclick="saveUnsavedChanges()" type="submit" id="save_changes" value="save"></input> -->
+                    <!-- <a id="changes">changes saved</a> -->
+                </form>
+    
+                <!-- <form method="get" action="file.doc">
+                    <button type="submit">Download!</button>
+                </form> -->
+                
+            </div>
+            <div id="announcement" class="infobox">
+                <div style="background: transparent;">
+                    <a onclick="getAnnouncementInformation()" class="info_title">Announcements</a>
+                </div>
+            </div>
+            <div class="infobox">
+                <div style="background: transparent;">
+                    <a class="info_title">Release Notes</a>
+                </div>
+            </div>
+            <div class="download">
+                <h1 class="download_title">Windows download</h1>
+                <div class="windows">
+                    <img class="icon" src="images/windows.png" alt="logo">
+            
+                </div>
+            </div>
+            <!-- <div class="download_wrapper"> -->
+                
+            <!-- </div> -->
         </div>
+        
     </body>
 </html>

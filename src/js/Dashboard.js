@@ -2,6 +2,19 @@ function redirectToDiscordOAuth() {
     window.location.href = "https://discord.com/api/oauth2/authorize?client_id=799727631289155585&redirect_uri=http%3A%2F%2Fwww.kudotools.com%2Fdashboard&response_type=code&scope=identify";
 }
 
+function addAnnouncement() {
+    document.getElementById("announcement").innerHTML += 
+        `
+        <div class="info_container">
+                    <a>Teeds#6855</a>
+                    <a style="color: rgb(0,0,0,0.6);">03/23/2021</a>
+                    <p >-Test 1
+                        <br>
+                        -Test 2
+                    </p>
+                </div>`;
+}
+
 function resetDiscordLogin() {
     document.querySelector('input[name="discord_user"]').value = "";
     document.querySelector('input[name="discord_id"]').value = "";
@@ -30,42 +43,22 @@ function setUnsavedChanges() {
     // xhr.send(data);
 }
 
-// function saveDiscordInformation(disc_user, disc_id, disc_avatar) {
-//     console.log("--------------------------");
-//     console.log("SAVING DISCORD INFORMATION");
-//     console.log("sending: ");
-//     console.log(disc_user);
-//     console.log(disc_id);
-//     console.log(disc_avatar);
-//     // $.ajax({
-//     //     url:"functions/saveDiscord.php",    //the page containing php script
-//     //     type: "post",    //request type,
-//     //     dataType: 'json',
-//     //     data: {
-//     //         registration: "success"
-//     //     },
-//     //     success:function(result){
-//     //         console.log(result.abc);
-//     //     }
-//     // });
-//     // function create () {
-//         $.ajax({
-//             url:"functions/saveDiscord.php",    //the page containing php script
-//             type: "post",    //request type,
-//             dataType: 'json',
-//             data: {
-//                 registration: "success", 
-//                 user: disc_user, 
-//                 id: disc_id,
-//                 avatar: disc_avatar
-//             },
-//             success:function(result){
-//                 console.log(result.result + ", " + result.user + ", " + result.avatar + ", " + result.id);
-//             }
-//         });
-//     // }
-//     console.log("DONE SAVING");
-// }
+function getAnnouncementInformation() {
+    console.log("--------------------------");
+    console.log("Getting Announcement Information");
+    $.ajax({
+        url:"functions/announcements.php",
+        type: "post",    
+        dataType: 'json',
+        data: {
+            registration: "success"
+        },
+        success:function(result){
+            console.log(result.messages);
+        }
+    });
+    console.log("DONE GETTING");
+}
 
 function saveUnsavedChanges() {
     document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";

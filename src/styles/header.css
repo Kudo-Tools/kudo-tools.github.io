@@ -51,6 +51,9 @@ header {
     cursor: pointer;
     transition: all 0.2s ease-in-out 0s;   
 }
+.sign_out {
+    margin-right: 20px;
+}
 
 .sign_up:hover {
     color:rgb(0,0,0,0.8);

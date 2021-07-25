@@ -15,6 +15,41 @@ $con = establish_connection();
 // $email= $_POST['email'];
 
 if ($registration == "success"){
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("SELECT * FROM messages");
+    $query->execute();
+    $items = $query->fetchAll();
+    $messages = $items['body'];
+    $authors = $items['title'];
+    $times = $items['timestamp'];
+    // for($x = 0; $x < count($items); $x++) {
+    //     array_push($messages, $x, $items[$x]);
+    //     array_push($messages, $x, $items[$x]);
+    //     array_push($messages, $x, $items[$x]);
+    // }
+    echo json_encode(array(
+        "messages"=>$messages
+    ));
+}
+?>  
+
+<?php
+
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+
+session_start();
+$_SESSION;
+
+require("functions/connection.php");
+
+
+$registration = $_POST['registration'];
+$con = establish_connection();
+// $name= $_POST['name'];
+// $email= $_POST['email'];
+
+if ($registration == "success"){
     // some action goes here under php
     // $username= $_POST['user'];
     // $id= $_POST['id'];
