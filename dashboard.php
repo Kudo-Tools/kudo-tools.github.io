@@ -25,7 +25,7 @@ $discordNameNumbers = '';
 $date_values = explode("-", $user_data['date']);
 $year = $date_values[0];
 $month = $date_values[1];
-$day = $date_values[2];
+$day = explode(" ", $date_values[2])[0];
 $date = $month . "/" . $day . "/" . $year;
 $instances = $user_data["instances"];
 $account_type = $user_data['account_type'];
@@ -224,7 +224,7 @@ function getDiscordImage() {
                         <button id="discord_disconnect_button">disconnect</button>
                         <br>
                         <div class="discord_container">
-                            <img id="discord_avatar" src="images/DiscordPoop.png"></img>
+                            <img id="discord_avatar" src=<?php echo $discord_Avatar_Image?>></img>
                             <a id="discord_username"><?php echo $discordName?>
                                 <!-- <span id="discord_numbers"></span> -->
                                 <span id="discord_numbers"><?php echo $discordNameNumbers?></span>
@@ -245,7 +245,7 @@ function getDiscordImage() {
                 <div class="right_side">
                     <div class="section instances">
                         <a>Instances</a>
-                        <p id="running_instances"><?php echo $instances; ?></p>
+                        <p id="running_instances"><?php echo $instances . " Available" ?></p>
                     </div>
                     <div class="horizontal_seperator"></div>
                     <div class="section discord_server">
