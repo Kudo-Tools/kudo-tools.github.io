@@ -45,6 +45,25 @@ function getAnnouncementInformation() {
         `;
     }
 }
+function redirectToDiscordOAuth() {
+    window.location.href = "https://discord.com/api/oauth2/authorize?client_id=799727631289155585&redirect_uri=https%3A%2F%2Fwww.kudotools.com%2Fdashboard&response_type=code&scope=identify";
+}
+function resetDiscord() {
+    console.log("DELETING DISCORD INFORMATION THROUGH FILE");
+    $.ajax({
+        url: 'functions/saveDiscord.php',
+        type: 'POST',
+        dataType: "json",
+        data: {
+            username: "",
+            id: "",
+            avatar: ""
+        }
+    }).done(function(data) {
+            alert(JSON.stringify(data));
+    });
+    console.log("DONE DELETING DATA");
+}
 function setReleaseNotes(notes) {
     const json = JSON.parse(notes);
     for(let i = 0; i < json.length; i++) {
