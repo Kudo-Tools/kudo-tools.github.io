@@ -100,36 +100,36 @@ foreach($items as $row) {
 $con = null;
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $discord_avatar = $_POST['avatar'];
-    $discord_user = $_POST['discord_user'];
-    $discord_id = $_POST['discord_id'];
-    $user_id = $user_data['user_id'];
-    if(isset($_POST["connect"])) {
+    // $discord_avatar = $_POST['avatar'];
+    // $discord_user = $_POST['discord_user'];
+    // $discord_id = $_POST['discord_id'];
+    // $user_id = $user_data['user_id'];
+    // if(isset($_POST["connect"])) {
             
-    } else if(isset($_POST["disconnect"])) {
+    // } else if(isset($_POST["disconnect"])) {
 
-    } else if(isset($_POST["save"])) {
+    // } else if(isset($_POST["save"])) {
 
-    }
+    // }
     
-    $con = establish_connection();
-    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
-    // $query->bindParam(
+    // $con = establish_connection();
+    // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    // $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
+    // // $query->bindParam(
         
+    // // );
+    // $result = $query->execute(
+    //     array(
+    //         ":username" => $discord_user,
+    //         ":userId"=> $user_id
+    //     )
     // );
-    $result = $query->execute(
-        array(
-            ":username" => $discord_user,
-            ":userId"=> $user_id
-        )
-    );
     // echo "COMPLETETLY GOOD";
     // die;
 }
 
 if(empty($fullDiscordName)) {
-    $discordName = "Discord not Connected";
+    $discordName = "Not Connected";
     ?>
     <style>
         #discord_connect_button {
