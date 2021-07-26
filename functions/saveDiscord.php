@@ -22,8 +22,8 @@ $query = $con->prepare("UPDATE accounts SET discord_username = :username,  disco
 $result = $query->execute(
     array(
         ":username" => $discord_user,
-        "discId" => $discord_id,
-        "discAvatar" => $discord_avatar,
+        ":discId" => $discord_id,
+        ":discAvatar" => $discord_avatar,
         ":userId"=> $user_id
     )
 );
