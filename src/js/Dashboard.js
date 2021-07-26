@@ -1,6 +1,3 @@
-function redirectToDiscordOAuth() {
-    window.location.href = "https://discord.com/api/oauth2/authorize?client_id=799727631289155585&redirect_uri=http%3A%2F%2Fwww.kudotools.com%2Fdashboard&response_type=code&scope=identify";
-}
 
 function resetDiscordLogin() {
     document.querySelector('input[name="discord_username"]').value = "";
@@ -144,7 +141,7 @@ async function getTheToken() {
         client_secret: CLIENT_SECRET,
         grant_type: "authorization_code",
         code: CODE,
-        redirect_uri: "http://www.kudotools.com/dashboard",
+        redirect_uri: "https://www.kudotools.com/dashboard",
         scope: "identify"
     }
     const request = await fetch('https://discord.com/api/oauth2/token', {

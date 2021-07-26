@@ -15,7 +15,42 @@ $user_data = check_login($con);
 $con = null;
 
 $matchFound = (array_key_exists("code", $_GET));
-$slide = $matchFound ? trim($_GET["code"]) : '';
+if($matchFound) {
+    $discord_code = $matchFound ? trim($_GET["code"]) : '';
+    $client_id = "799727631289155585";
+    $client_secret = "JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo";
+    
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://discord.com/api/oauth2/token',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array(
+          'client_id' => '799727631289155585',
+          'client_secret' => 'JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo',
+          'grant_type' => 'authorization_code',
+          'code' => $discord_code,
+          'redirect_uri' => 'https://www.kudotools.com/dashboard',
+          'scope' => 'identify'),
+      CURLOPT_HTTPHEADER => array(
+        'Cookie: __dcfduid=10d4ed2b9b4a4ebcaaab6d725068c90f'
+      ),
+    ));
+    
+    $response = curl_exec($curl);
+    
+    curl_close($curl);
+    echo $response;
+    die;
+}
+
+
 
 $fullDiscordName = $user_data['discord_username'];
 $license = $user_data['license_key'];
@@ -102,7 +137,6 @@ foreach($items as $row) {
 $con = null;
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-   
     if(isset($_POST["save"])) {
 
         $discord_avatar = $_POST['discord_avatar'];
