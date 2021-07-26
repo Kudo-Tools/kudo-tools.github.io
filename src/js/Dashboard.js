@@ -60,13 +60,11 @@ function resetDiscord() {
             avatar: ""
         }
     }).done(function(data) {
-        alert(JSON.stringify(data));
-        console.log("done recording");
+            alert(JSON.stringify(data));
     });
-
-    document.getElementById("discord_connect_button").style.display = "block";
-    document.getElementById("discord_disconnect_button").style.display = "none";
-
+    // document.getElementById("discord_connect_button").style.display = "block";
+    // document.getElementById("discord_disconnect_button").style.display = "none";
+    
     console.log("DONE DELETING DATA");
     
 }
