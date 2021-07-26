@@ -100,17 +100,41 @@ foreach($items as $row) {
 $con = null;
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    // $discord_avatar = $_POST['avatar'];
-    // $discord_user = $_POST['discord_user'];
-    // $discord_id = $_POST['discord_id'];
-    // $user_id = $user_data['user_id'];
-    // if(isset($_POST["connect"])) {
+    $discord_avatar = $_POST['avatar'];
+    $discord_user = $_POST['discord_user'];
+    $discord_id = $_POST['discord_id'];
+    $user_id = $user_data['user_id'];
+    if(isset($_POST["connect"])) {
             
-    // } else if(isset($_POST["disconnect"])) {
+    } else if(isset($_POST["disconnect"])) {
+        $con = establish_connection();
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $query = $con->prepare("UPDATE accounts SET 
+            discord_username = :username, 
+            discord_id = :discId, 
+            discord_avatar = :discAvatar
+            WHERE user_id = :userId LIMIT 1");
+        $result = $query->execute(
+            array(
+                ":username" => $discord_user,
+                ":discId" => $discord_id,
+                ":discAvatar" => $discord_avatar,
+                ":userId"=> $user_id
+            )
+        );
+        ?>
+        <style>
+            #discord_connect_button {
+                display: block;
+            }
+            #discord_disconnect_button {
+                display: none;
+            }
+        </style>
+        <?php
+    } else if(isset($_POST["save"])) {
 
-    // } else if(isset($_POST["save"])) {
-
-    // }
+    }
     
     // $con = establish_connection();
     // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -231,8 +255,8 @@ function getDiscordImage() {
                             <input type="hidden" id="" value="<?php echo $saved_times;?>"> -->
     
 
-                            <button onclick="redirectToDiscordOAuth()" id="discord_connect_button">connect</button>
-                            <button onclick="resetDiscord()" name="disconnect" id="discord_disconnect_button">disconnect</button>
+                            <button  name="connect" onclick="redirectToDiscordOAuth()" id="discord_connect_button">connect</button>
+                            <button  name="disconnect" id="discord_disconnect_button">disconnect</button>
                         </form>
                         <br>
                         <div class="discord_container">
