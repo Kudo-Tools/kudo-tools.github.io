@@ -28,4 +28,5 @@ $result = $query->execute(
     )
 );
 echo "sent!";
+echo json_encode($result);
 ?>
