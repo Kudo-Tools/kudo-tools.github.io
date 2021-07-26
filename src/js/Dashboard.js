@@ -62,11 +62,7 @@ function resetDiscord() {
     }).done(function(data) {
             alert(JSON.stringify(data));
     });
-    // document.getElementById("discord_connect_button").style.display = "block";
-    // document.getElementById("discord_disconnect_button").style.display = "none";
-    
     console.log("DONE DELETING DATA");
-    
 }
 function setReleaseNotes(notes) {
     const json = JSON.parse(notes);
