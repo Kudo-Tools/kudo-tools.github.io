@@ -28,6 +28,7 @@ $month = $date_values[1];
 $day = $date_values[2];
 $date = $month . "/" . $day . "/" . $year;
 $instances = $user_data["instances"];
+$account_type = $user_data['account_type'];
 // $con = establish_connection();
 // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 // $conn = establish_connection();
@@ -224,18 +225,17 @@ function getDiscordImage() {
                         <br>
                         <div class="discord_container">
                             <img id="discord_avatar" src="images/DiscordPoop.png"></img>
-                            <a id="discord_username">Teeds
-                                <!-- <span id="discord_numbers"><?php echo $discordNameNumbers?></span> -->
-                                <span id="discord_numbers">#6855</span>
+                            <a id="discord_username"><?php echo $discordName?>
+                                <!-- <span id="discord_numbers"></span> -->
+                                <span id="discord_numbers"><?php echo $discordNameNumbers?></span>
                             </a>
                         </div>
-                        
                     </div>
                     <div class="horizontal_seperator"></div>
                     <div class="section license">
                         <a>License Key</a>
                         <div class="license_container">
-                            <a id="license_key" >Kudo-ABCD-EFGH-IJKLM</a>
+                            <a id="license_key" ><?php echo $license; ?></a>
                             <!-- <div class="copy">copy</div> -->
                         </div>
                         
@@ -245,7 +245,7 @@ function getDiscordImage() {
                 <div class="right_side">
                     <div class="section instances">
                         <a>Instances</a>
-                        <p id="running_instances">0 / 2 Running</p>
+                        <p id="running_instances"><?php echo $instances; ?></p>
                     </div>
                     <div class="horizontal_seperator"></div>
                     <div class="section discord_server">
@@ -255,7 +255,7 @@ function getDiscordImage() {
                     <div class="horizontal_seperator"></div>
                     <div class="section license_type">
                         <a>License Type</a>
-                        <p id="account_type">trial</p>
+                        <p id="account_type"><?php echo $account_type; ?></p>
                     </div>
                 </div>
                 
