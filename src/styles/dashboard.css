@@ -286,3 +286,35 @@
     right: 0px;
     pointer-events: none;
 }
+
+.save_button {
+    width: 90px;
+    height: 26px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px 0.7px rgb(26,26,46, 0.5) inset;
+    transition: .3s ease;
+    border: none;
+}
+.save_button:hover {
+    box-shadow: 0px 0px 0px 5.7px rgb(52, 188, 114, 0.2) inset;
+    color: white;
+    background-color: rgb(52, 188, 114, 1);
+}
+.save_container {
+    /* background-color: purple; */
+    float: left;
+    margin-left: 150px;
+    width: 130px;
+    height: 100px;
+    margin-top: -40px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+#changes {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}

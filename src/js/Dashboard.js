@@ -3,30 +3,21 @@ function redirectToDiscordOAuth() {
 }
 
 function resetDiscordLogin() {
-    document.querySelector('input[name="discord_user"]').value = "";
+    document.querySelector('input[name="discord_username"]').value = "";
     document.querySelector('input[name="discord_id"]').value = "";
-    document.querySelector('input[name="avatar"]').value = "";
-    document.getElementById('discord_username').innerHTML = "Discord not Connected";
+    document.querySelector('input[name="discord_avatar"]').value = "";
+    document.getElementById('discord_username').innerHTML = "";
+    document.getElementById('discord_numbers').innerHTML = "Not Connected";
     // document.getElementById('discord_username_numbers').innerHTML = "#0000";
     document.getElementById("discord_avatar").src = "images/DiscordPoop.png";
-    document.getElementById("signout_discord").style.display = "none";
-    document.getElementById("login_discord").style.display = "inline";
+    document.getElementById("discord_disconnect_button").style.display = "none";
+    document.getElementById("discord_connect_button").style.display = "block";
     setUnsavedChanges();
 }
 
 function setUnsavedChanges() {
     document.getElementById("changes").style.color = "#EA4444";
     document.getElementById("changes").innerHTML = "changes unsaved";
-    let user = "no name";
-    let id = "no id";
-    let avatar = "";
-    // saveDiscordInformation(user, id, avatar)
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', "dashboard.php?save=saveDiscord");
-    // xhr.onload = function () {
-    //     console.log(this.response);
-    // };
-    // xhr.send(data);
 }
 
 function getAnnouncementInformation() {
