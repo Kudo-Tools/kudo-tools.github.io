@@ -322,7 +322,7 @@ function getDiscordImage() {
                     <input type="hidden" name="discord_id" id="discord_id" value="<?php echo $discordId;?>">
                     <input type="hidden" name="discord_avatar" id="discord_avatar" value="<?php echo $discordAvatar;?>">
                     <input type="hidden" name="discord_username" id="discord_username" value="<?php echo $fullDiscordName;?>">
-                    <input class="save_button" type="submit" value="save" name="save">
+                    <input onclick="setChangesSaved()" class="save_button" type="submit" value="save" name="save">
                 </form>
             </div>
             

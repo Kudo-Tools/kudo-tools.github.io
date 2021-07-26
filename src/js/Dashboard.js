@@ -118,15 +118,9 @@ function getReleaseNotes() {
     // console.log("DONE GETTING");
 // }
 
-function saveUnsavedChanges() {
-    document.getElementById("changes").style.color = "rgb(255,255,255,0.5)";
+function saveChangesSaved() {
+    document.getElementById("changes").style.color = "rgb(0,0,0,0.5)";
     document.getElementById("changes").innerHTML = "changes saved";
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', "dashboard.php?save=saveDiscord");
-    // xhr.onload = function () {
-    //     console.log(this.response);
-    // };
-    // xhr.send(data);
 }
 
 
