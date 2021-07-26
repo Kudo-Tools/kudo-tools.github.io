@@ -7,7 +7,7 @@ function resetDiscordLogin() {
     document.querySelector('input[name="discord_id"]').value = "";
     document.querySelector('input[name="discord_avatar"]').value = "";
     document.getElementById('discord_username').innerHTML = "";
-    document.getElementById('discord_numbers').innerHTML = "Not Connected";
+    document.getElementById('discord_numbers').textContent = "Not Connected";
     // document.getElementById('discord_username_numbers').innerHTML = "#0000";
     document.getElementById("discord_avatar").src = "images/DiscordPoop.png";
     document.getElementById("discord_disconnect_button").style.display = "none";
@@ -118,7 +118,7 @@ function getReleaseNotes() {
     // console.log("DONE GETTING");
 // }
 
-function saveChangesSaved() {
+function setChangesSaved() {
     document.getElementById("changes").style.color = "rgb(0,0,0,0.5)";
     document.getElementById("changes").innerHTML = "changes saved";
 }
@@ -133,8 +133,8 @@ window.onload = () => {
     getReleaseNotes();
 }
 
-const CLIENT_ID = '799727631289155585';
-const CLIENT_SECRET = 'JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo';
+const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
+const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 let CODE = '';
 
 
