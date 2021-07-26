@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-                $query = $con->prepare("INSERT INTO accounts (user_id, license_key, items, account_type) VALUES (?, ?, ?, ?)");
+                $query = $con->prepare("INSERT INTO accounts (user_id, license_key, items, account_type, instances) VALUES (?, ?, ?, ?, ?)");
                 if($query->execute($data)) {
                     $key = $license;
                     header("Location: welcome?key=".$key);

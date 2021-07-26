@@ -101,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             <div id="login_element" class="elements">
                 <form style="background: transparent;" method="post">
                 <a class="error" id="license_invalid">invalid license key</a>
-                    <input id="license" type="license" name="license" placeholder="Enter License Key">>
+                    <input id="license" type="license" name="license" placeholder="Enter License Key">
                     <button name="login" id="login_button" class="button learn_more" readonly>Login
                         <i class="arrow right"></i>
                     </button>

@@ -22,8 +22,12 @@ $discordAvatar = $user_data['discord_avatar'];
 $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
-
-
+$date_values = explode("-", $user_data['date']);
+$year = $date_values[0];
+$month = $date_values[1];
+$day = $date_values[2];
+$date = $month . "/" . $day . "/" . $year;
+$instances = $user_data["instances"];
 // $con = establish_connection();
 // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 // $conn = establish_connection();
@@ -120,11 +124,31 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 if(empty($fullDiscordName)) {
     $discordName = "Discord not Connected";
+    ?>
+    <style>
+        #discord_connect_button {
+            display: block;
+        }
+        #discord_disconnect_button {
+            display: none;
+        }
+    </style>
+    <?php
 } else {
     $splitVersion = explode("#", $fullDiscordName);
     $discordNameNumbers = '#';
     $discordNameNumbers .= $splitVersion[1];
     $discordName =  $splitVersion[0];
+    ?>
+    <style>
+        #discord_connect_button {
+            display: none;
+        }
+        #discord_disconnect_button {
+            display: block;
+        }
+    </style>
+    <?php
 }
 if(empty($user_data['discord_avatar'])) {
     $discord_Avatar_Image = "images/DiscordPoop.png";
@@ -190,7 +214,7 @@ function getDiscordImage() {
                         <br>
                         <br>
                         <p>member since</p>
-                        <p>05/03/2020</p>
+                        <p><?php echo $date; ?></p>
                     </div>
                     <div class="horizontal_seperator"></div>
                     <div class="section discord">
