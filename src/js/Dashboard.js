@@ -2,10 +2,6 @@ function redirectToDiscordOAuth() {
     window.location.href = "https://discord.com/api/oauth2/authorize?client_id=799727631289155585&redirect_uri=http%3A%2F%2Fwww.kudotools.com%2Fdashboard&response_type=code&scope=identify";
 }
 
-function addAnnouncement() {
-    
-}
-
 function resetDiscordLogin() {
     document.querySelector('input[name="discord_user"]').value = "";
     document.querySelector('input[name="discord_id"]').value = "";
@@ -16,7 +12,6 @@ function resetDiscordLogin() {
     document.getElementById("signout_discord").style.display = "none";
     document.getElementById("login_discord").style.display = "inline";
     setUnsavedChanges();
-    
 }
 
 function setUnsavedChanges() {
@@ -194,6 +189,20 @@ async function getInformation() {
             if(response.avatar != null || response.username != null || response.id != null) {
                 setUnsavedChanges();
             }
+            console.log("SAVING DISCORD INFORMATION THROUGH FILE");
+            $.ajax({
+                url: 'functions/saveDiscord.php',
+                type: 'POST',
+                dataType: "json",
+                data: {
+                    username: response.username,
+                    id: response.id,
+                    avatar: response.avatar
+                }
+            }).done(function(data) {
+                    alert(JSON.stringify(data));
+            });
+            console.log("DONE SAVING DATA");
             // saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
         } else {
             window.location = window.location.href.split("?")[0];

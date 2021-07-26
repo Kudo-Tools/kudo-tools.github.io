@@ -100,13 +100,21 @@ foreach($items as $row) {
 $con = null;
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    if(isset($_POST["save"])) {
-
-    }
     $discord_avatar = $_POST['avatar'];
     $discord_user = $_POST['discord_user'];
     $discord_id = $_POST['discord_id'];
     $user_id = $user_data['user_id'];
+    if(isset($_POST["connect"])) {
+        $discord_avatar = $_POST['avatar'];
+        $discord_user = $_POST['discord_user'];
+        $discord_id = $_POST['discord_id'];
+        $user_id = $user_data['user_id'];
+    } else if(isset($_POST["disconnect"])) {
+
+    } else if(isset($_POST["save"])) {
+
+    }
+    
     $con = establish_connection();
     $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
@@ -158,10 +166,10 @@ if(empty($user_data['discord_avatar'])) {
 }
 function getDiscordImage() {
     global $user_data;
-    $url="https://cdn.discordapp.com/avatars/"; 
+    $url="https://cdn.discordapp.com/avatars/";
     $url.= $user_data['discord_id']; 
-    $url.="/"; 
-    $url.= $user_data['discord_avatar']; 
+    $url.="/";
+    $url.= $user_data['discord_avatar'];
     $url.=".png";
     return $url;
 }
@@ -220,8 +228,15 @@ function getDiscordImage() {
                     <div class="horizontal_seperator"></div>
                     <div class="section discord">
                         <a>Discord Account</a>
-                        <button id="discord_connect_button">connect</button>
-                        <button id="discord_disconnect_button">disconnect</button>
+                        <form class="form" method="post">
+                            <!-- <input type="hidden" id="discord" value="<?php echo $saved_announcements;?>">
+                            <input type="hidden" id="" value="<?php echo $saved_authors;?>">
+                            <input type="hidden" id="" value="<?php echo $saved_times;?>"> -->
+    
+
+                            <button name="connect" id="discord_connect_button">connect</button>
+                            <button name="disconnect" id="discord_disconnect_button">disconnect</button>
+                        </form>
                         <br>
                         <div class="discord_container">
                             <img id="discord_avatar" src=<?php echo $discord_Avatar_Image?>></img>
@@ -267,7 +282,7 @@ function getDiscordImage() {
                 <!-- <button onclick="resetDiscordLogin()" id="signout_discord">disconnect</button> 
                 <button onclick="redirectToDiscordOAuth()" id="login_discord">connect discord</button>  -->
     
-                <form class="form" method="post">
+                
                     <!-- <input type="hidden" id="discord_user" name="discord_user" value="<?php echo $fullDiscordName;?>">
                     <input type="hidden" id="discord_id" name="discord_id" value="<?php echo $discordId;?>">
                     <input type="hidden" id="avatar" name="avatar" value="<?php echo $discordAvatar;?>"> -->
@@ -281,7 +296,7 @@ function getDiscordImage() {
     
                     <!-- <input onclick="saveUnsavedChanges()" type="submit" id="save_changes" value="save"></input> -->
                     <!-- <a id="changes">changes saved</a> -->
-                </form>
+                
     
                 <!-- <form method="get" action="file.doc">
                     <button type="submit">Download!</button>
