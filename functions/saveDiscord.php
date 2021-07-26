@@ -16,15 +16,18 @@ $discord_id = $_POST['id'];
 $discord_avatar = $_POST['avatar'];
 $user_id = $user_data['user_id'];
 $query = $con->prepare("UPDATE accounts SET 
-    discord_username = :username,
-    discord_id = :id,
-    discord_avatar = :avatar 
-    WHERE user_id = :userId LIMIT 1");
+    discord_username = :username, WHERE user_id = :userId LIMIT 1");
 $result = $query->execute(
     array(
         ":username" => $discord_user,
-        ":id" => $discord_id,
-        ":avatar" => $discord_avatar,
+        ":userId"=> $user_id
+    )
+);
+$query = $con->prepare("UPDATE accounts SET 
+    discord_id = :discId, WHERE user_id = :userId LIMIT 1");
+$result = $query->execute(
+    array(
+        ":discId" => $discord_id,
         ":userId"=> $user_id
     )
 );
