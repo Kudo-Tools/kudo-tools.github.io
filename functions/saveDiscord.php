@@ -18,15 +18,14 @@ $discord_id = $_POST['id'];
 $discord_avatar = $_POST['avatar'];
 $user_id = $user_data['user_id'];
 echo "sending...";
-$query = $con->prepare("UPDATE accounts SET 
-    discord_username =  :username
-    WHERE user_id = :userId LIMIT 1");
+$query = $con->prepare("UPDATE accounts SET discord_username = :username,  discord_id = :discId,  discord_avatar = :discAvatar WHERE user_id = :userId LIMIT 1");
 $result = $query->execute(
     array(
         ":username" => $discord_user,
+        "discId" => $discord_id,
+        "discAvatar" => $discord_avatar,
         ":userId"=> $user_id
     )
 );
 echo "sent!";
-echo json_encode($result);
 ?>
