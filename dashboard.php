@@ -100,9 +100,9 @@ foreach($items as $row) {
 $con = null;
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $discord_avatar = $_POST['avatar'];
-    $discord_user = $_POST['discord_user'];
-    $discord_id = $_POST['discord_id'];
+    // $discord_avatar = $_POST['avatar'];
+    // $discord_user = $_POST['discord_user'];
+    // $discord_id = $_POST['discord_id'];
     $user_id = $user_data['user_id'];
     if(isset($_POST["connect"])) {
             
@@ -116,9 +116,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             WHERE user_id = :userId LIMIT 1");
         $result = $query->execute(
             array(
-                ":username" => $discord_user,
-                ":discId" => $discord_id,
-                ":discAvatar" => $discord_avatar,
+                ":username" => "",
+                ":discId" => "",
+                ":discAvatar" => "",
                 ":userId"=> $user_id
             )
         );
