@@ -32,7 +32,6 @@ function getAccessToken() {
     $response = escapeJsonString($response);
     $json = json_decode($response, true);
     curl_close($curl);
-    echo $json;
     return getDiscordInformation($json['access_token']);
 }
 function getDiscordInformation($token) {
@@ -57,7 +56,7 @@ function getDiscordInformation($token) {
     
     curl_close($curl);
     $response = escapeJsonString($response);
-    $json = json_decode($response);
+    $json = json_decode($response, true);
     
     $values = array(
         "id" => $json['id'],
