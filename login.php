@@ -16,27 +16,6 @@ $con = establish_connection();
 // check_login($con, false);
 
 
-
-if($matchFound) {
-    $json = getAccessToken();
-    $discordName = $json['username'];
-    $discordNameNumbers = $json['numbers'];
-    $discordAvatar = $json['avatar'];
-    $discordId = $json['id'];
-    $fullDiscordName = $discordName . '#' .$discordNameNumbers;
-    saveToDB($fullDiscordName, $discordId, $discordAvatar, $_SESSION["user_id"]);
-    ?>
-    <style>
-        #discord_connect_button {
-            display: block;
-        }
-        #discord_disconnect_button {
-            display: block;
-        }
-    </style>
-    <?php
-}
-
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
     $key = $_POST['license'];
