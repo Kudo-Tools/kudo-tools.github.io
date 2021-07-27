@@ -11,13 +11,33 @@ require("functions/methods.php");
 $con = establish_connection();
 check_login($con, false);
 
+$matchFound = (array_key_exists("code", $_GET));
+$extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
+
+if($matchFound) {
+    $json = getAccessToken();
+    $discordName = $json['username'];
+    $discordNameNumbers = $json['numbers'];
+    $discordAvatar = $json['avatar'];
+    $discordId = $json['id'];
+    $fullDiscordName = $discordName . '#' .$discordNameNumbers;
+    saveToDB($fullDiscordName, $discordId, $discordAvatar, $_SESSION["user_id"]);
+    ?>
+    <style>
+        #discord_connect_button {
+            display: block;
+        }
+        #discord_disconnect_button {
+            display: block;
+        }
+    </style>
+    <?php
+}
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
     $key = $_POST['license'];
     if(!empty($key)) {
-
-
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         $query = $con->prepare("SELECT * FROM accounts WHERE license_key = :key LIMIT 1");
@@ -29,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             // $user_data = $result->fetch_assoc();
             if($key == $user_data['license_key']) {
                 $_SESSION['user_id'] = $user_data['user_id'];
-                header("Location: dashboard");
+                header("Location: dashboard".$extension);
                 $con = null;
                 die;
             } else {
@@ -50,37 +70,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 </style>
             <?php
         }
-        // $query = "select * from accounts where license_key = '$key' limit 1";
-        
-        //gets the users data
-        // $result = mysqli_query($con, $query);
-        
-        // if($result) {
-            // $user_data = mysqli_fetch_assoc($result);
-            // $user_data = $result->fetch_assoc();
-            // if($key == $user_data['license_key']) {
-            //     $_SESSION['user_id'] = $user_data['user_id'];
-            //     header("Location: dashboard");
-            //     $con->close();
-            //     die;
-            // } else {
-                ?>
-                    <!-- <style type="text/css">
-                        #license_invalid {
-                            display: block;
-                        }
-                    </style> -->
-                <?php
-            // }
-        // } else {
-            ?>
-                <!-- <style type="text/css">
-                    #license_invalid {
-                        display: block;
-                    }
-                </style> -->
-            <?php
-        // }
     }
     $con = null;
 }
