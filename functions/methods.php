@@ -38,10 +38,10 @@ function check_login($con, $fromDashboard) {
     if($fromDashboard) {
         $matchFound = (array_key_exists("code", $_GET));
         
-        $extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
+        $extension = ($matchFound) ? trim($_GET["code"]) : "nothing";
         echo "ex = ";
         echo $extension;
-        $location = "login".$extension;
+        $location = "login.php?code=".$extension;
         header("Location: ".$location);
     }
 }
