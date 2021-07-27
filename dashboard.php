@@ -7,50 +7,12 @@ $_SESSION;
 
 require("functions/connection.php");
 require("functions/methods.php");
-
+require("functions/discordToken.php");
 
 //if logged in this contains user info
 $con = establish_connection();
 $user_data = check_login($con);
 $con = null;
-
-$matchFound = (array_key_exists("code", $_GET));
-if($matchFound) {
-    $discord_code = $matchFound ? trim($_GET["code"]) : '';
-    $client_id = "799727631289155585";
-    $client_secret = "JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo";
-    
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://discord.com/api/oauth2/token',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => array(
-          'client_id' => '799727631289155585',
-          'client_secret' => 'JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo',
-          'grant_type' => 'authorization_code',
-          'code' => $discord_code,
-          'redirect_uri' => 'https://www.kudotools.com/dashboard',
-          'scope' => 'identify'),
-      CURLOPT_HTTPHEADER => array(
-        'Cookie: __dcfduid=10d4ed2b9b4a4ebcaaab6d725068c90f'
-      ),
-    ));
-    
-    $response = curl_exec($curl);
-    
-    curl_close($curl);
-    echo $response;
-    die;
-}
-
-
 
 $fullDiscordName = $user_data['discord_username'];
 $license = $user_data['license_key'];
@@ -59,6 +21,22 @@ $discordAvatar = $user_data['discord_avatar'];
 $discord_Avatar_Image = '';
 $discordName = '';
 $discordNameNumbers = '';
+
+$matchFound = (array_key_exists("code", $_GET));
+if($matchFound) {
+    $json = getAccessToken();
+    $discordName = $json['username'];
+    $discordNameNumbers = $json['numbers'];
+    $discordAvatar = $json['avatar'];
+    $discordId = $json['id'];
+    $fullDiscordName = $discordName . $discordNameNumbers;
+    saveToDB($fullDiscordName, $discordId, $discordAvatar, $_SESSION["user_id"]);
+}
+
+
+
+
+
 $date_values = explode("-", $user_data['date']);
 $year = $date_values[0];
 $month = $date_values[1];
@@ -135,41 +113,37 @@ foreach($items as $row) {
     $saved_times    .= str_replace('"', "", $row['timestamp']) . "{NEW TIME}";
 }
 $con = null;
-
+function saveToDB($username, $id, $avatar, $user_id) {
+    $con = establish_connection();
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("UPDATE accounts SET 
+        discord_username = :username, 
+        discord_id = :discId, 
+        discord_avatar = :discAvatar
+        WHERE user_id = :userId LIMIT 1");
+    $result = $query->execute(
+        array(
+            ":username" => $username,
+            ":discId" => $id,
+            ":discAvatar" => $avatar,
+            ":userId"=> $user_id
+        )
+    );
+    ?>
+    <style>
+        #discord_connect_button {
+            display: block;
+        }
+        #discord_disconnect_button {
+            display: none;
+        }
+    </style>
+    <?php
+    header("Refresh:0");
+}
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    if(isset($_POST["save"])) {
-
-        $discord_avatar = $_POST['discord_avatar'];
-        $discord_user = $_POST['discord_username'];
-        $discord_id = $_POST['discord_id'];
-        $user_id = $user_data['user_id'];
-
-        $con = establish_connection();
-        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $query = $con->prepare("UPDATE accounts SET 
-            discord_username = :username, 
-            discord_id = :discId, 
-            discord_avatar = :discAvatar
-            WHERE user_id = :userId LIMIT 1");
-        $result = $query->execute(
-            array(
-                ":username" => "",
-                ":discId" => "",
-                ":discAvatar" => "",
-                ":userId"=> $user_id
-            )
-        );
-        ?>
-        <style>
-            #discord_connect_button {
-                display: block;
-            }
-            #discord_disconnect_button {
-                display: none;
-            }
-        </style>
-        <?php
-        header("Refresh:0");
+    if(isset($_POST['disconnect'])) {
+        saveToDB("", "", "", $_SESSION["user_id"]);
     }
     
     // $con = establish_connection();
@@ -291,9 +265,10 @@ function getDiscordImage() {
                             <input type="hidden" id="" value="<?php echo $saved_times;?>"> -->
     
 
-                        <button  onclick="redirectToDiscordOAuth()" id="discord_connect_button">connect</button>
-                        <button  onclick="resetDiscordLogin()"; id="discord_disconnect_button">disconnect</button>
-                        <!-- </form> -->
+                        <button onclick="redirectToDiscordOAuth()" id="discord_connect_button">connect</button>
+                        </form method="post">
+                            <button name="disconnect" id="discord_disconnect_button">disconnect</button>
+                        </form>
                         <br>
                         <div class="discord_container">
                             <img id="discord_avatar" src=<?php echo $discord_Avatar_Image?>></img>
@@ -350,7 +325,7 @@ function getDiscordImage() {
             
                 </div>
             </div>
-            <div class="save_container">
+            <!-- <div class="save_container">
                 <p id="changes">changes saved</p>
                 <form class="form" method="post">
                     <input type="hidden" name="discord_id" id="discord_id" value="<?php echo $discordId;?>">
@@ -358,7 +333,7 @@ function getDiscordImage() {
                     <input type="hidden" name="discord_username" id="discord_username" value="<?php echo $fullDiscordName;?>">
                     <input onclick="setChangesSaved()" class="save_button" type="submit" value="save" name="save">
                 </form>
-            </div>
+            </div> -->
             
             <!-- <div class="download_wrapper"> -->
                 
