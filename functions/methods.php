@@ -37,8 +37,12 @@ function check_login($con, $fromDashboard) {
     }
     if($fromDashboard) {
         $matchFound = (array_key_exists("code", $_GET));
+        
         $extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
-        header("Location: login".$extension);
+        echo "ex = ";
+        echo $extension;
+        die;
+        // header("Location: login".$extension);
     }
 }
 
