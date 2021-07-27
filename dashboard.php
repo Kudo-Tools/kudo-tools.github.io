@@ -273,7 +273,7 @@ function getDiscordImage() {
     
 
                         <button onclick="redirectToDiscordOAuth()" id="discord_connect_button">connect</button>
-                        </form method="post">
+                        <form method="post">
                             <button name="disconnect" id="discord_disconnect_button">disconnect</button>
                         </form>
                         <br>
