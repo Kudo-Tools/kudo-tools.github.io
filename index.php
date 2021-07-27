@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+$_SESSION;
+
+require("functions/connection.php");
+require("functions/methods.php");
+
+$con = establish_connection();
+$button_text = check_login_homepage($con); 
+?>
 <html>
     <head>
         <link href="src/styles/main.css" rel="stylesheet" type="text/css">
@@ -27,7 +38,7 @@
             </nav>
             <div class="right_header">
                 <div class="login_button">
-                    <a onclick="location.href='login'" href="#"><button>login</button></a>
+                    <a onclick="location.href='login'" href="#"><button><?php echo $button_text; ?></button></a>
                 </div>
                 <a onclick="location.href='signup'" class="sign_up">sign up</a>
                

@@ -2,13 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-function check_login($con, $fromDashboard) {
-    //Checks if value is set
-    // echo $_SESSION["user_id"];
-    echo "checking... ";
+function check_login_homepage($con) {
     if(isset($_SESSION["user_id"])) {
-        //checks if value is legit
-        echo "It is set!";
         $id = $_SESSION['user_id'];
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $query = $con->prepare("select * from accounts where user_id = :id limit 1");
@@ -16,26 +11,33 @@ function check_login($con, $fromDashboard) {
         $query->execute();
         $user_data = $query->fetch();
         if(!empty($user_data)) {
-            echo " It is not empty ! ";
+            return "dashboard";
+        }
+    }
+    return "login";
+}
+
+function check_login($con, $fromDashboard) {
+    //Checks if value is set
+    // echo $_SESSION["user_id"];
+    if(isset($_SESSION["user_id"])) {
+        //checks if value is legit
+        $id = $_SESSION['user_id'];
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $query = $con->prepare("select * from accounts where user_id = :id limit 1");
+        $query->bindParam(":id", $id);
+        $query->execute();
+        $user_data = $query->fetch();
+        if(!empty($user_data)) {
             if(!$fromDashboard) {
                 header("Location: dashboard.php");
             }
             return $user_data;
         }
-        // $query = "select * from accounts where user_id = '$id' limit 1";
-        // $result = mysqli_query($con, $query);
-        // if($result && mysqli_num_rows($result) > 0) {
-        //     $user_data = mysqli_fetch_assoc($result);
-        //     header("Location: dashboard.php");
-        //     return $user_data;
-        // }
     }
     if($fromDashboard) {
         header("Location: login");
     }
-    //redirects to login page
-   
-    // die;
 }
 
 
