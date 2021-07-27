@@ -42,7 +42,7 @@ function check_login($con, $fromDashboard) {
         echo "ex = ";
         echo $extension;
         $location = "code=".$extension;
-        header("Location: login?$location");
+        header("Location: information?$location");
     }
 }
 
