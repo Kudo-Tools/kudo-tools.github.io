@@ -13,7 +13,7 @@ $extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
 echo " RECIEVED = " . $extension;
 
 $con = establish_connection();
-check_login($con, false);
+// check_login($con, false);
 
 
 
