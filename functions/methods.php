@@ -36,6 +36,7 @@ function check_login($con, $fromDashboard) {
         }
     }
     if($fromDashboard) {
+        die;
         $matchFound = (array_key_exists("code", $_GET));
         
         $extension = ($matchFound) ? trim($_GET["code"]) : "nothing";
