@@ -31,10 +31,17 @@ if($matchFound) {
     $discordId = $json['id'];
     $fullDiscordName = $discordName . $discordNameNumbers;
     saveToDB($fullDiscordName, $discordId, $discordAvatar, $_SESSION["user_id"]);
+    ?>
+    <style>
+        #discord_connect_button {
+            display: block;
+        }
+        #discord_disconnect_button {
+            display: block;
+        }
+    </style>
+    <?php
 }
-
-
-
 
 
 $date_values = explode("-", $user_data['date']);
@@ -129,21 +136,21 @@ function saveToDB($username, $id, $avatar, $user_id) {
             ":userId"=> $user_id
         )
     );
-    ?>
-    <style>
-        #discord_connect_button {
-            display: block;
-        }
-        #discord_disconnect_button {
-            display: none;
-        }
-    </style>
-    <?php
     header("Refresh:0");
 }
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['disconnect'])) {
         saveToDB("", "", "", $_SESSION["user_id"]);
+        ?>
+        <style>
+            #discord_connect_button {
+                display: block;
+            }
+            #discord_disconnect_button {
+                display: none;
+            }
+        </style>
+        <?php
     }
     
     // $con = establish_connection();
