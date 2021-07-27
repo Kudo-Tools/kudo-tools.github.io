@@ -122,92 +122,92 @@ function setChangesSaved() {
 
 
 window.onload = () => {
-    let url = document.location.href;
-    let code = url.split("code=")[1];
-    CODE = code;
-    getInformation();
+    // let url = document.location.href;
+    // let code = url.split("code=")[1];
+    // CODE = code;
+    // getInformation();
     getAnnouncementInformation();
     getReleaseNotes();
 }
 
-const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
-let CODE = '';
+// const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
+// const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
+// let CODE = '';
 
 
-async function getTheToken() {
-    const data = {
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: "authorization_code",
-        code: CODE,
-        redirect_uri: "https://www.kudotools.com/dashboard",
-        scope: "identify"
-    }
-    const request = await fetch('https://discord.com/api/oauth2/token', {
-        method: "POST",
-        body: new URLSearchParams(data),
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    })
-    if(request.status >= 400 && request.status < 500) {
-        return null;
-    }
-    const response = await request.json();
-    return response;
-}
+// async function getTheToken() {
+//     const data = {
+//         client_id: CLIENT_ID,
+//         client_secret: CLIENT_SECRET,
+//         grant_type: "authorization_code",
+//         code: CODE,
+//         redirect_uri: "https://www.kudotools.com/dashboard",
+//         scope: "identify"
+//     }
+//     const request = await fetch('https://discord.com/api/oauth2/token', {
+//         method: "POST",
+//         body: new URLSearchParams(data),
+//         headers: {
+//             "Content-Type": "application/x-www-form-urlencoded"
+//         }
+//     })
+//     if(request.status >= 400 && request.status < 500) {
+//         return null;
+//     }
+//     const response = await request.json();
+//     return response;
+// }
 
-async function getInformation() {
-    if(CODE != null) {
-        let tokenInfo = await getTheToken();
-        if(tokenInfo != null) {
-            let accessToken = tokenInfo.access_token;
-            const data = {
-                Authorization: `Bearer ${accessToken}`
-            }
-            const request = await fetch('https://discordapp.com/api/users/@me', {
-                method: "GET",
-                headers: new URLSearchParams(data)
-            })
-            const response = await request.json();
-            if(response.id != null) {
-                document.querySelector('input[name="discord_id"]').value = response.id;
-                document.getElementById("discord_id").innerHTML = response.id;
-                // document.getElementById('discord_button_text').innerHTML = "Sign out";
-                // document.getElementById("signout_discord").style.display = "block";
-                document.getElementById("login_discord").style.display = "none";
-            }
-            if(response.username != null && response.discriminator != null) {
-                document.querySelector('input[name="discord_user"]').value = response.username + "#"+response.discriminator;
-                document.getElementById("discord_username").innerHTML = response.username + ("#" + response.discriminator);
-                // document.getElementById("discord_numbers").textContent = ("#" + response.discriminator);
-            }
-            if(response.avatar != null) {
-                document.querySelector('input[name="avatar"]').value = response.avatar;
-                document.getElementById("discord_avatar").src = "https://cdn.discordapp.com/avatars/"+ response.id +"/" +  response.avatar +".png"
-            }
-            if(response.avatar != null || response.username != null || response.id != null) {
-                setUnsavedChanges();
-            }
-            console.log("SAVING DISCORD INFORMATION THROUGH FILE");
-            $.ajax({
-                url: 'functions/saveDiscord.php',
-                type: 'POST',
-                dataType: "json",
-                data: {
-                    username: response.username,
-                    id: response.id,
-                    avatar: response.avatar
-                }
-            }).done(function(data) {
-                    alert(JSON.stringify(data));
-            });
-            console.log("DONE SAVING DATA");
-            // saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
-        } else {
-            window.location = window.location.href.split("?")[0];
-        }
-    }
-}
+// async function getInformation() {
+//     if(CODE != null) {
+//         let tokenInfo = await getTheToken();
+//         if(tokenInfo != null) {
+//             let accessToken = tokenInfo.access_token;
+//             const data = {
+//                 Authorization: `Bearer ${accessToken}`
+//             }
+//             const request = await fetch('https://discordapp.com/api/users/@me', {
+//                 method: "GET",
+//                 headers: new URLSearchParams(data)
+//             })
+//             const response = await request.json();
+//             if(response.id != null) {
+//                 document.querySelector('input[name="discord_id"]').value = response.id;
+//                 document.getElementById("discord_id").innerHTML = response.id;
+//                 // document.getElementById('discord_button_text').innerHTML = "Sign out";
+//                 // document.getElementById("signout_discord").style.display = "block";
+//                 document.getElementById("login_discord").style.display = "none";
+//             }
+//             if(response.username != null && response.discriminator != null) {
+//                 document.querySelector('input[name="discord_user"]').value = response.username + "#"+response.discriminator;
+//                 document.getElementById("discord_username").innerHTML = response.username + ("#" + response.discriminator);
+//                 // document.getElementById("discord_numbers").textContent = ("#" + response.discriminator);
+//             }
+//             if(response.avatar != null) {
+//                 document.querySelector('input[name="avatar"]').value = response.avatar;
+//                 document.getElementById("discord_avatar").src = "https://cdn.discordapp.com/avatars/"+ response.id +"/" +  response.avatar +".png"
+//             }
+//             if(response.avatar != null || response.username != null || response.id != null) {
+//                 setUnsavedChanges();
+//             }
+//             console.log("SAVING DISCORD INFORMATION THROUGH FILE");
+//             $.ajax({
+//                 url: 'functions/saveDiscord.php',
+//                 type: 'POST',
+//                 dataType: "json",
+//                 data: {
+//                     username: response.username,
+//                     id: response.id,
+//                     avatar: response.avatar
+//                 }
+//             }).done(function(data) {
+//                     alert(JSON.stringify(data));
+//             });
+//             console.log("DONE SAVING DATA");
+//             // saveDiscordInformation(response.username + "#" + response.discriminator, response.id, response.avatar);
+//         } else {
+//             window.location = window.location.href.split("?")[0];
+//         }
+//     }
+// }
 
