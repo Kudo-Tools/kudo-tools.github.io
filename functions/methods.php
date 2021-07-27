@@ -30,8 +30,11 @@ function check_login($con, $fromDashboard) {
         //     return $user_data;
         // }
     }
+    if($fromDashboard) {
+        header("Location: login");
+    }
     //redirects to login page
-    header("Location: login");
+   
     die;
 }
 
