@@ -29,6 +29,7 @@ function getAccessToken() {
     ));
     
     $response = curl_exec($curl);
+    $response = escapeJsonString($response);
     $json = json_decode($response, true);
     curl_close($curl);
     echo $json;
@@ -55,7 +56,9 @@ function getDiscordInformation($token) {
     $response = curl_exec($curl);
     
     curl_close($curl);
+    $response = escapeJsonString($response);
     $json = json_decode($response);
+    
     $values = array(
         "id" => $json['id'],
         "username" => $json['username'],
@@ -64,5 +67,12 @@ function getDiscordInformation($token) {
     );
     return $values;
 }
+function escapeJsonString($value) { 
+    $escapers = array("\'");
+    $replacements = array("\\/");
+    $result = str_replace($escapers, $replacements, $value);
+    return $result;
+}
+
 
 ?>
