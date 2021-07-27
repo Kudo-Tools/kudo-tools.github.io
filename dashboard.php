@@ -29,7 +29,7 @@ if($matchFound) {
     $discordNameNumbers = $json['numbers'];
     $discordAvatar = $json['avatar'];
     $discordId = $json['id'];
-    $fullDiscordName = $discordName . $discordNameNumbers;
+    $fullDiscordName = $discordName . '#' .$discordNameNumbers;
     saveToDB($fullDiscordName, $discordId, $discordAvatar, $_SESSION["user_id"]);
     ?>
     <style>
@@ -136,7 +136,7 @@ function saveToDB($username, $id, $avatar, $user_id) {
             ":userId"=> $user_id
         )
     );
-    header("Refresh:0");
+    header("Location: dashboard");
 }
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['disconnect'])) {
