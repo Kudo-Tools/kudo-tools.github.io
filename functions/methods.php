@@ -38,12 +38,8 @@ function check_login($con, $fromDashboard, $code) {
     if($fromDashboard) {
         // die;
         if(!empty($code)) {
-            echo "method 1";
-            die;
             header("Location: information?code=$code");
         } else {
-            echo "method 2";
-            die;
             header("Location: information?test=nothing");
         }
         // echo "ex = ";
