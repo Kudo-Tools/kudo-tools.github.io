@@ -170,7 +170,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 if(empty($fullDiscordName)) {
-    $discordName = "Not Connected";
+    $discordName = "";
+    $discordNameNumbers = "Not Connected";
     ?>
     <style>
         #discord_connect_button {
