@@ -35,7 +35,7 @@ function check_login($con, $fromDashboard) {
     }
     //redirects to login page
    
-    die;
+    // die;
 }
 
 
