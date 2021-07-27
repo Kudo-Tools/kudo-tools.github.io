@@ -17,7 +17,7 @@ function check_login_homepage($con) {
     return "login";
 }
 
-function check_login($con, $fromDashboard) {
+function check_login($con, $fromDashboard, $code) {
     //Checks if value is set
     // echo $_SESSION["user_id"];
     if(isset($_SESSION["user_id"])) {
@@ -36,14 +36,16 @@ function check_login($con, $fromDashboard) {
         }
     }
     if($fromDashboard) {
-        die;
-        $matchFound = (array_key_exists("code", $_GET));
-        
-        $extension = ($matchFound) ? trim($_GET["code"]) : "nothing";
-        echo "ex = ";
-        echo $extension;
-        $location = "code=".$extension;
-        header("Location: information?$location");
+        // die;
+        if(!empty($code)) {
+            header("Location: information?code=$code");
+        } else {
+            header("Location: information?test=nothing");
+        }
+        // echo "ex = ";
+        // echo $extension;
+        // $location = "code=".$extension;
+       
     }
 }
 
