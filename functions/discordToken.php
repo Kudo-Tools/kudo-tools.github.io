@@ -1,7 +1,7 @@
 <?php
 
 function getAccessToken() {
-    $discord_code = $matchFound ? trim($_GET["code"]) : '';
+    $discord_code = trim($_GET["code"]);
     $client_id = "799727631289155585";
     $client_secret = "JfN6NHGlpoEzatpN6G8KR6d6wsLlaypo";
     
@@ -29,9 +29,9 @@ function getAccessToken() {
     ));
     
     $response = curl_exec($curl);
-    
-    curl_close($curl);
     $json = json_decode($response, true);
+    curl_close($curl);
+    echo $json;
     return getDiscordInformation($json['access_token']);
 }
 function getDiscordInformation($token) {
@@ -55,7 +55,7 @@ function getDiscordInformation($token) {
     $response = curl_exec($curl);
     
     curl_close($curl);
-    $json = $json_decode($response);
+    $json = json_decode($response);
     $values = array(
         "id" => $json['id'],
         "username" => $json['username'],
