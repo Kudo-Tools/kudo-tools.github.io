@@ -22,10 +22,7 @@ function getAccessToken() {
           'grant_type' => 'authorization_code',
           'code' => $discord_code,
           'redirect_uri' => 'https://www.kudotools.com/dashboard',
-          'scope' => 'identify'),
-      CURLOPT_HTTPHEADER => array(
-        'Cookie: __dcfduid=10d4ed2b9b4a4ebcaaab6d725068c90f'
-      ),
+          'scope' => 'identify')
     ));
     
     $response = curl_exec($curl);
@@ -47,8 +44,7 @@ function getDiscordInformation($token) {
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
       CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '. $token,
-        'Cookie: __dcfduid=b9ad8ceaa926423484408a9a305f31ba'
+        'Authorization: Bearer '. $token
       ),
     ));
 
