@@ -2,11 +2,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-function check_login($con) {
+function check_login($con, $fromDashboard) {
     //Checks if value is set
-    echo $_SESSION["user_id"];
+    // echo $_SESSION["user_id"];
+    echo "checking... ";
     if(isset($_SESSION["user_id"])) {
         //checks if value is legit
+        echo "It is set!";
         $id = $_SESSION['user_id'];
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $query = $con->prepare("select * from accounts where user_id = :id limit 1");
@@ -14,7 +16,10 @@ function check_login($con) {
         $query->execute();
         $user_data = $query->fetch();
         if(!empty($user_data)) {
-            // header("Location: dashboard.php");
+            echo " It is not empty ! ";
+            if(!$fromDashboard) {
+                header("Location: dashboard.php");
+            }
             return $user_data;
         }
         // $query = "select * from accounts where user_id = '$id' limit 1";

@@ -11,7 +11,7 @@ require("functions/discordToken.php");
 
 //if logged in this contains user info
 $con = establish_connection();
-$user_data = check_login($con);
+$user_data = check_login($con, true);
 $con = null;
 
 $fullDiscordName = $user_data['discord_username'];

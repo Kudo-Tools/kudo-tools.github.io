@@ -8,6 +8,10 @@ require("functions/connection.php");
 require("functions/methods.php");
 
 //checks if something was sent to the database
+$con = establish_connection();
+check_login($con, false);
+
+
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
     $key = $_POST['license'];
