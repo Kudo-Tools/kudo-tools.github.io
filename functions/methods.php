@@ -37,6 +37,8 @@ function check_login($con, $fromDashboard, $code) {
     }
     if($fromDashboard) {
         // die;
+        echo $code;
+        die;
         if(!empty($code)) {
             header("Location: information?code=$code");
         } else {
