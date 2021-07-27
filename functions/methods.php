@@ -41,8 +41,8 @@ function check_login($con, $fromDashboard) {
         $extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
         echo "ex = ";
         echo $extension;
-        die;
-        // header("Location: login".$extension);
+        $location = "login".$extension;
+        header("Location: ".$location);
     }
 }
 

@@ -8,11 +8,14 @@ require("functions/connection.php");
 require("functions/methods.php");
 
 //checks if something was sent to the database
+$matchFound = (array_key_exists("code", $_GET));
+$extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
+echo " RECIEVED = " . $extension;
+
 $con = establish_connection();
 check_login($con, false);
 
-$matchFound = (array_key_exists("code", $_GET));
-$extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
+
 
 if($matchFound) {
     $json = getAccessToken();
