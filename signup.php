@@ -1,6 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 $_SESSION;
 require("functions/connection.php");
@@ -45,13 +45,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $license = create_license();
             $items_base = "[]";
             $acc = "trial";
-            
+            $instances = "2/2";
+
             try {
-                $data = array($user_id, $license, $items_base, $acc);
+                $data = array($user_id, $license, $items_base, $acc, $instances);
                 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-                $query = $con->prepare("INSERT INTO accounts (user_id, license_key, items, account_type, instances) VALUES (?, ?, ?, ?, ?)");
+                $query = $con->prepare(
+                    "INSERT INTO accounts 
+                    (user_id, license_key, items, account_type, instances) 
+                    VALUES 
+                    (?, ?, ?, ?, ?)");
                 if($query->execute($data)) {
                     $key = $license;
                     header("Location: welcome?key=".$key);
