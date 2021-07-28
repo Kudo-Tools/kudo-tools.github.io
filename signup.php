@@ -53,7 +53,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
-
                 $query = $con->prepare(
                     "INSERT INTO accounts 
                     (user_id, license_key, items, account_type, instances) 

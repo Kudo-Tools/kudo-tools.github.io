@@ -76,7 +76,7 @@ function setReleaseNotes(notes) {
 }
 function getReleaseNotes() {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
+    xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             setReleaseNotes(xmlHttp.responseText);
     }

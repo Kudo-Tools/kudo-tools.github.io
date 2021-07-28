@@ -52,58 +52,6 @@ $day = explode(" ", $date_values[2])[0];
 $date = $month . "/" . $day . "/" . $year;
 $instances = $user_data["instances"];
 $account_type = $user_data['account_type'];
-// $con = establish_connection();
-// $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-// $conn = establish_connection();
-// $query = "select title from messages";
-// $result = mysqli_query($conn, $query);
-
-// if(mysqli_num_rows($result) > 0) {
-    // while($row = mysqli_fetch_assoc($result)) {
-        // $saved_messages .= $row['body'] . "{NEW MESSAGE}";
-        // $saved_authors .= $row['title'] . "{NEW AUTHOR}";
-        // $saved_times .= $row['timestamp'] . "{NEW TIME}";
-        // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-    // }
-// }
-// mysqli_close($conn);
-
-
-// for($x = 0; $x < count($items); $x++) {
-//     $message = $messages[$x];
-//     $author = $auhtors[$x];
-//     $time = $times[$x];
-//     $saved_messages .= $message . "{NEW MESSAGE}";
-//     $saved_authors .= $author . "{NEW AUTHOR}";
-//     $saved_times .= $time . "{NEW TIME}";
-// }
-// echo json_encode(array(
-//     "messages"=>$messages
-// ));
-
-// try {
-    // $discordToAdd = htmlspecialchars($_GET["code"]);
-    // if(!empty($discordToAdd)) {
-    //     // updateDiscordInformation();
-    //     // header("Location: dashboard");
-    //     echo "DISCORD IS SUPPOSE TO BE ADDED";
-    //     die;
-    // }
-// } catch (exception $e) {}
-
-// function updateDiscordInformation() {
-//     $discord_avatar = $_POST['avatar'];
-//     $discord_user = $_POST['discord_user'];
-//     $discord_id = $_POST['discord_id'];
-//     $license_key = $_POST['license_key'];
-//     $user_id = $user_data['user_id'];
-//     $query = "update accounts set discord_username = '$discord_user' where user_id = '$user_id' limit 1";
-//     mysqli_query($con, $query);
-//     $query = "update accounts set discord_id = '$discord_id' where user_id = '$user_id' limit 1";
-//     mysqli_query($con, $query);
-//     $query = "update accounts set discord_avatar = '$discord_avatar' where user_id = '$user_id' limit 1";
-//     mysqli_query($con, $query);
-// }
 $saved_announcements = "";
 $saved_authors = "";
 $saved_times = "";
@@ -153,21 +101,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         </style>
         <?php
     }
-    
-    // $con = establish_connection();
-    // $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    // $query = $con->prepare("update accounts set discord_username = :username where user_id = :userId limit 1");
-    // // $query->bindParam(
-        
-    // // );
-    // $result = $query->execute(
-    //     array(
-    //         ":username" => $discord_user,
-    //         ":userId"=> $user_id
-    //     )
-    // );
-    // echo "COMPLETETLY GOOD";
-    // die;
 }
 
 if(empty($fullDiscordName)) {
