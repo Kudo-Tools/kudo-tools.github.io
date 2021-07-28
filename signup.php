@@ -51,6 +51,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $data = array($user_id, $license, $items_base, $acc, $instances);
                 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+
 
                 $query = $con->prepare(
                     "INSERT INTO accounts 
@@ -63,12 +65,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     $con = null;
                     die;
                 } else {
+                    print_r($con->errorInfo());
+                    die;
                     header("Location: signup?error=invalid");
                     $con = null;
                     die;
                 }
             } catch(exception $e) {
-                header("Location: signup?error=invalid");
+                header("Location: signup?error=invalidBAD");
                 $con = null;
                 die;
             }
