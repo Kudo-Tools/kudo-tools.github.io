@@ -27,7 +27,7 @@ $button_text = check_login_homepage($con);
     </head>
     <body>
         <header>
-            <img class="logo" href="#" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" onclick="window.location='https://www.kudotools.com/'" src="images/LoginKudo.png" alt="logo">
             <nav>
                 <ul class="navigation">
                     <li><a href="#features">features</a></li>

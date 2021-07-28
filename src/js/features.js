@@ -40,15 +40,10 @@ function showSlide(slide) {
 // document.onload = showSlide(0);
 
 document.addEventListener('readystatechange', event => { 
-
-    // When HTML/DOM elements are ready:
-    if (event.target.readyState === "interactive") {   //does same as:  ..addEventListener("DOMContentLoaded"..
+    
+    if (event.target.readyState === "interactive") {
         showSlide(0);
     }
-
-    // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
-    if (event.target.readyState === "complete") {
-        // alert("hi 2");
-    }
+    if (event.target.readyState === "complete") {}
 });
 

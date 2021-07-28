@@ -11,9 +11,8 @@ require("functions/discordToken.php");
 
 //if logged in this contains user info
 $con = establish_connection();
-$preCodeExist = (array_key_exists("code", $_GET));
-$preCode = ($preCodeExist) ? trim($_GET["code"]) : "";
-$user_data = check_login($con, true, $preCode);
+
+$user_data = check_login($con, true);
 $con = null;
 
 $fullDiscordName = $user_data['discord_username'];
@@ -245,7 +244,7 @@ function getDiscordImage() {
     </head>
     <body>
         <header>
-            <img class="logo" src="images/LoginKudo.png" alt="logo">
+            <img onclick="window.location='https://www.kudotools.com/'" class="logo" src="images/LoginKudo.png" alt="logo">
             <nav>
                 <ul class="navigation">
                 </ul>

@@ -24,10 +24,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $query = $con->prepare("SELECT * FROM accounts WHERE license_key = :key LIMIT 1");
         $query->bindParam(":key", $key);
         $query->execute();
-        // $result = $query->get_result();
         $user_data = $query->fetch();
         if(!empty($user_data)) {
-            // $user_data = $result->fetch_assoc();
             if($key == $user_data['license_key']) {
                 $_SESSION['user_id'] = $user_data['user_id'];
                 header("Location: dashboard".$extension);
@@ -65,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     </head>
     <body>
         <header>
-            <img class="logo" href="https://www.kudotools.com" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" onclick="window.location='https://www.kudotools.com/'" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
             </div>
         </header>

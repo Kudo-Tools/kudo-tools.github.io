@@ -5,7 +5,8 @@ session_start();
 $_SESSION;
 require("functions/connection.php");
 require("functions/methods.php");
-try {
+$matchFound = (array_key_exists("error", $_GET));
+if($matchFound) {
     $error = htmlspecialchars($_GET["error"]);
     if(!empty($error)) {
         ?>
@@ -24,7 +25,7 @@ try {
             </style>
         <?php
     }
-} catch (exception $e) {
+} else {
     ?>
         <style type="text/css">
             #license_not_found {
@@ -130,7 +131,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     </head>
     <body>
         <header>
-            <img class="logo" href="https://www.kudotools.com" src="images/LoginKudo.png" alt="logo">
+            <img class="logo" onclick="window.location='https://www.kudotools.com/'" src="images/LoginKudo.png" alt="logo">
             <div class="right_header">
                 <a onclick="location.href='login'" class="sign_up">login</a>
                
