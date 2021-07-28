@@ -39,8 +39,10 @@ function check_login($con, $fromDashboard, $code) {
         // die;
         if(!empty($code)) {
             header("Location: information?code=$code");
+            die;
         } else {
             header("Location: information?test=nothing");
+            die;
         }
         // echo "ex = ";
         // echo $extension;
