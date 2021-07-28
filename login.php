@@ -10,10 +10,9 @@ require("functions/methods.php");
 //checks if something was sent to the database
 $matchFound = (array_key_exists("code", $_GET));
 $extension = ($matchFound) ? "?code=".trim($_GET["code"]) : "";
-echo " RECIEVED = " . $extension;
 
 $con = establish_connection();
-// check_login($con, false);
+check_login($con, false);
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {

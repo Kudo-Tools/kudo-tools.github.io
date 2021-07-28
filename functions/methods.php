@@ -18,8 +18,6 @@ function check_login_homepage($con) {
 }
 
 function check_login($con, $fromDashboard) {
-    //Checks if value is set
-    // echo $_SESSION["user_id"];
     if(isset($_SESSION["user_id"])) {
         //checks if value is legit
         $id = $_SESSION['user_id'];
@@ -36,15 +34,10 @@ function check_login($con, $fromDashboard) {
         }
     }
     if($fromDashboard) {
-        // die;
         $preCodeExist = (array_key_exists("code", $_GET));
         $preCode = ($preCodeExist) ? "?code=".trim($_GET["code"]) : "";
         header("Location: login".$preCode);
         die;
-        // echo "ex = ";
-        // echo $extension;
-        // $location = "code=".$extension;
-       
     }
 }
 
