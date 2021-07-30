@@ -55,6 +55,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <html>
     <head>
+        <title>Login to Kudo</title>
         <link href="src/styles/main.css" rel="stylesheet" type="text/css">
         <link href="src/styles/header.css" rel="stylesheet" type="text/css">
         <link href="src/styles/BigTitle.css" rel="stylesheet" type="text/css">
