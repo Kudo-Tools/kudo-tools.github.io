@@ -243,7 +243,7 @@ $button_text = check_login_homepage($con);
                                 <div class="feature_title">What is the future of Kudo?</div>
                                 <div class="feature_description">
                                     <!-- <br> -->
-                                    Kudo started as a only a ReCaptcha harvester but has grown to be much more   
+                                    Kudo started only as a simple ReCaptcha harvester but has grown to be much more   
                                     <br>
                                     The developer team will continue to grow Kudo with new features and pefections
                                     <br>
