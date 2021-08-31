@@ -8,6 +8,28 @@ require("functions/methods.php");
 
 $con = establish_connection();
 $button_text = check_login_homepage($con); 
+$availability = NULL;
+
+$matchFound = (array_key_exists("pass", $_GET));
+if($matchFound) {
+    $val = htmlspecialchars($_GET["pass"]);
+    if(!empty($error)) {
+        $amt = get_stock_availibility($con, $val);
+        if($amt > 0) {
+            $availability = $amt . " licenses available";
+        } else {
+            $availability = "no licenses available";
+        }
+    } else {
+        $amt = get_general_stock_availibility($con);
+        if($amt > 0) {
+            $availability = $amt . " licenses available";
+        } else {
+            $availability = "no licenses available";
+        }
+    }
+}
+
 ?>
 <html>
     <head>
@@ -42,7 +64,7 @@ $button_text = check_login_homepage($con);
                     <li><a href="#features">features</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#social">social media</a></li>
-                    <li><a href="#">download</a></li>
+                    <li><a href="" download="Kudo Tools">download</a></li>
                 </ul>
             </nav>
             <div class="right_header">
@@ -61,7 +83,7 @@ $button_text = check_login_homepage($con);
                         <p>Use an automated toolbox to make your reselling career simple</p>
                     </div>
                     <div class="button_container">
-                        <button id="purchase">purchase</button>
+                        <button id="purchase"><?php echo $availability;?></button>
                         <button onclick="location.href='#information';" class="learn_more">learn more
                             <i class="arrow right"></i>
                         </button>

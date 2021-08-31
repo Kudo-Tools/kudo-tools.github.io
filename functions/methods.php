@@ -41,6 +41,29 @@ function check_login($con, $fromDashboard) {
     }
 }
 
+function get_general_stock_availibility($con) {
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("SELECT * FROM stock WHERE password = :id LIMIT 1");
+    $query->bindParam(":id", "general");
+    $query->execute();
+    $data = $query->fetch();
+    if(!empty($data)) {
+        return $data['availability'];
+    }
+    return -1;
+}
+
+function get_stock_availibility($con, $key) {
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("SELECT * FROM stock WHERE password = :id LIMIT 1");
+    $query->bindParam(":id", $key);
+    $query->execute();
+    $data = $query->fetch();
+    if(!empty($data)) {
+        return $data['availability'];
+    }
+    return -1;
+}
 
 /**
  * creates a random number
