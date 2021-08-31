@@ -30,7 +30,7 @@
 }
 
 .button_container button {
-    width: 170px;
+    width: 190px;
     height: 40px;
     margin: 0;
     position: relative;
@@ -48,7 +48,8 @@
     border-radius: 3px;
     /* background-color: white; */
     box-shadow: 0px 0px 0px 0.7px rgb(26,26,46, 0.5) inset;
-    
+    padding-left: 10px;
+    padding-right: 10px;
     background-size: 200%;
     transition: .3s ease;
     margin-right: 2px;
