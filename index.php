@@ -93,7 +93,7 @@ if($matchFound) {
                         <p>Use an automated toolbox to make your reselling career simple</p>
                     </div>
                     <div class="button_container">
-                        <button id="purchase"><?php echo $availability;?></button>
+                        <button onclick="available_continue(<?php echo $availability; ?>)" id="purchase"><?php echo $availability;?></button>
                         <button onclick="location.href='#information';" class="learn_more">learn more
                             <i class="arrow right"></i>
                         </button>

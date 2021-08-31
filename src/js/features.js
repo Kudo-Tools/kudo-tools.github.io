@@ -1,5 +1,15 @@
 var slide = 0;
 
+function available_continue(txt) {
+    console.log('contuining '+ txt)
+    if(txt !== "no licenses available") {
+        console.log('good')
+        window.location.href = "https://www.kudotools.com/signup";
+    } else {
+        console.log('bad')
+    }
+}
+
 function showSlide(slide) {
     var slidesButton = document.getElementsByClassName("selectors");
     var titles = document.getElementsByClassName("selector_titles");
