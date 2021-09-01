@@ -47,7 +47,7 @@ function signupStyle() {
     var txt = elem.innerHTML;
     console.log('txt =  ' +txt);
     if(txt === 'out of stock') {
-        elem.style.color = "rgb(11,11,18, 0.4)";
+        elem.style.color = "rgb(11,11,18, 0.7)";
         elem.style.pointerEvents = "none";
     }
 }

@@ -34,6 +34,9 @@ if($matchFound) {
         </style>
     <?php
 }
+
+
+$provider = "general";
 $availability = NULL;
 $passMatch = (array_key_exists("pass", $_GET));
 $con = establish_connection();
@@ -41,6 +44,7 @@ if($passMatch) {
     $val = htmlspecialchars($_GET["pass"]);
     if(!empty($val)) {
         $amt = get_stock_availibility($con, $val);
+        // $provider
         if($amt > 0) {
             $availability = "create a free beta key";
         } else {
@@ -99,6 +103,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     $con = null;
                     die;
                 }
+
+                $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $query = $con->prepare("UPDATE stock SET availability = availability - 1 WHERE provider = :prov LIMIT 1");
+                $query->bindParam(":prov", $provider);
+                $query->execute();
+
             } catch(exception $e) {
                 header("Location: signup?error=invalidBAD");
                 $con = null;

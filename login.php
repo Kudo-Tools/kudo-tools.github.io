@@ -20,7 +20,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $key = $_POST['license'];
     if(!empty($key)) {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
         $query = $con->prepare("SELECT * FROM accounts WHERE license_key = :key LIMIT 1");
         $query->bindParam(":key", $key);
         $query->execute();
