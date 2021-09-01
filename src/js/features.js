@@ -1,12 +1,8 @@
 var slide = 0;
 
 function available_continue(txt) {
-    console.log('contuining '+ txt)
     if(txt !== "no licenses available") {
-        console.log('good')
         window.location.href = "https://www.kudotools.com/signup";
-    } else {
-        console.log('bad')
     }
 }
 
@@ -46,6 +42,14 @@ function showSlide(slide) {
     slides[slide].style.display = "block";
 }
 
+function signupStyle() {
+    let elem = document.getElementById('beta_button');
+    var txt = elem.innerHTML;
+    console.log('txt =  ' +txt);
+    if(txt === 'out of stock') {
+        elem.style.color = "rgb(11,11,18, 0.4)";
+    }
+}
 
 // document.onload = showSlide(0);
 
@@ -53,6 +57,7 @@ document.addEventListener('readystatechange', event => {
     
     if (event.target.readyState === "interactive") {
         showSlide(0);
+        signupStyle();
     }
     if (event.target.readyState === "complete") {}
 });

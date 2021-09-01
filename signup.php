@@ -34,12 +34,39 @@ if($matchFound) {
         </style>
     <?php
 }
+$availability = NULL;
+$passMatch = (array_key_exists("pass", $_GET));
+if($passMatch) {
+    $val = htmlspecialchars($_GET["pass"]);
+    if(!empty($val)) {
+        $amt = get_stock_availibility($con, $val);
+        if($amt > 0) {
+            $availability = "create a free beta key";
+        } else {
+            $availability = "out of stock";
+        }
+    } else {
+        $amt = get_stock_availibility($con, "general");
+        if($amt > 0) {
+            $availability = "create a free beta key";
+        } else {
+            $availability = "out of stock";
+        }
+    }
+} else {
+    $amt = get_stock_availibility($con, "general");
+    if($amt > 0) {
+        $availability = "create a free beta key";
+    } else {
+        $availability = "out of stock";
+    }
+}
  
 
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
-    if (isset($_POST['create'])) {
+    if ($availability != "out of stock" && isset($_POST['create'])) {
         if($con != null) {
             $user_id = random_number(25);
             $license = create_license();
@@ -159,7 +186,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             <a class="error" id="license_not_found">error generating key, try again in a minute</a>
             <div id="create_key" class="elements">
                 <form style="background: transparent;" method="post">
-                    <button name="create" style="margin-top: 20px;" id="beta_button">create free beta key</button>
+                    <button name="create" style="margin-top: 20px;" id="beta_button"><?php echo $availability?></button>
                     <a class="question">already have an account?</a>
                     <a onclick="location.href='login'" class="signup">Login here</a>
                 </form>

@@ -15,7 +15,6 @@ if($matchFound) {
     $val = htmlspecialchars($_GET["pass"]);
     if(!empty($val)) {
         $amt = get_stock_availibility($con, $val);
-        echo "1 = " . $amt;
         if($amt > 0) {
             $availability = $amt . " licenses available";
         } else {
@@ -23,7 +22,6 @@ if($matchFound) {
         }
     } else {
         $amt = get_stock_availibility($con, "general");
-        echo "2 = " .$amt;
         if($amt > 0) {
             $availability = $amt . " licenses available";
         } else {
@@ -32,7 +30,6 @@ if($matchFound) {
     }
 } else {
     $amt = get_stock_availibility($con, "general");
-    echo "3 = " .$amt;
     if($amt > 0) {
         $availability = $amt . " licenses available";
     } else {
