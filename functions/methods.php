@@ -53,6 +53,19 @@ function get_stock_availibility($con, $key) {
     return -1;
 }
 
+
+function get_stock_provider($con, $key) {
+    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $query = $con->prepare("SELECT * FROM stock WHERE password = :id LIMIT 1");
+    $query->bindParam(":id", $key);
+    $query->execute();
+    $data = $query->fetch();
+    if(!empty($data)) {
+        return $data['provider'];
+    }
+    return "general";
+}
+
 /**
  * creates a random number
  */

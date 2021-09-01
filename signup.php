@@ -45,7 +45,7 @@ if($passMatch) {
     $val = htmlspecialchars($_GET["pass"]);
     if(!empty($val)) {
         $amt = get_stock_availibility($con, $val);
-        // $provider
+        $provider = get_stock_provider($con, $val);
         if($amt > 0) {
             $availability = "create a free beta key";
         } else {
@@ -53,6 +53,7 @@ if($passMatch) {
         }
     } else {
         $amt = get_stock_availibility($con, "general");
+        $provider = get_stock_provider($con, $val);
         if($amt > 0) {
             $availability = "create a free beta key";
         } else {
