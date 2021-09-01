@@ -48,6 +48,7 @@ function signupStyle() {
     console.log('txt =  ' +txt);
     if(txt === 'out of stock') {
         elem.style.color = "rgb(11,11,18, 0.4)";
+        elem.style.pointerEvents = "none";
     }
 }
 
@@ -57,8 +58,10 @@ document.addEventListener('readystatechange', event => {
     
     if (event.target.readyState === "interactive") {
         showSlide(0);
+        
+    }
+    if (event.target.readyState === "complete") {
         signupStyle();
     }
-    if (event.target.readyState === "complete") {}
 });
 
