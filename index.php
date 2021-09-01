@@ -75,8 +75,8 @@ if($matchFound) {
                 </ul>
             </nav>
             <div class="right_header">
-                <div class="login_button">
-                    <a onclick="location.href='login'" href="#"><button><?php echo $button_text; ?></button></a>
+                <div onclick="location.href='login'" class="login_button">
+                    <a  href="#"><button><?php echo $button_text; ?></button></a>
                 </div>
                 <a onclick="location.href='signup?pass=<?php echo $stock_pass?>'" class="sign_up">sign up</a>
                
