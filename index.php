@@ -9,12 +9,12 @@ require("functions/methods.php");
 $con = establish_connection();
 $button_text = check_login_homepage($con); 
 $availability = NULL;
-
+$stock_pass = "general";
 $matchFound = (array_key_exists("pass", $_GET));
 if($matchFound) {
-    $val = htmlspecialchars($_GET["pass"]);
-    if(!empty($val)) {
-        $amt = get_stock_availibility($con, $val);
+    $stock_pass = htmlspecialchars($_GET["pass"]);
+    if(!empty($stock_pass)) {
+        $amt = get_stock_availibility($con, $stock_pass);
         if($amt > 0) {
             $availability = $amt . " licenses available";
         } else {
@@ -78,7 +78,7 @@ if($matchFound) {
                 <div class="login_button">
                     <a onclick="location.href='login'" href="#"><button><?php echo $button_text; ?></button></a>
                 </div>
-                <a onclick="location.href='signup'" class="sign_up">sign up</a>
+                <a onclick="location.href='signup?pass=<?php echo $stock_pass?>'" class="sign_up">sign up</a>
                
             </div>
         </header>
@@ -90,7 +90,7 @@ if($matchFound) {
                         <p>Use an automated toolbox to make your reselling career simple</p>
                     </div>
                     <div class="button_container">
-                        <button onclick="available_continue('<?php echo $availability;?>');" id="purchase"><?php echo $availability;?></button>
+                        <button onclick="location.href='signup?pass=<?php echo $stock_pass?>'" id="purchase"><?php echo $availability;?></button>
                         <button onclick="location.href='#information';" class="learn_more">learn more
                             <i class="arrow right"></i>
                         </button>
