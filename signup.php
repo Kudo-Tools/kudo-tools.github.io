@@ -5,6 +5,7 @@ session_start();
 $_SESSION;
 require("functions/connection.php");
 require("functions/methods.php");
+$error = NULL;
 $matchFound = (array_key_exists("error", $_GET));
 if($matchFound) {
     $error = htmlspecialchars($_GET["error"]);
@@ -68,7 +69,6 @@ if($passMatch) {
 }
 $con = NULL;
  
-echo $provider;
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
@@ -104,7 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     } else {
                         print_r($con->errorInfo());
                         die;
-                        header("Location: signup?error=invalid");
+                        header("Location: signup?error=error%20generating%20key,%20try%20again%20in%20a%20minute");
                         $con = null;
                         die;
                     }
@@ -197,7 +197,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="box loginBox">
             <a class="title">Kudo Account Creation (1/2)</a>
             <a class="subtitle">Sign-up for a free trial version of Kudo</a>
-            <a class="error" id="license_not_found">error generating key, try again in a minute</a>
+            <a class="error" id="license_not_found"><?php echo $error?></a>
             <div id="create_key" class="elements">
                 <form style="background: transparent;" method="post">
                     <button name="create" style="margin-top: 20px;" id="beta_button"><?php echo $availability?></button>
