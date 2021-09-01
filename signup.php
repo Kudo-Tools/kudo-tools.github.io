@@ -36,6 +36,7 @@ if($matchFound) {
 }
 $availability = NULL;
 $passMatch = (array_key_exists("pass", $_GET));
+$con = establish_connection();
 if($passMatch) {
     $val = htmlspecialchars($_GET["pass"]);
     if(!empty($val)) {
@@ -61,6 +62,7 @@ if($passMatch) {
         $availability = "out of stock";
     }
 }
+$con = NULL;
  
 
 $key = "no license key";
