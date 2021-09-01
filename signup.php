@@ -68,7 +68,7 @@ if($passMatch) {
 }
 $con = NULL;
  
-
+echo $provider;
 $key = "no license key";
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $con = establish_connection();
@@ -81,34 +81,36 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $instances = "2/2";
 
             try {
-                $data = array($user_id, $license, $items_base, $acc, $instances);
-                $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-                $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-
-                $query = $con->prepare(
-                    "INSERT INTO accounts 
-                    (user_id, license_key, items, account_type, instances) 
-                    VALUES 
-                    (?, ?, ?, ?, ?)");
-                if($query->execute($data)) {
-                    $key = $license;
-                    header("Location: welcome?key=".$key);
-                    $con = null;
-                    die;
-                } else {
-                    print_r($con->errorInfo());
-                    die;
-                    header("Location: signup?error=invalid");
-                    $con = null;
-                    die;
-                }
 
                 $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $query = $con->prepare("UPDATE stock SET availability = availability - 1 WHERE provider = :prov LIMIT 1");
                 $query->bindParam(":prov", $provider);
-                $query->execute();
-
+                if($query->execute()) {
+                    $data = array($user_id, $license, $items_base, $acc, $instances);
+                    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    
+                    $query = $con->prepare(
+                        "INSERT INTO accounts 
+                        (user_id, license_key, items, account_type, instances) 
+                        VALUES 
+                        (?, ?, ?, ?, ?)");
+                    if($query->execute($data)) {
+                        $key = $license;
+                        header("Location: welcome?key=".$key);
+                        $con = null;
+                        die;
+                    } else {
+                        print_r($con->errorInfo());
+                        die;
+                        header("Location: signup?error=invalid");
+                        $con = null;
+                        die;
+                    }
+                } else {
+                    header("Location: signup?error=oos");
+                }
             } catch(exception $e) {
                 header("Location: signup?error=invalidBAD");
                 $con = null;
