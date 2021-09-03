@@ -1,7 +1,7 @@
 var slide = 0;
 
 
-function download() {
+function downloadKudo() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {

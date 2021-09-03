@@ -270,7 +270,7 @@ function getDiscordImage() {
             </div>
             <div class="download">
                 <h1  class="download_title">Windows download</h1>
-                <div onclick="download()" class="windows">
+                <div onclick="downloadKudo()" class="windows">
                     <img class="icon" src="images/windows.png" alt="logo">
             
                 </div>
