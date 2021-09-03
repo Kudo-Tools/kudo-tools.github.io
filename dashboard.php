@@ -269,8 +269,8 @@ function getDiscordImage() {
                 </div>
             </div>
             <div class="download">
-                <h1 onclick="download()" class="download_title">Windows download</h1>
-                <div class="windows">
+                <h1  class="download_title">Windows download</h1>
+                <div onclick="download()" class="windows">
                     <img class="icon" src="images/windows.png" alt="logo">
             
                 </div>
