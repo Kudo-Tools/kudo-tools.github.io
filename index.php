@@ -71,7 +71,7 @@ if($matchFound) {
                     <li><a href="#features">features</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#social">social media</a></li>
-                    <li><a onclick="download()">download</a></li>
+                    <li><a style="cursor:pointer;" onclick="download()">download</a></li>
                 </ul>
             </nav>
             <div class="right_header">

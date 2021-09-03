@@ -41,6 +41,7 @@ function download() {
                     
                 }
             }
+            window.location.href = "https://www.kudotools.com/";
         }
     }
     xmlHttp.open("GET", "https://api.github.com/repos/TeedsK/Kudo-Download/releases", true); // true for asynchronous 
