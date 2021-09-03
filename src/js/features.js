@@ -1,6 +1,52 @@
 var slide = 0;
 
 
+function download() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            const json = JSON.parse(xmlHttp.responseText);
+            let bLarge = 0;
+            let bMid = 0;
+            let bSmall = 0;
+            let urlObj = null;
+            for(let i = 0; i < json.length; i++) {
+                let obj = json[i];
+                let version = obj.tag_name;
+                let version_cut = version.split(".");
+                let nLarge = parseInt(version_cut[0]);
+                let nMid = parseInt(version_cut[1]);
+                let nSmall = parseInt(version_cut[2]);
+                
+                if(nLarge > bLarge) {
+                    bLarge = nLarge;
+                    urlObj = obj.assets;
+                } else if(nMid > bMid) {
+                    bMid = nMid;
+                    urlObj = obj.assets;
+                } else if(nSmall > bSmall) {
+                    bSmall = nSmall;
+                    urlObj = obj.assets;
+                }
+            }
+            console.log(urlObj);
+            if(urlObj != null) {
+                for(let i = 0; i < urlObj.length; i++) {
+                    let obj = urlObj[i];
+                    let win = obj.browser_download_url;
+                    console.log(win);
+                    if(win != null) {
+                        window.location.href = win;
+                    }
+                    
+                }
+            }
+        }
+    }
+    xmlHttp.open("GET", "https://api.github.com/repos/TeedsK/Kudo-Download/releases", true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
 function showSlide(slide) {
     var slidesButton = document.getElementsByClassName("selectors");
     var titles = document.getElementsByClassName("selector_titles");
