@@ -247,7 +247,7 @@ function getDiscordImage() {
                     <div class="horizontal_seperator"></div>
                     <div class="section discord_server">
                         <a>Discord Server</a>
-                        <p href="https://discord.gg/9RVJ4MR3Ws" id="join_discord">join discord server</p>
+                        <p onclick="location.href='https://discord.gg/9RVJ4MR3Ws';" id="join_discord">join discord server</p>
                     </div>
                     <div class="horizontal_seperator"></div>
                     <div class="section license_type">
